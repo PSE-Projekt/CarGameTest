@@ -12,7 +12,7 @@ public class Player implements UserInputObserver {
 
     private final String id;
     private String name;
-    private UserInput userInput;
+    private UserInput currentUserInput;
     private Score score;
     private PlayerCar playerCar;
 
@@ -59,11 +59,11 @@ public class Player implements UserInputObserver {
     }
 
     public UserInput getCurrentUserInput() {
-        return userInput;
+        return currentUserInput;
     }
 
     public void setCurrentUserInput(UserInput userInput) {
-        this.userInput = userInput;
+        this.currentUserInput = userInput;
     }
 
 }
