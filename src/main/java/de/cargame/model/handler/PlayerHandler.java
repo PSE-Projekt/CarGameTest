@@ -4,11 +4,8 @@ import de.cargame.config.UserInput;
 import de.cargame.model.entity.Player;
 import de.cargame.model.entity.gameobject.car.PlayerCar;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 public class PlayerHandler {
 
