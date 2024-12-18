@@ -1,9 +1,10 @@
-package de.cargame.old.observer;
+package de.cargame.controller.input;
 
 public enum UserInput {
-
     UP,
     DOWN,
     FAST_FORWARD,
-    NONE
+    NONE();
+
+
 }

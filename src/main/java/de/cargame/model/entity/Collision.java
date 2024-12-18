@@ -12,6 +12,6 @@ public class Collision {
     private Coordinate coordinate;
     private CollisionType collisionType;
     private PlayerCar playerCar;
-    private GameObject gameObject2;
+    private GameObject collidedObject;
 
 }

@@ -18,5 +18,15 @@ public class GameObjectHandler {
     }
 
 
-    public void update(){}
+    public List<GameObject> update(double deltaTime){
+        for (GameObject gameObject : gameObjects) {
+
+            //determine new pos
+        }
+        return null;//todo
+    }
+
+    public List<GameObject> getGameAllObjects(){
+        return gameObjects;
+    }
 }

@@ -17,4 +17,9 @@ public abstract class GameObject {
         setDimension(dimension);
     }
 
+    public void move(int xAmount, int yAmount){
+        coordinate.addX(xAmount);
+        coordinate.addY(yAmount);
+    }
+
 }

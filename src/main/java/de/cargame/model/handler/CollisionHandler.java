@@ -16,7 +16,7 @@ public class CollisionHandler {
         this.playerHandler = playerHandler;
     }
 
-    public Optional<Collision> checkCollision(PlayerCar car, GameObject go2) {
+    public Optional<Collision> checkCollision(PlayerCar car, GameObject collidedObject) {
         //Collision Dectection Logik
         boolean collisionOccurred = false;
         int collisionsX = 34;
@@ -24,7 +24,7 @@ public class CollisionHandler {
         Coordinate collisionCoordinate = new Coordinate(collisionsX, collisionsY);
 
         if (collisionOccurred) {
-            Collision collision = handleCollision(car, go2, collisionCoordinate);
+            Collision collision = handleCollision(car, collidedObject, collisionCoordinate);
             return Optional.of(collision);
         }
         return Optional.empty();
