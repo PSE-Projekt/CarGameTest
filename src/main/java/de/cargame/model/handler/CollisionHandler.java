@@ -3,7 +3,9 @@ package de.cargame.model.handler;
 import de.cargame.model.entity.Collision;
 import de.cargame.model.entity.CollisionType;
 import de.cargame.model.entity.Coordinate;
-import de.cargame.model.entity.gameobject.*;
+import de.cargame.model.entity.gameobject.GameObject;
+import de.cargame.model.entity.gameobject.Life;
+import de.cargame.model.entity.gameobject.Reward;
 import de.cargame.model.entity.gameobject.car.PlayerCar;
 
 import java.util.Optional;

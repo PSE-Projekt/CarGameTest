@@ -13,19 +13,19 @@ public class InputController {
     private Keyboard keyboard;
     private GamePad gamePad;
 
-    public InputController(){
+    public InputController() {
         keyboard = new Keyboard();
 
     }
 
 
-    public Optional<Controller> pollGamePad(){
+    public Optional<Controller> pollGamePad() {
         Event event = new Event();
 
         /* Get the available controllers */
         Controller[] controllers = ControllerEnvironment.getDefaultEnvironment().getControllers();
 
-        if(controllers.length==0){
+        if (controllers.length == 0) {
             System.out.println("No Controller found");
             return Optional.empty();
         }

@@ -1,12 +1,17 @@
 package de.cargame.model.handler;
 
 import de.cargame.config.UserInput;
+import de.cargame.exception.PlayerNotFoundException;
+import de.cargame.model.entity.CarType;
 import de.cargame.model.entity.Player;
 import de.cargame.model.entity.gameobject.car.PlayerCar;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
+@Slf4j
 public class PlayerHandler {
 
     Map<String, Player> players;
@@ -27,12 +32,13 @@ public class PlayerHandler {
         return getPlayer(id).getCurrentUserInput();
     }
 
-    public void setCarSelection(String id, PlayerCar playerCar) {
-        getPlayer(id).setPlayerCar(playerCar);
+    public void setCarSelection(String playerId, CarType carSelection) {
+
+
     }
 
-    public PlayerCar getCarSelection(String id) {
-        return getPlayer(id).getPlayerCar();
+    public PlayerCar getCarSelection(String playerId) {
+        return getPlayer(playerId).getPlayerCar();
     }
 
     public int increaseLife(PlayerCar playerCar) {
@@ -50,10 +56,13 @@ public class PlayerHandler {
     }
 
     private Player getPlayer(PlayerCar playerCar) {
-        return players.values()
+        Optional<Player> playerOptional = players.values()
                 .stream()
                 .filter(p -> p.getPlayerCar() == playerCar)
-                .toList()
-                .getFirst();
+                .findFirst();
+
+        if(playerOptional.isPresent()) return playerOptional.get();
+        log.error("Player not found");
+        throw new PlayerNotFoundException("Player not found");
     }
 }

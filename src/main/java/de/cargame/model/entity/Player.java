@@ -1,21 +1,27 @@
 package de.cargame.model.entity;
 
 
+import de.cargame.config.GameConfig;
 import de.cargame.config.UserInput;
 import de.cargame.model.entity.gameobject.car.PlayerCar;
-import de.cargame.model.handler.PlayerHandler;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.UUID;
 
 public class Player implements UserInputObserver {
 
 
+    @Getter
     private final String id;
     private String name;
+    @Getter
     private UserInput currentUserInput;
     private Score score;
-    private PlayerCar playerCar;
 
+    @Setter
+    @Getter
+    private PlayerCar playerCar;
     private int lives;
 
 
@@ -24,7 +30,7 @@ public class Player implements UserInputObserver {
         this.name = "Player_" + id;
         this.currentUserInput = UserInput.NONE;
         this.score = new Score();
-        this.lives=3;
+        this.lives = GameConfig.MAX_LIVES;
     }
 
     @Override
@@ -41,29 +47,12 @@ public class Player implements UserInputObserver {
         score.reset();
     }
 
-    public int increaseLife(){
+    public int increaseLife() {
         return ++lives;
     }
 
-    public int decreaseLife(){
+    public int decreaseLife() {
         return --lives;
-    }
-
-
-    public void setPlayerCar(PlayerCar playerCar) {
-        this.playerCar = playerCar;
-    }
-
-    public PlayerCar getPlayerCar() {
-        return playerCar;
-    }
-
-    public UserInput getCurrentUserInput() {
-        return currentUserInput;
-    }
-
-    public void setCurrentUserInput(UserInput userInput) {
-        this.currentUserInput = userInput;
     }
 
 }

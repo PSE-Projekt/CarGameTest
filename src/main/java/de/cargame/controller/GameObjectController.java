@@ -11,16 +11,16 @@ public class GameObjectController {
     private GameObjectHandler gameObjectHandler;
 
 
-    public GameObjectController(){
+    public GameObjectController() {
         this.gameObjectHandler = new GameObjectHandler();
     }
 
-    public List<GameObject> getAllGameObjects(){
+    public List<GameObject> getAllGameObjects() {
         return gameObjectHandler.getGameAllObjects();
     }
 
 
-    public void update(double deltaTime){
+    public void update(double deltaTime) {
         gameObjectHandler.update(deltaTime);
     }
 

@@ -13,7 +13,8 @@ public class GameStateController {
     private ViewState viewState;
 
 
-    public GameStateController(){
+
+    public GameStateController() {
         gameMode = GameMode.NOT_SET;
         viewState = ViewState.MAIN_MENU;
     }

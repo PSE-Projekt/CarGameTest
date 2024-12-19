@@ -12,12 +12,12 @@ public abstract class GameObject {
     protected Coordinate coordinate;
     protected Dimension dimension;
 
-    protected GameObject(Coordinate coordinate, Dimension dimension){
+    protected GameObject(Coordinate coordinate, Dimension dimension) {
         setCoordinate(coordinate);
         setDimension(dimension);
     }
 
-    public void move(int xAmount, int yAmount){
+    public void move(int xAmount, int yAmount) {
         coordinate.addX(xAmount);
         coordinate.addY(yAmount);
     }

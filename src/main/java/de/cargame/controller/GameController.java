@@ -2,8 +2,10 @@ package de.cargame.controller;
 
 import lombok.AccessLevel;
 import lombok.Setter;
+import lombok.extern.slf4j.Slf4j;
 
 @Setter(AccessLevel.PRIVATE)
+@Slf4j
 public class GameController {
 
 
@@ -14,15 +16,17 @@ public class GameController {
 
     private GameObjectController gameObjectController;
 
-    public void GameController(){
+    public GameController() {
         setGameStateController(new GameStateController());
         setInputController(new InputController());
         setPlayerController(new PlayerController());
         setGameObjectController(new GameObjectController());
+
+        run();
     }
 
 
-    private void run(){
+    private void run() {
         //createUI();
         long lastTime = System.nanoTime();
 
@@ -40,12 +44,12 @@ public class GameController {
             try {
                 Thread.sleep(16); // ~60 FPS
             } catch (InterruptedException e) {
-                e.printStackTrace();
+                log.error(e.getMessage());
             }
         }
     }
 
-    private void tick(){
+    private void tick() {
 
     }
 }

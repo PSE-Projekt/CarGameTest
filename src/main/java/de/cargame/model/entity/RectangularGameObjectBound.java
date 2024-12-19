@@ -1,7 +1,5 @@
 package de.cargame.model.entity;
 
-import lombok.AllArgsConstructor;
-
 import java.awt.*;
 
 public class RectangularGameObjectBound extends GameObjectBound {
@@ -11,7 +9,7 @@ public class RectangularGameObjectBound extends GameObjectBound {
 
     public RectangularGameObjectBound(int x, int y, int width, int height) {
         super(x, y);
-        this.width=width;
+        this.width = width;
         this.height = height;
     }
 

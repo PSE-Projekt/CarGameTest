@@ -9,12 +9,12 @@ public class Score {
     private int value = 0;
 
 
-    public int increaseScore(int value){
-        value+=value;
+    public int increaseScore(int value) {
+        value += value;
         return value;
     }
 
-    public void reset(){
+    public void reset() {
         value = 0;
     }
 }

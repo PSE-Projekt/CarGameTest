@@ -12,11 +12,11 @@ public class GameModelData {
     private List<GameObject> gameObjects;
 
 
-    public GameModelData(){
+    public GameModelData() {
         this.gameObjects = new ArrayList<>();
     }
 
-    public GameModelData(List<GameObject> gameObjects){
+    public GameModelData(List<GameObject> gameObjects) {
         this.gameObjects = gameObjects;
     }
 }

@@ -15,6 +15,7 @@ public class Coordinate {
     public void addX(int xAmount) {
         x += xAmount;
     }
+
     public void addY(int yAmount) {
         y += yAmount;
     }
