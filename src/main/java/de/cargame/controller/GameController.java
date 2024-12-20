@@ -1,7 +1,9 @@
 package de.cargame.controller;
 
 import de.cargame.controller.entity.GameModelData;
+import de.cargame.controller.input.Keyboard;
 import de.cargame.model.entity.Coordinate;
+import de.cargame.model.entity.Player;
 import de.cargame.model.entity.gameobject.GameObject;
 import de.cargame.view.TestView;
 import lombok.AccessLevel;
@@ -24,30 +26,30 @@ public class GameController {
         run();
     }
 
-
     private void run() {
         //createUI();
-        gameObjectController.spawnBuilding(new Coordinate(1000, 500));
+
+        Player playerKeyboard = new Player();
+        Keyboard keyboard = new Keyboard();
+        keyboard.registerObserver(playerKeyboard);
+
+        gameObjectController.startGame();
 
 
         TestView testView = new TestView(this, gameObjectController);
-        long lastTime = System.nanoTime();
 
+        long lastTime = System.nanoTime();
         while (true) {
             long currentTime = System.nanoTime();
             double deltaTime = (currentTime - lastTime) / 1_000_000_000.0;
             lastTime = currentTime;
 
-            // Autos aktualisieren
 
             gameObjectController.update(deltaTime);
             testView.render();
 
-
-            // Rendering und andere Updates
-
             try {
-                Thread.sleep(100); // ~60 FPS 16
+                Thread.sleep(16); // ~60 FPS 16
             } catch (InterruptedException e) {
                 log.error(e.getMessage());
             }

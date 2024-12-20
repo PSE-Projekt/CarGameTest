@@ -7,6 +7,7 @@ import de.cargame.model.entity.Coordinate;
 import de.cargame.model.entity.Player;
 import de.cargame.model.entity.gameobject.*;
 import de.cargame.model.entity.gameobject.car.AICar;
+import de.cargame.model.entity.gameobject.car.MovementStrategy;
 import de.cargame.model.entity.gameobject.car.PlayerCar;
 import de.cargame.model.service.GameObjectCreationService;
 import lombok.extern.slf4j.Slf4j;
@@ -18,6 +19,8 @@ import java.util.List;
 public class GameObjectHandler {
     private final CollisionHandler collisionHandler;
     private final GameObjectCreationService gameObjectCreationService;
+
+    private final GameObjectSpawnHandler gameObjectSpawnHandler;
     private final PlayerHandler playerHandler;
     private List<GameObject> gameObjects = new ArrayList<>();
 
@@ -25,17 +28,27 @@ public class GameObjectHandler {
     public GameObjectHandler() {
         this.playerHandler = new PlayerHandler();
         this.collisionHandler = new CollisionHandler(playerHandler);
-        gameObjectCreationService = new GameObjectCreationService();
+        this.gameObjectCreationService = new GameObjectCreationService();
+        this.gameObjectSpawnHandler = new GameObjectSpawnHandler();
     }
 
 
-    public List<GameObject> update(double deltaTime) {
+    public void startGame(){
+        gameObjectSpawnHandler.startSpawning(this);
+    }
+
+    public void stopGame(){
+        gameObjectSpawnHandler.stopSpawning();
+    }
+
+    public void moveElements(double deltaTime) {
         for (GameObject gameObject : gameObjects) {
             if(isStaticElement(gameObject)){
-                moveObjectStatic(gameObject);
+                moveObjectStatic(gameObject, deltaTime);
+            } else if (gameObject instanceof AICar) {
+                moveAICar(gameObject, deltaTime); //todo logik für verschiedene Fahrweisen
             }
         }
-        return null;//todo
     }
 
 
@@ -88,7 +101,13 @@ public class GameObjectHandler {
         return isRoad || isObstacle || isReward || isBuilding;
     }
 
-    private void moveObjectStatic(GameObject gameObject){
-        gameObject.moveBy(-GameConfig.GAME_SPEED, 0);
+
+    private void moveObjectStatic(GameObject gameObject, Double deltaTime){
+        gameObject.moveBy(-GameConfig.GAME_SPEED * deltaTime, 0);
+    }
+
+    private void moveAICar(GameObject gameObject, Double deltaTime){
+
+        gameObject.moveBy(-GameConfig.GAME_SPEED * deltaTime *GameConfig.AI_CAR_SPEED, 0);
     }
 }

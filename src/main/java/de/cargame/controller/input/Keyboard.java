@@ -1,5 +1,6 @@
 package de.cargame.controller.input;
 
+import com.github.kwhat.jnativehook.GlobalScreen;
 import com.github.kwhat.jnativehook.keyboard.NativeKeyEvent;
 import com.github.kwhat.jnativehook.keyboard.NativeKeyListener;
 import de.cargame.model.entity.UserInputObserver;
@@ -18,18 +19,8 @@ public class Keyboard extends InputDevice implements NativeKeyListener {
     public Keyboard() {
         pressedKeys = new HashSet<>();
         userInputObservers = new ArrayList<>();
-    }
 
-    public void inputW() {
-        //todo
-    }
-
-    public void inputS() {
-        //todo
-    }
-
-    public void inputSpace() {
-        //todo
+        GlobalScreen.addNativeKeyListener(this);
     }
 
     @Override
@@ -47,21 +38,41 @@ public class Keyboard extends InputDevice implements NativeKeyListener {
     public void notifyObservers(UserInput userInput) {
     }
 
+    @Override
     public void nativeKeyTyped(NativeKeyEvent e) {
+
+    }
+
+    @Override
+    public void nativeKeyPressed(NativeKeyEvent e) {
+        int keyCode = e.getKeyCode();
+        if (!pressedKeys.contains(keyCode)) {
+            pressedKeys.add(keyCode);
+            switch (keyCode){
+                case 17:
+                    notifyObservers(UserInput.UP);
+                    break;
+                case 31:
+                    notifyObservers(UserInput.DOWN);
+                    break;
+                case 57:
+                    notifyObservers(UserInput.FAST_FORWARD);
+                    break;
+            }
+        }
 
 
     }
 
-    public void nativeKeyPressed(NativeKeyEvent e) {
+    @Override
+    public void nativeKeyReleased(NativeKeyEvent e) {
         int keyCode = e.getKeyCode();
 
         if (!pressedKeys.contains(keyCode)) {
-            pressedKeys.add(keyCode);
-
+            pressedKeys.remove(keyCode);
         }
-    }
-
-    public void nativeKeyReleased(NativeKeyEvent e) {
-
+        if(pressedKeys.isEmpty()){
+            notifyObservers(UserInput.NONE);
+        }
     }
 }

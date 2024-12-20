@@ -19,17 +19,21 @@ public class GameObjectController {
         this.gameObjectHandler = new GameObjectHandler();
     }
 
+    public void startGame(){
+        gameObjectHandler.startGame();
+    }
+
+    public void stopGame(){
+        gameObjectHandler.stopGame();
+    }
+
     public List<GameObject> getAllGameObjects() {
         return gameObjectHandler.getGameAllObjects();
     }
 
 
     public void update(double deltaTime) {
-        gameObjectHandler.update(deltaTime);
-    }
-
-    public void moveScenery(){
-
+        gameObjectHandler.moveElements(deltaTime);
     }
 
     public void spawnPlayerCar(Coordinate coordinate, Player player, CarType carType){

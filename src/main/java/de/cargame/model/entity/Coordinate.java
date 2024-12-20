@@ -8,15 +8,15 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 public class Coordinate {
-    private int x;
-    private int y;
+    private double x;
+    private double y;
 
 
-    public void addX(int xAmount) {
+    public void addX(double xAmount) {
         x += xAmount;
     }
 
-    public void addY(int yAmount) {
+    public void addY(double yAmount) {
         y += yAmount;
     }
 

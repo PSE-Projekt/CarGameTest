@@ -10,13 +10,13 @@ public abstract class GameObjectBound {
     protected Coordinate coordinate;
 
 
-     public GameObjectBound(int x, int y){
+     public GameObjectBound(double x, double y){
          coordinate = new Coordinate(x,y);
      }
     public abstract Shape getBound();
 
 
-    public void moveBy(int xAmount, int yAmount) {
+    public void moveBy(double xAmount, double yAmount) {
         coordinate.addX(xAmount);
         coordinate.addY(yAmount);
     }

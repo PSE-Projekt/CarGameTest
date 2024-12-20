@@ -7,7 +7,11 @@ public abstract class GameConfig {
 
     public static final int MAX_LIVES = 3;
 
-    public static final int GAME_SPEED = 3;
+    public static final int GAME_SPEED = 100;
+
+
+    public static final int OBSTACLE_SPAWN_RATE = 5;
+    public static final int KAMIKAZE_CAR_SPAWN_RATE= 2;
     public static final int GAME_SPEED_FAST_FORWARD = 3;
 
     public static final int FAST_CAR_WIDTH = 150;
@@ -20,8 +24,10 @@ public abstract class GameConfig {
     public static final double AGILE_CAR_INERTIA = 0.1;
 
 
-    public static final int AI_CAR_WIDTH = 200;
-    public static final int AI_CAR_HEIGHT = 100;
+    public static final int AI_CAR_WIDTH = 150;
+    public static final int AI_CAR_HEIGHT = 70;
+
+    public static final int AI_CAR_SPEED = 2;
 
 
 

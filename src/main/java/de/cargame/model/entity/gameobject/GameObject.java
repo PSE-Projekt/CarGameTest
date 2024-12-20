@@ -17,7 +17,7 @@ public abstract class GameObject {
 
     protected GameObjectBound gameObjectBound;
 
-    public GameObject(int x, int y, int width, int height, GameObjectBoundType gameObjectBoundType) {
+    public GameObject(double x, double y, int width, int height, GameObjectBoundType gameObjectBoundType) {
 
         switch (gameObjectBoundType) {
             case RECTANGLE:
@@ -31,7 +31,7 @@ public abstract class GameObject {
         this(coordinate.getX(),coordinate.getY(), dimension.getWidth(), dimension.getHeight(), gameObjectBoundType);
     }
 
-    public void moveBy(int xAmount, int yAmount) {
+    public void moveBy(double xAmount, double yAmount) {
         gameObjectBound.moveBy(xAmount, yAmount);
     }
 
@@ -43,11 +43,11 @@ public abstract class GameObject {
         return gameObjectBound.getCoordinate();
     }
 
-    public int getX(){
+    public double getX(){
         return getCoordinates().getX();
     }
 
-    public int getY(){
+    public double getY(){
         return getCoordinates().getY();
     }
 

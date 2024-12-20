@@ -35,7 +35,7 @@ public class Player implements UserInputObserver {
 
     @Override
     public void update(UserInput userInput) {
-
+        currentUserInput = userInput;
     }
 
     public int increaseScore(int value) {

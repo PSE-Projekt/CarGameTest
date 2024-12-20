@@ -7,16 +7,14 @@ import lombok.Getter;
 
 public class KamikazeCar extends AICar{
 
-    @Getter
-    private MovementStrategy movementStrategy;
+
 
     public KamikazeCar(int x, int y, int width, int height, GameObjectBoundType gameObjectBoundType, MovementStrategy movementStrategy) {
-        super(x, y, width, height, gameObjectBoundType);
-        this.movementStrategy = movementStrategy;
+        super(x, y, width, height, gameObjectBoundType, movementStrategy);
+
     }
 
     public KamikazeCar(Coordinate coordinate, Dimension dimension, GameObjectBoundType gameObjectBoundType, MovementStrategy movementStrategy) {
-        super(coordinate, dimension, gameObjectBoundType);
-        this.movementStrategy=movementStrategy;
+        super(coordinate, dimension, gameObjectBoundType, movementStrategy);
     }
 }
