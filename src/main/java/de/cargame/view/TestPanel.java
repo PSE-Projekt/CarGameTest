@@ -2,6 +2,7 @@ package de.cargame.view;
 
 import de.cargame.controller.GameController;
 import de.cargame.controller.entity.GameModelData;
+import de.cargame.model.entity.gameobject.Building;
 import de.cargame.model.entity.gameobject.GameObject;
 import de.cargame.model.entity.gameobject.Obstacle;
 import de.cargame.model.entity.gameobject.Reward;
@@ -31,6 +32,8 @@ public class TestPanel extends JPanel {
                 g2d.setColor(Color.BLUE);
             }else if(gameObject instanceof Reward) {
                 g2d.setColor(Color.YELLOW);
+            }else if(gameObject instanceof Building) {
+                g2d.setColor(Color.BLACK);
             }
             g2d.fill(bounds);
         }

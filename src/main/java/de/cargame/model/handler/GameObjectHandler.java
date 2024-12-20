@@ -13,6 +13,8 @@ import de.cargame.model.service.GameObjectCreationService;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 @Slf4j
@@ -22,7 +24,7 @@ public class GameObjectHandler {
 
     private final GameObjectSpawnHandler gameObjectSpawnHandler;
     private final PlayerHandler playerHandler;
-    private List<GameObject> gameObjects = new ArrayList<>();
+    private final List<GameObject> gameObjects = Collections.synchronizedList(new ArrayList<>());
 
 
     public GameObjectHandler() {
@@ -49,6 +51,19 @@ public class GameObjectHandler {
                 moveAICar(gameObject, deltaTime); //todo logik für verschiedene Fahrweisen
             }
         }
+    }
+
+    public void despawnPassedObjects(){
+        List<GameObject> gameObjectsToRemove = new ArrayList<>();
+
+        for(GameObject gameObject: gameObjects){
+            if(!(gameObject instanceof PlayerCar) && !(gameObject instanceof Road)){
+                if(gameObject.getX()+GameConfig.SCREEN_WIDTH <0){
+                    gameObjectsToRemove.add(gameObject);
+                }
+            }
+        }
+        gameObjects.removeAll(gameObjectsToRemove);
     }
 
 

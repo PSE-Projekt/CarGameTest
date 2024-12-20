@@ -26,6 +26,7 @@ public class GameObjectSpawnHandler {
         scheduleAICar();
         scheduleObstacle();
         scheduleReward();
+        scheduleBuilding();
     }
 
     private void scheduleAICar() {
@@ -63,6 +64,21 @@ public class GameObjectSpawnHandler {
             }
         }, delay);
     }
+
+    private void scheduleBuilding() {
+        int delay = random.nextInt(1000) + 700;
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                Coordinate coordinateUpperRow = new Coordinate(GameConfig.SCREEN_WIDTH, GameConfig.SCREEN_HEIGHT-100);
+                Coordinate coordinateLowerRow = new Coordinate(GameConfig.SCREEN_WIDTH, 20);
+                gameObjectHandler.spawnBuilding(coordinateUpperRow);
+                gameObjectHandler.spawnBuilding(coordinateLowerRow);
+                scheduleBuilding();
+            }
+        }, delay);
+    }
+
 
     public void stopSpawning() {
         if (timer != null) {
