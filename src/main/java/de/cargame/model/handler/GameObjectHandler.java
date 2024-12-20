@@ -1,7 +1,8 @@
 package de.cargame.model.handler;
 
-import de.cargame.model.entity.AICarType;
-import de.cargame.model.entity.CarType;
+import de.cargame.config.GameConfig;
+import de.cargame.model.entity.gameobject.AICarType;
+import de.cargame.model.entity.gameobject.CarType;
 import de.cargame.model.entity.Coordinate;
 import de.cargame.model.entity.Player;
 import de.cargame.model.entity.gameobject.*;
@@ -30,7 +31,9 @@ public class GameObjectHandler {
 
     public List<GameObject> update(double deltaTime) {
         for (GameObject gameObject : gameObjects) {
-
+            if(isStaticElement(gameObject)){
+                moveObjectStatic(gameObject);
+            }
         }
         return null;//todo
     }
@@ -68,5 +71,24 @@ public class GameObjectHandler {
 
     public List<GameObject> getGameAllObjects() {
         return gameObjects;
+    }
+
+    public List<GameObject> getAllStaticElements(){
+        return gameObjects.stream()
+                .filter(this::isStaticElement)
+                .toList();
+    }
+
+    private boolean isStaticElement(GameObject gameObject){
+        boolean isRoad = gameObject instanceof Road;
+        boolean isObstacle = gameObject instanceof Obstacle;
+        boolean isReward = gameObject instanceof Reward;
+        boolean isBuilding = gameObject instanceof Building;
+
+        return isRoad || isObstacle || isReward || isBuilding;
+    }
+
+    private void moveObjectStatic(GameObject gameObject){
+        gameObject.moveBy(-GameConfig.GAME_SPEED, 0);
     }
 }

@@ -2,14 +2,21 @@ package de.cargame.model.entity.gameobject.car;
 
 import de.cargame.model.entity.Coordinate;
 import de.cargame.model.entity.Dimension;
+import de.cargame.model.entity.gameobject.GameObjectBoundType;
 import lombok.Getter;
 
 public class KamikazeCar extends AICar{
 
     @Getter
     private MovementStrategy movementStrategy;
-    public KamikazeCar(Coordinate coordinate, Dimension dimension, MovementStrategy movementStrategy) {
-        super(coordinate, dimension);
+
+    public KamikazeCar(int x, int y, int width, int height, GameObjectBoundType gameObjectBoundType, MovementStrategy movementStrategy) {
+        super(x, y, width, height, gameObjectBoundType);
         this.movementStrategy = movementStrategy;
+    }
+
+    public KamikazeCar(Coordinate coordinate, Dimension dimension, GameObjectBoundType gameObjectBoundType, MovementStrategy movementStrategy) {
+        super(coordinate, dimension, gameObjectBoundType);
+        this.movementStrategy=movementStrategy;
     }
 }

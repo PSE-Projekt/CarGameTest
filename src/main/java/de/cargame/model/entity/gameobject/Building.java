@@ -4,9 +4,13 @@ import de.cargame.model.entity.Coordinate;
 import de.cargame.model.entity.Dimension;
 
 public class Building extends GameObject {
-    public Building(Coordinate coordinate, Dimension dimension) {
-        super(coordinate, dimension);
+
+
+    public Building(int x, int y, int width, int height, GameObjectBoundType gameObjectBoundType) {
+        super(x, y, width, height, gameObjectBoundType);
     }
 
-
+    public Building(Coordinate coordinate, Dimension dimension, GameObjectBoundType gameObjectBoundType) {
+        super(coordinate, dimension, gameObjectBoundType);
+    }
 }

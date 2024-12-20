@@ -7,6 +7,9 @@ public abstract class GameConfig {
 
     public static final int MAX_LIVES = 3;
 
+    public static final int GAME_SPEED = 3;
+    public static final int GAME_SPEED_FAST_FORWARD = 3;
+
     public static final int FAST_CAR_WIDTH = 150;
     public static final int FAST_CAR_HEIGHT = 75;
     public static final int FAST_CAR_SPEED = 300;

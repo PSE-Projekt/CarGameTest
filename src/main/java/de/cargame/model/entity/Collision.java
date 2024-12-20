@@ -9,7 +9,6 @@ import lombok.Getter;
 @AllArgsConstructor
 public class Collision {
 
-    private Coordinate coordinate;
     private CollisionType collisionType;
     private PlayerCar playerCar;
     private GameObject collidedObject;

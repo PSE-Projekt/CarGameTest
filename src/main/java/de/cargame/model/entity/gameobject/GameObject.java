@@ -2,24 +2,53 @@ package de.cargame.model.entity.gameobject;
 
 import de.cargame.model.entity.Coordinate;
 import de.cargame.model.entity.Dimension;
+import de.cargame.model.entity.GameObjectBound;
+import de.cargame.model.entity.RectangularGameObjectBound;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.extern.slf4j.Slf4j;
+
+import java.awt.*;
 
 @Getter
 @Setter
+@Slf4j
 public abstract class GameObject {
 
-    protected Coordinate coordinate;
-    protected Dimension dimension;
+    protected GameObjectBound gameObjectBound;
 
-    protected GameObject(Coordinate coordinate, Dimension dimension) {
-        setCoordinate(coordinate);
-        setDimension(dimension);
+    public GameObject(int x, int y, int width, int height, GameObjectBoundType gameObjectBoundType) {
+
+        switch (gameObjectBoundType) {
+            case RECTANGLE:
+                gameObjectBound = new RectangularGameObjectBound(x, y, width, height);
+                return;
+        }
+        log.error("A hitbox was tried to initialize with an illegal shape");
     }
 
-    public void move(int xAmount, int yAmount) {
-        coordinate.addX(xAmount);
-        coordinate.addY(yAmount);
+    public GameObject(Coordinate coordinate, Dimension dimension,GameObjectBoundType gameObjectBoundType) {
+        this(coordinate.getX(),coordinate.getY(), dimension.getWidth(), dimension.getHeight(), gameObjectBoundType);
+    }
+
+    public void moveBy(int xAmount, int yAmount) {
+        gameObjectBound.moveBy(xAmount, yAmount);
+    }
+
+    public Shape getBound(){
+        return gameObjectBound.getBound();
+    }
+
+    public Coordinate getCoordinates(){
+        return gameObjectBound.getCoordinate();
+    }
+
+    public int getX(){
+        return getCoordinates().getX();
+    }
+
+    public int getY(){
+        return getCoordinates().getY();
     }
 
 }
