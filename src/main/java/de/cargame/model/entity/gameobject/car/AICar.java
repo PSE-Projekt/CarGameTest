@@ -10,7 +10,7 @@ public abstract class AICar extends Car {
     @Getter
     private MovementStrategy movementStrategy;
 
-    public AICar(int x, int y, int width, int height, GameObjectBoundType gameObjectBoundType, MovementStrategy  movementStrategy) {
+    public AICar(int x, int y, int width, int height, GameObjectBoundType gameObjectBoundType, MovementStrategy movementStrategy) {
         super(x, y, width, height, gameObjectBoundType);
         this.movementStrategy = movementStrategy;
     }

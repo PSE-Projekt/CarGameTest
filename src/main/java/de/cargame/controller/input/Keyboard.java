@@ -13,10 +13,11 @@ import java.util.Set;
 public class Keyboard extends InputDevice implements NativeKeyListener {
 
     private int newestInput;
-    private Set<Integer> pressedKeys;
-    private List<UserInputObserver> userInputObservers;
+    private final Set<Integer> pressedKeys;
+    private final List<UserInputObserver> userInputObservers;
 
-    public Keyboard() {
+    public Keyboard(String playerId) {
+        super(playerId);
         pressedKeys = new HashSet<>();
         userInputObservers = new ArrayList<>();
 
@@ -33,14 +34,11 @@ public class Keyboard extends InputDevice implements NativeKeyListener {
         userInputObservers.remove(o);
     }
 
-
     @Override
     public void notifyObservers(UserInput userInput) {
-    }
-
-    @Override
-    public void nativeKeyTyped(NativeKeyEvent e) {
-
+        for (UserInputObserver userInputObserver : userInputObservers) {
+            userInputObserver.update(userInput);
+        }
     }
 
     @Override
@@ -48,22 +46,25 @@ public class Keyboard extends InputDevice implements NativeKeyListener {
         int keyCode = e.getKeyCode();
         if (!pressedKeys.contains(keyCode)) {
             pressedKeys.add(keyCode);
-            switch (keyCode){
+            switch (keyCode) {
                 case 17:
                     notifyObservers(UserInput.UP);
+                    break;
+                case 30:
+                    notifyObservers(UserInput.LEFT);
                     break;
                 case 31:
                     notifyObservers(UserInput.DOWN);
                     break;
-                case 57:
-                    notifyObservers(UserInput.FAST_FORWARD);
+                case 32:
+                    notifyObservers(UserInput.RIGHT);
+                    break;
+                case 28:
+                    notifyObservers(UserInput.SELECT);
                     break;
             }
         }
-
-
     }
-
     @Override
     public void nativeKeyReleased(NativeKeyEvent e) {
         int keyCode = e.getKeyCode();
@@ -71,7 +72,7 @@ public class Keyboard extends InputDevice implements NativeKeyListener {
         if (!pressedKeys.contains(keyCode)) {
             pressedKeys.remove(keyCode);
         }
-        if(pressedKeys.isEmpty()){
+        if (pressedKeys.isEmpty()) {
             notifyObservers(UserInput.NONE);
         }
     }

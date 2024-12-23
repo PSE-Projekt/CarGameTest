@@ -3,7 +3,7 @@ package de.cargame.model.entity;
 import java.awt.*;
 
 public class RectangularGameObjectBound extends GameObjectBound {
-private Dimension dimension;
+    private Dimension dimension;
 
 
     public RectangularGameObjectBound(double x, double y, int width, int height) {

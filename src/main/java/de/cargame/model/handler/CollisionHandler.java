@@ -3,7 +3,6 @@ package de.cargame.model.handler;
 import de.cargame.exception.IllegalGameObjectBoundException;
 import de.cargame.model.entity.Collision;
 import de.cargame.model.entity.CollisionType;
-import de.cargame.model.entity.Coordinate;
 import de.cargame.model.entity.gameobject.GameObject;
 import de.cargame.model.entity.gameobject.Life;
 import de.cargame.model.entity.gameobject.Reward;
@@ -11,7 +10,6 @@ import de.cargame.model.entity.gameobject.car.PlayerCar;
 import lombok.extern.slf4j.Slf4j;
 
 import java.awt.*;
-import java.awt.geom.Ellipse2D;
 import java.awt.geom.Rectangle2D;
 import java.util.Optional;
 
@@ -28,9 +26,9 @@ public class CollisionHandler {
         Shape carBound = car.getBound();
         Shape collidedObjectBound = collidedObject.getBound();
         boolean collisionOccurred;
-        if(collidedObjectBound instanceof Rectangle2D){
+        if (collidedObjectBound instanceof Rectangle2D) {
             collisionOccurred = carBound.intersects((Rectangle2D) collidedObjectBound);
-        }else{
+        } else {
             log.error("The collision detection algorithm does not support this kind of collision detection yet.");
             throw new IllegalGameObjectBoundException("The collision detection algorithm does not support this kind of collision detection yet.");
         }

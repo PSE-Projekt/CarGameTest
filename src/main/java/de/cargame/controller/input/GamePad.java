@@ -4,14 +4,11 @@ import de.cargame.model.entity.UserInputObserver;
 import net.java.games.input.Controller;
 
 public class GamePad extends InputDevice {
-
-    private Controller controller;
     private boolean deviceConnected = false;
 
-    public GamePad(Controller controller) {
-
-        if (controller != null) {
-            this.controller = controller;
+    public GamePad(String id, Controller controller) {
+        super(id);
+        if(controller != null){
             deviceConnected = true;
         }
     }

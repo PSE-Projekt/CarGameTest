@@ -1,8 +1,8 @@
 package de.cargame.controller;
 
+import de.cargame.controller.entity.GameMode;
 import de.cargame.controller.entity.GameModelData;
 import de.cargame.controller.input.Keyboard;
-import de.cargame.model.entity.Coordinate;
 import de.cargame.model.entity.Player;
 import de.cargame.model.entity.gameobject.GameObject;
 import de.cargame.view.TestView;
@@ -20,7 +20,7 @@ public class GameController {
     private final GameStateController gameStateController = new GameStateController();
     private final InputController inputController = new InputController();
     private final PlayerController playerController = new PlayerController();
-    private final GameObjectController gameObjectController = new GameObjectController();
+    private final GameObjectController gameObjectController = new GameObjectController(gameStateController);
 
     public GameController() {
         run();
@@ -30,11 +30,11 @@ public class GameController {
         //createUI();
 
         Player playerKeyboard = new Player();
-        Keyboard keyboard = new Keyboard();
+        Keyboard keyboard = new Keyboard(playerKeyboard.getId());
         keyboard.registerObserver(playerKeyboard);
+        gameStateController.setGameMode(GameMode.SINGLEPLAYER);
 
         gameObjectController.startGame();
-
 
         TestView testView = new TestView(this, gameObjectController);
 
@@ -43,7 +43,6 @@ public class GameController {
             long currentTime = System.nanoTime();
             double deltaTime = (currentTime - lastTime) / 1_000_000_000.0;
             lastTime = currentTime;
-
 
             gameObjectController.update(deltaTime);
             testView.render();
@@ -56,7 +55,7 @@ public class GameController {
         }
     }
 
-    public GameModelData getModel(){
+    public GameModelData getModel() {
         List<GameObject> allGameObjects = gameObjectController.getAllGameObjects();
         GameModelData gameModelData = new GameModelData(allGameObjects);
         return gameModelData;

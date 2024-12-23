@@ -27,27 +27,27 @@ public abstract class GameObject {
         log.error("A hitbox was tried to initialize with an illegal shape");
     }
 
-    public GameObject(Coordinate coordinate, Dimension dimension,GameObjectBoundType gameObjectBoundType) {
-        this(coordinate.getX(),coordinate.getY(), dimension.getWidth(), dimension.getHeight(), gameObjectBoundType);
+    public GameObject(Coordinate coordinate, Dimension dimension, GameObjectBoundType gameObjectBoundType) {
+        this(coordinate.getX(), coordinate.getY(), dimension.getWidth(), dimension.getHeight(), gameObjectBoundType);
     }
 
     public void moveBy(double xAmount, double yAmount) {
         gameObjectBound.moveBy(xAmount, yAmount);
     }
 
-    public Shape getBound(){
+    public Shape getBound() {
         return gameObjectBound.getBound();
     }
 
-    public Coordinate getCoordinates(){
+    public Coordinate getCoordinates() {
         return gameObjectBound.getCoordinate();
     }
 
-    public double getX(){
+    public double getX() {
         return getCoordinates().getX();
     }
 
-    public double getY(){
+    public double getY() {
         return getCoordinates().getY();
     }
 

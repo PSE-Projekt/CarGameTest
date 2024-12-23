@@ -3,20 +3,17 @@ package de.cargame.model.handler;
 import de.cargame.config.GameConfig;
 import de.cargame.model.entity.Coordinate;
 import de.cargame.model.entity.gameobject.AICarType;
-import de.cargame.model.service.GameObjectCreationService;
 
 import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class GameObjectSpawnHandler {
+public class GameObjectSpawnScheduler {
 
 
     private GameObjectHandler gameObjectHandler;
-
     private Timer timer;
     private Random random = new Random();
-
 
 
     public void startSpawning(GameObjectHandler gameObjectHandler) {
@@ -34,7 +31,7 @@ public class GameObjectSpawnHandler {
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
-                Coordinate coordinate = new Coordinate(GameConfig.SCREEN_WIDTH, random.nextInt(GameConfig.SCREEN_HEIGHT-100));
+                Coordinate coordinate = new Coordinate(GameConfig.SCREEN_WIDTH, random.nextInt(GameConfig.SCREEN_HEIGHT - 100));
                 gameObjectHandler.spawnAICar(coordinate, AICarType.STRAIGHT_MOVING);
                 scheduleAICar();
 
@@ -47,9 +44,10 @@ public class GameObjectSpawnHandler {
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
-                Coordinate coordinate = new Coordinate(GameConfig.SCREEN_WIDTH,random.nextInt(GameConfig.SCREEN_HEIGHT-100));
+                Coordinate coordinate = new Coordinate(GameConfig.SCREEN_WIDTH, random.nextInt(GameConfig.SCREEN_HEIGHT - 100));
                 gameObjectHandler.spawnObstacle(coordinate);
-                scheduleObstacle();}
+                scheduleObstacle();
+            }
         }, delay);
     }
 
@@ -58,7 +56,7 @@ public class GameObjectSpawnHandler {
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
-                Coordinate coordinate = new Coordinate(GameConfig.SCREEN_WIDTH, random.nextInt(GameConfig.SCREEN_HEIGHT-100));
+                Coordinate coordinate = new Coordinate(GameConfig.SCREEN_WIDTH, random.nextInt(GameConfig.SCREEN_HEIGHT - 100));
                 gameObjectHandler.spawnReward(coordinate);
                 scheduleReward();
             }
@@ -66,15 +64,12 @@ public class GameObjectSpawnHandler {
     }
 
     private void scheduleBuilding() {
-        int delay = random.nextInt(1000) + 700;
+        int delay = random.nextInt(1100) + 1100;
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
-                Coordinate coordinateUpperRow = new Coordinate(GameConfig.SCREEN_WIDTH, GameConfig.SCREEN_HEIGHT-100);
-                Coordinate coordinateLowerRow = new Coordinate(GameConfig.SCREEN_WIDTH, 20);
-                gameObjectHandler.spawnBuilding(coordinateUpperRow);
-                gameObjectHandler.spawnBuilding(coordinateLowerRow);
                 scheduleBuilding();
+                gameObjectHandler.spawnBuilding();
             }
         }, delay);
     }
@@ -85,9 +80,6 @@ public class GameObjectSpawnHandler {
             timer.cancel();
         }
     }
-
-
-
 
 
 }

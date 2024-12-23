@@ -15,6 +15,7 @@ import java.util.List;
 public class TestPanel extends JPanel {
 
     private GameController gameController;
+
     public TestPanel(GameController gameController) {
         this.gameController = gameController;
     }
@@ -26,13 +27,13 @@ public class TestPanel extends JPanel {
         List<GameObject> gameObjects = model.getGameObjects();
         for (GameObject gameObject : gameObjects) {
             Shape bounds = gameObject.getBound();
-            if(gameObject instanceof AICar){
+            if (gameObject instanceof AICar) {
                 g2d.setColor(Color.RED);
             } else if (gameObject instanceof Obstacle) {
                 g2d.setColor(Color.BLUE);
-            }else if(gameObject instanceof Reward) {
+            } else if (gameObject instanceof Reward) {
                 g2d.setColor(Color.YELLOW);
-            }else if(gameObject instanceof Building) {
+            } else if (gameObject instanceof Building) {
                 g2d.setColor(Color.BLACK);
             }
             g2d.fill(bounds);

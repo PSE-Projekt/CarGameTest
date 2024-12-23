@@ -23,7 +23,9 @@ public class TestView extends JFrame {
         setSize(GameConfig.SCREEN_WIDTH, GameConfig.SCREEN_HEIGHT);
 
         jPanel = new TestPanel(gameController);
-        add(jPanel);
+        jPanel.setPreferredSize(new Dimension(GameConfig.SCREEN_WIDTH, GameConfig.SCREEN_HEIGHT));
+        getContentPane().add(jPanel);
+        pack();
         setVisible(true);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
