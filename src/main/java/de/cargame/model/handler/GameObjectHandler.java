@@ -40,6 +40,8 @@ public class GameObjectHandler {
         switch (gameMode) {
             case SINGLEPLAYER:
                 gameObjectSpawnScheduler.startSpawning(this);
+                gameObjectSpawnScheduler.stopSpawning();
+                gameObjectSpawnScheduler.startSpawning(this);
             case MULTIPLAYER:
         }
 
@@ -104,7 +106,7 @@ public class GameObjectHandler {
     public void spawnAICar(AICarType aiCarType) {
         GameMode gameMode = gameStateController.getGameMode();
         AICar aiCar = gameObjectCreationService.createAICar(gameMode, aiCarType);
-        System.out.println("Spawn AI Car: "+aiCar.getCoordinates().toString()+ " /\\ \t"+System.currentTimeMillis());
+        System.out.println("Spawn AI Car: " + aiCar.getCoordinates().toString() + " /\\ \t" + System.currentTimeMillis());
         gameObjects.add(aiCar);
     }
 

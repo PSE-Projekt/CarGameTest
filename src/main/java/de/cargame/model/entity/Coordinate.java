@@ -21,8 +21,8 @@ public class Coordinate {
     }
 
     @Override
-    public String toString(){
-        return "("+getX()+","+getY()+")";
+    public String toString() {
+        return "(" + getX() + "," + getY() + ")";
     }
 
 }

@@ -42,7 +42,7 @@ public class SinglePlayerSpawningStrategy extends GameObjectSpawningStrategy {
 
 
     private SpawnArea generateRoadSpawnArea(int customHeight) {
-        return new SpawnArea(GameConfig.SCREEN_WIDTH, GameConfig.BUILDING_HEIGHT + GameConfig.BUILDING_SPAWN_WIDTH, GameConfig.SCREEN_WIDTH, GameConfig.SCREEN_HEIGHT - GameConfig.BUILDING_SPAWN_WIDTH- GameConfig.BUILDING_HEIGHT - customHeight);
+        return new SpawnArea(GameConfig.SCREEN_WIDTH, GameConfig.BUILDING_HEIGHT + GameConfig.BUILDING_SPAWN_WIDTH, GameConfig.SCREEN_WIDTH, GameConfig.SCREEN_HEIGHT - GameConfig.BUILDING_SPAWN_WIDTH - GameConfig.BUILDING_HEIGHT - customHeight);
     }
 
     private SpawnAreaList generateBuildingSpawnAreas() {

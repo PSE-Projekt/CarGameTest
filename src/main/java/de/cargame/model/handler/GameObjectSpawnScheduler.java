@@ -2,7 +2,7 @@ package de.cargame.model.handler;
 
 
 import de.cargame.model.entity.gameobject.AICarType;
-import java.util.Timer;
+
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ThreadLocalRandom;
@@ -13,19 +13,16 @@ public class GameObjectSpawnScheduler {
 
 
     private GameObjectHandler gameObjectHandler;
-    private Timer timer;
-
-    private final ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor();
+    private ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor();
 
 
     public void startSpawning(GameObjectHandler gameObjectHandler) {
         this.gameObjectHandler = gameObjectHandler;
-
-        timer = new Timer();
         scheduleAICar();
         scheduleObstacle();
         scheduleReward();
         scheduleBuilding();
+
     }
 
     private void scheduleAICar() {
@@ -35,6 +32,7 @@ public class GameObjectSpawnScheduler {
 
     private void scheduleObstacle() {
         scheduleSpawn(() -> () -> gameObjectHandler.spawnObstacle(), 1500, 1900);
+
     }
 
     private void scheduleReward() {
@@ -46,9 +44,8 @@ public class GameObjectSpawnScheduler {
     }
 
     public void stopSpawning() {
-        if (timer != null) {
-            timer.cancel();
-        }
+        scheduler.shutdownNow();
+        scheduler = Executors.newSingleThreadScheduledExecutor();
     }
 
     private int getRandomDelay(int minDelay, int maxDelay) {
@@ -56,7 +53,7 @@ public class GameObjectSpawnScheduler {
     }
 
     private void scheduleSpawn(Supplier<Runnable> spawnAction, int minDelay, int maxDelay) {
-        int initialDelay = ThreadLocalRandom.current().nextInt(minDelay, maxDelay);
+        int initialDelay = getRandomDelay(minDelay, maxDelay);
 
         scheduler.schedule(() -> {
             spawnAction.get().run();
