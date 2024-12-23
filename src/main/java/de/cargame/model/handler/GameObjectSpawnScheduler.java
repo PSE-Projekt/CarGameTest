@@ -35,7 +35,7 @@ public class GameObjectSpawnScheduler {
     }
 
     private void scheduleObstacle() {
-        int delay = ThreadLocalRandom.current().nextInt(5000, 6300);
+        int delay = ThreadLocalRandom.current().nextInt(3000, 4000);
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
