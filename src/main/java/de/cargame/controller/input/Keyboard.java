@@ -12,9 +12,9 @@ import java.util.Set;
 
 public class Keyboard extends InputDevice implements NativeKeyListener {
 
-    private int newestInput;
     private final Set<Integer> pressedKeys;
     private final List<UserInputObserver> userInputObservers;
+    private int newestInput;
 
     public Keyboard(String playerId) {
         super(playerId);
@@ -65,6 +65,7 @@ public class Keyboard extends InputDevice implements NativeKeyListener {
             }
         }
     }
+
     @Override
     public void nativeKeyReleased(NativeKeyEvent e) {
         int keyCode = e.getKeyCode();

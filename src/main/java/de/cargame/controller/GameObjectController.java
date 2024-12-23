@@ -2,11 +2,9 @@ package de.cargame.controller;
 
 import de.cargame.model.entity.Coordinate;
 import de.cargame.model.entity.Player;
-import de.cargame.model.entity.gameobject.AICarType;
 import de.cargame.model.entity.gameobject.CarType;
 import de.cargame.model.entity.gameobject.GameObject;
 import de.cargame.model.handler.GameObjectHandler;
-import de.cargame.model.handler.PlayerHandler;
 
 import java.util.List;
 

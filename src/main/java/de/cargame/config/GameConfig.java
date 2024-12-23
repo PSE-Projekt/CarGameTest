@@ -30,8 +30,8 @@ public abstract class GameConfig {
     public static final int AI_CAR_SPEED = 2;
 
 
-    public static final int BUILDING_WIDTH = 30;
-    public static final int BUILDING_HEIGHT = 30;
+    public static final int BUILDING_WIDTH = 50;
+    public static final int BUILDING_HEIGHT = 50;
 
     /**
      * Pixelcount how wide the spawn area for buildings is

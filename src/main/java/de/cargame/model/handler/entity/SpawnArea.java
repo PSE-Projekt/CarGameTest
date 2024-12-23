@@ -16,15 +16,13 @@ public class SpawnArea {
     private Random r = new Random();
 
 
-    public SpawnArea(int minX, int minY, int maxX, int maxY){
+    public SpawnArea(int minX, int minY, int maxX, int maxY) {
         minCoordinates = new Coordinate(minX, minY);
         maxCoordinates = new Coordinate(maxX, maxY);
     }
 
 
-    public Coordinate getRandomCoordinateInArea(){
-        //double randomX = r.nextDouble(maxCoordinates.getX()+1-minCoordinates.getX()+1) + maxCoordinates.getX()-1;
-        //double randomY =r.nextDouble(maxCoordinates.getY()+1-minCoordinates.getY()) + maxCoordinates.getY()-1;
+    public Coordinate getRandomCoordinateInArea() {
         double randomX = ThreadLocalRandom.current().nextDouble(minCoordinates.getX(), maxCoordinates.getX() + 1);
         double randomY = ThreadLocalRandom.current().nextDouble(minCoordinates.getY(), maxCoordinates.getY() + 1);
 

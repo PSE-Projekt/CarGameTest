@@ -1,12 +1,12 @@
 package de.cargame.model.handler.entity;
 
-public class MultiplayerSpawningStrategy extends GameObjectSpawningStrategy{
+public class MultiplayerSpawningStrategy extends GameObjectSpawningStrategy {
 
 
-
-    public MultiplayerSpawningStrategy(){
+    public MultiplayerSpawningStrategy() {
         super();
     }
+
     @Override
     protected void setBuildingSpawnArea() {
 
@@ -29,6 +29,11 @@ public class MultiplayerSpawningStrategy extends GameObjectSpawningStrategy{
 
     @Override
     protected void setPlayerSpawnArea() {
+
+    }
+
+    @Override
+    protected void setAiCarSpawnArea() {
 
     }
 }

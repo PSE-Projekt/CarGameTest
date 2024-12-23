@@ -38,7 +38,7 @@ public class GameObjectHandler {
 
         GameMode gameMode = gameStateController.getGameMode();
         gameObjectSpawnScheduler.startSpawning(this);
-        switch (gameMode){
+        switch (gameMode) {
             case SINGLEPLAYER:
                 gameObjectSpawnScheduler.startSpawning(this);
             case MULTIPLAYER:
@@ -90,18 +90,21 @@ public class GameObjectHandler {
         gameObjects.add(road);
     }
 
-    public void spawnObstacle(Coordinate coordinate) {
-        Obstacle obstacle = gameObjectCreationService.createObstacle(coordinate);
-        gameObjects.add(obstacle);
+    public void spawnObstacle() {
+        GameMode gameMode = gameStateController.getGameMode();
+        List<Obstacle> obstacle = gameObjectCreationService.createObstacle(gameMode);
+        gameObjects.addAll(obstacle);
     }
 
-    public void spawnReward(Coordinate coordinate) {
-        Reward reward = gameObjectCreationService.createReward(coordinate);
+    public void spawnReward() {
+        GameMode gameMode = gameStateController.getGameMode();
+        Reward reward = gameObjectCreationService.createReward(gameMode);
         gameObjects.add(reward);
     }
 
-    public void spawnAICar(Coordinate coordinate, AICarType aiCarType) {
-        AICar aiCar = gameObjectCreationService.createAICar(coordinate, aiCarType);
+    public void spawnAICar(AICarType aiCarType) {
+        GameMode gameMode = gameStateController.getGameMode();
+        AICar aiCar = gameObjectCreationService.createAICar(gameMode, aiCarType);
         gameObjects.add(aiCar);
     }
 

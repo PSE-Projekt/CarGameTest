@@ -8,7 +8,7 @@ public class GamePad extends InputDevice {
 
     public GamePad(String id, Controller controller) {
         super(id);
-        if(controller != null){
+        if (controller != null) {
             deviceConnected = true;
         }
     }

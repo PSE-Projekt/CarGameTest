@@ -8,30 +8,29 @@ import de.cargame.model.entity.gameobject.car.PlayerCar;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
 @Slf4j
 public class PlayerHandler {
 
-    private  Map<String, Player> players;
+    private Map<String, Player> players;
 
     public PlayerHandler() {
         this.players = new HashMap<>();
     }
 
 
-    public void addPlayer(Player player){
-        if(!players.containsKey(player.getId())){
+    public void addPlayer(Player player) {
+        if (!players.containsKey(player.getId())) {
             players.put(player.getId(), player);
             return;
         }
         log.warn("The player {} is already present in the playerhandler", player);
     }
 
-    public void removePlayer(Player player){
-        if(players.containsKey(player.getId())){
+    public void removePlayer(Player player) {
+        if (players.containsKey(player.getId())) {
             players.remove(player.getId());
             return;
         }
@@ -67,7 +66,6 @@ public class PlayerHandler {
     public int decreaseLife(PlayerCar playerCar) {
         return getPlayer(playerCar).decreaseLife();
     }
-
 
 
     private Player getPlayer(String id) {

@@ -1,12 +1,11 @@
 package de.cargame.model.handler;
 
-import de.cargame.config.GameConfig;
-import de.cargame.model.entity.Coordinate;
-import de.cargame.model.entity.gameobject.AICarType;
 
+import de.cargame.model.entity.gameobject.AICarType;
 import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class GameObjectSpawnScheduler {
 
@@ -27,12 +26,11 @@ public class GameObjectSpawnScheduler {
     }
 
     private void scheduleAICar() {
-        int delay = random.nextInt(2000) + 1300;
+        int delay = ThreadLocalRandom.current().nextInt(2500, 3700);
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
-                Coordinate coordinate = new Coordinate(GameConfig.SCREEN_WIDTH, random.nextInt(GameConfig.SCREEN_HEIGHT - 100));
-                gameObjectHandler.spawnAICar(coordinate, AICarType.STRAIGHT_MOVING);
+                gameObjectHandler.spawnAICar(AICarType.STRAIGHT_MOVING);
                 scheduleAICar();
 
             }
@@ -40,31 +38,29 @@ public class GameObjectSpawnScheduler {
     }
 
     private void scheduleObstacle() {
-        int delay = random.nextInt(5000) + 1300;
+        int delay = ThreadLocalRandom.current().nextInt(5000, 6300);
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
-                Coordinate coordinate = new Coordinate(GameConfig.SCREEN_WIDTH, random.nextInt(GameConfig.SCREEN_HEIGHT - 100));
-                gameObjectHandler.spawnObstacle(coordinate);
                 scheduleObstacle();
+                gameObjectHandler.spawnObstacle();
             }
         }, delay);
     }
 
     private void scheduleReward() {
-        int delay = random.nextInt(20000) + 30000;
+        int delay = ThreadLocalRandom.current().nextInt(20000, 50000);
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
-                Coordinate coordinate = new Coordinate(GameConfig.SCREEN_WIDTH, random.nextInt(GameConfig.SCREEN_HEIGHT - 100));
-                gameObjectHandler.spawnReward(coordinate);
                 scheduleReward();
+                gameObjectHandler.spawnReward();
             }
         }, delay);
     }
 
     private void scheduleBuilding() {
-        int delay = random.nextInt(1100) + 1100;
+        int delay = ThreadLocalRandom.current().nextInt(1200, 2600);
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
