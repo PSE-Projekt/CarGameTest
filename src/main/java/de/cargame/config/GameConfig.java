@@ -24,8 +24,8 @@ public abstract class GameConfig {
     public static final double AGILE_CAR_INERTIA = 0.1;
 
 
-    public static final int AI_CAR_WIDTH = 120;
-    public static final int AI_CAR_HEIGHT = 70;
+    public static final int AI_CAR_WIDTH = 100;
+    public static final int AI_CAR_HEIGHT = 60;
 
     public static final int AI_CAR_SPEED = 2;
 

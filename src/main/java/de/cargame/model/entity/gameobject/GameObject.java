@@ -51,4 +51,6 @@ public abstract class GameObject {
         return getCoordinates().getY();
     }
 
+
+
 }

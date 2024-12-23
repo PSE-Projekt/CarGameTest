@@ -37,7 +37,6 @@ public class GameObjectHandler {
     public void startGame() {
 
         GameMode gameMode = gameStateController.getGameMode();
-        gameObjectSpawnScheduler.startSpawning(this);
         switch (gameMode) {
             case SINGLEPLAYER:
                 gameObjectSpawnScheduler.startSpawning(this);
@@ -105,6 +104,7 @@ public class GameObjectHandler {
     public void spawnAICar(AICarType aiCarType) {
         GameMode gameMode = gameStateController.getGameMode();
         AICar aiCar = gameObjectCreationService.createAICar(gameMode, aiCarType);
+        System.out.println("Spawn AI Car: "+aiCar.getCoordinates().toString()+ " /\\ \t"+System.currentTimeMillis());
         gameObjects.add(aiCar);
     }
 

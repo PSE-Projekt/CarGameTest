@@ -20,4 +20,9 @@ public class Coordinate {
         y += yAmount;
     }
 
+    @Override
+    public String toString(){
+        return "("+getX()+","+getY()+")";
+    }
+
 }
