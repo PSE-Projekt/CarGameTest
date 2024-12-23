@@ -12,8 +12,6 @@ public class GameObjectSpawnScheduler {
 
     private GameObjectHandler gameObjectHandler;
     private Timer timer;
-    private Random random = new Random();
-
 
     public void startSpawning(GameObjectHandler gameObjectHandler) {
         this.gameObjectHandler = gameObjectHandler;
@@ -32,7 +30,6 @@ public class GameObjectSpawnScheduler {
             public void run() {
                 gameObjectHandler.spawnAICar(AICarType.STRAIGHT_MOVING);
                 scheduleAICar();
-
             }
         }, delay);
     }
@@ -42,8 +39,9 @@ public class GameObjectSpawnScheduler {
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
-                scheduleObstacle();
+
                 gameObjectHandler.spawnObstacle();
+                scheduleObstacle();
             }
         }, delay);
     }
@@ -53,23 +51,22 @@ public class GameObjectSpawnScheduler {
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
-                scheduleReward();
                 gameObjectHandler.spawnReward();
+                scheduleReward();
             }
         }, delay);
     }
 
     private void scheduleBuilding() {
-        int delay = ThreadLocalRandom.current().nextInt(1200, 2600);
+        int delay = ThreadLocalRandom.current().nextInt(1300, 2600);
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
-                scheduleBuilding();
                 gameObjectHandler.spawnBuilding();
+                scheduleBuilding();
             }
         }, delay);
     }
-
 
     public void stopSpawning() {
         if (timer != null) {
