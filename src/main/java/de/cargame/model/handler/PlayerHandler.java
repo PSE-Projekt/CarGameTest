@@ -1,7 +1,6 @@
 package de.cargame.model.handler;
 
 import de.cargame.controller.input.UserInput;
-import de.cargame.exception.PlayerNotFoundException;
 import de.cargame.model.entity.Player;
 import de.cargame.model.entity.gameobject.CarType;
 import de.cargame.model.entity.gameobject.car.PlayerCar;
@@ -9,7 +8,6 @@ import lombok.extern.slf4j.Slf4j;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Optional;
 
 @Slf4j
 public class PlayerHandler {
@@ -58,13 +56,17 @@ public class PlayerHandler {
         return getPlayer(playerId).getPlayerCar();
     }
 
-    public int increaseLife(PlayerCar playerCar) {
-        return getPlayer(playerCar).increaseLife();
+    public int increaseLife(String playerId) {
+        return getPlayer(playerId).increaseLife();
     }
 
 
-    public int decreaseLife(PlayerCar playerCar) {
-        return getPlayer(playerCar).decreaseLife();
+    public int decreaseLife(String playerId) {
+        return getPlayer(playerId).decreaseLife();
+    }
+
+    public int getLifeCount(String playerId) {
+        return getPlayer(playerId).getLives();
     }
 
 
@@ -72,15 +74,13 @@ public class PlayerHandler {
         return players.get(id);
     }
 
-    private Player getPlayer(PlayerCar playerCar) {
-        Optional<Player> playerOptional = players.values()
-                .stream()
-                .filter(p -> p.getPlayerCar() == playerCar)
-                .findFirst();
+//    private Player getPlayer(PlayerCar playerCar) {
+//        Optional<Player> playerOptional = players.values()
+//                .stream()
+//                .filter(p -> p.getPlayerCar() == playerCar)
+//                .findFirst();
 
-        if (playerOptional.isPresent()) return playerOptional.get();
-        log.error("Player not found");
-        throw new PlayerNotFoundException("Player not found");
-    }
-
+//        if (playerOptional.isPresent()) return playerOptional.get();
+//        log.error("Player not found");
+//        throw new PlayerNotFoundException("Player not found");
 }

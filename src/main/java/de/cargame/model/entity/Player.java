@@ -22,11 +22,18 @@ public class Player implements UserInputObserver {
     @Setter
     @Getter
     private PlayerCar playerCar;
+
+    @Getter
+    @Setter
     private int lives;
 
     @Setter
     @Getter
     private boolean isPlaying;
+
+    @Setter
+    @Getter
+    private PlayerIdentifier playerIdentifier;
 
 
     public Player() {

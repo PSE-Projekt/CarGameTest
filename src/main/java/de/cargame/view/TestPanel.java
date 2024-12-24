@@ -18,10 +18,12 @@ public class TestPanel extends JPanel {
 
     public TestPanel(GameController gameController) {
         this.gameController = gameController;
+        setDoubleBuffered(true);
     }
 
     @Override
     protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
         Graphics2D g2d = (Graphics2D) g;
         GameModelData model = gameController.getModel();
         List<GameObject> gameObjects = model.getGameObjects();

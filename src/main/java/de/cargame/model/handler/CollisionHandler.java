@@ -16,13 +16,13 @@ import java.util.Optional;
 @Slf4j
 public class CollisionHandler {
 
-    private PlayerHandler playerHandler;
+    private final PlayerHandler playerHandler;
 
     public CollisionHandler(PlayerHandler playerHandler) {
         this.playerHandler = playerHandler;
     }
 
-    public Optional<Collision> checkCollision(PlayerCar car, GameObject collidedObject) {
+    public Optional<Collision> checkCollision(String playerId, PlayerCar car, GameObject collidedObject) {
         Shape carBound = car.getBound();
         Shape collidedObjectBound = collidedObject.getBound();
         boolean collisionOccurred;
@@ -48,18 +48,17 @@ public class CollisionHandler {
             return new Collision(CollisionType.REWARD, playerCar, collisionObject);
         }
         //Kollision mit Lebensverlust logische Konsequenz
-        handleCollisionCrash(playerCar);
         return new Collision(CollisionType.CRASH, playerCar, collisionObject);
 
     }
 
     private void handleCollisionReward(PlayerCar playerCar, Reward reward) {
         if (reward instanceof Life) {
-            playerHandler.increaseLife(playerCar);
+            playerHandler.increaseLife(playerCar.getPlayerId());
         }
     }
 
     private void handleCollisionCrash(PlayerCar playerCar) {
-        playerHandler.decreaseLife(playerCar);
+        playerHandler.decreaseLife(playerCar.getPlayerId());
     }
 }

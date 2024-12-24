@@ -16,6 +16,7 @@ public class CarGameApplication {
         } catch (NativeHookException e) {
             throw new RuntimeException(e);
         }
+        System.setProperty("sun.java2d.opengl", "true");
         gameController = new GameController();
     }
 

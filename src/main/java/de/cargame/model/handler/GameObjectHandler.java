@@ -8,6 +8,7 @@ import de.cargame.model.entity.Player;
 import de.cargame.model.entity.gameobject.*;
 import de.cargame.model.entity.gameobject.car.AICar;
 import de.cargame.model.entity.gameobject.car.PlayerCar;
+import de.cargame.model.handler.entity.GameStartParameter;
 import de.cargame.model.handler.entity.MultiplayerSpawningStrategy;
 import de.cargame.model.handler.entity.SinglePlayerSpawningStrategy;
 import de.cargame.model.service.GameObjectCreationService;
@@ -27,9 +28,9 @@ public class GameObjectHandler {
     private final List<GameObject> gameObjects = new CopyOnWriteArrayList<>();
 
 
-    public GameObjectHandler(GameStateController gameStateController) {
+    public GameObjectHandler(GameStateController gameStateController, PlayerHandler playerHandler) {
         this.gameStateController = gameStateController;
-        this.playerHandler = new PlayerHandler();
+        this.playerHandler = playerHandler;
         this.collisionHandler = new CollisionHandler(playerHandler);
         this.gameObjectCreationService = new GameObjectCreationService();
         this.gameObjectSpawnScheduler = new GameObjectSpawnScheduler();
@@ -41,13 +42,12 @@ public class GameObjectHandler {
         switch (gameMode) {
             case SINGLEPLAYER:
                 gameObjectCreationService.setGameObjectSpawningStrategy(new SinglePlayerSpawningStrategy());
-                gameObjectSpawnScheduler.startSpawning(this);
                 break;
             case MULTIPLAYER:
                 gameObjectCreationService.setGameObjectSpawningStrategy(new MultiplayerSpawningStrategy());
-                gameObjectSpawnScheduler.startSpawning(this);
                 break;
         }
+        gameObjectSpawnScheduler.startSpawning(this);
     }
 
     public void stopGame() {
