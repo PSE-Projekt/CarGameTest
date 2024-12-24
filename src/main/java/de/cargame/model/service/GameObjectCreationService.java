@@ -1,7 +1,6 @@
 package de.cargame.model.service;
 
 import de.cargame.config.GameConfig;
-import de.cargame.controller.entity.GameMode;
 import de.cargame.exception.InvalidCarSelectionException;
 import de.cargame.model.entity.Coordinate;
 import de.cargame.model.entity.Dimension;
@@ -9,9 +8,8 @@ import de.cargame.model.entity.Player;
 import de.cargame.model.entity.gameobject.*;
 import de.cargame.model.entity.gameobject.car.*;
 import de.cargame.model.handler.entity.GameObjectSpawningStrategy;
-import de.cargame.model.handler.entity.MultiplayerSpawningStrategy;
-import de.cargame.model.handler.entity.SinglePlayerSpawningStrategy;
 import de.cargame.model.handler.entity.SpawnAreaList;
+import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.List;
@@ -19,14 +17,8 @@ import java.util.List;
 @Slf4j
 public class GameObjectCreationService {
 
-    private SinglePlayerSpawningStrategy singlePlayerSpawningStrategy;
-    private GameObjectSpawningStrategy multiplayerSpawningStrategy;
-
-    public GameObjectCreationService() {
-        singlePlayerSpawningStrategy = new SinglePlayerSpawningStrategy();
-        multiplayerSpawningStrategy = new MultiplayerSpawningStrategy();
-    }
-
+    @Setter
+    private GameObjectSpawningStrategy gameObjectSpawningStrategy;
 
     public PlayerCar createPlayerCar(Coordinate coordinate, Player player, CarType carType) {
         Dimension dimension;
@@ -42,19 +34,14 @@ public class GameObjectCreationService {
         throw new InvalidCarSelectionException("No valid car-selection has been made");
     }
 
-    public List<Building> createBuildings(GameMode gameMode) {
+    public List<Building> createBuildings() {
         SpawnAreaList spawnAreas;
         Dimension dimension = new Dimension(GameConfig.BUILDING_WIDTH, GameConfig.BUILDING_HEIGHT);
-        if (gameMode.equals(GameMode.SINGLEPLAYER)) {
-            spawnAreas = singlePlayerSpawningStrategy.getBuildingSpawnAreas();
-            List<Coordinate> spawnCoordinates = spawnAreas.getRandomCoordinateOfEach();
-            return spawnCoordinates.stream()
-                    .map(c -> new Building(c, dimension, GameObjectBoundType.RECTANGLE))
-                    .toList();
-        } else if (gameMode.equals(GameMode.MULTIPLAYER)) {
-            throw new RuntimeException(); //todo
-        }
-        throw new RuntimeException(); //todo
+        spawnAreas = gameObjectSpawningStrategy.getBuildingSpawnAreas();
+        List<Coordinate> spawnCoordinates = spawnAreas.getRandomCoordinateOfEach();
+        return spawnCoordinates.stream()
+                .map(c -> new Building(c, dimension, GameObjectBoundType.RECTANGLE))
+                .toList();
     }
 
 
@@ -63,47 +50,31 @@ public class GameObjectCreationService {
         return new Road(coordinate, dimension, GameObjectBoundType.RECTANGLE);
     }
 
-    public List<Obstacle> createObstacle(GameMode gameMode) {
+    public List<Obstacle> createObstacle() {
         SpawnAreaList spawnAreas;
-        if (gameMode.equals(GameMode.SINGLEPLAYER)) {
-            spawnAreas = singlePlayerSpawningStrategy.getObstacleSpawnAreas();
-            List<Coordinate> spawnCoordinates = spawnAreas.getRandomCoordinateOfEach();
-            Dimension dimension = new Dimension(GameConfig.OBSTACLE_WIDTH, GameConfig.OBSTACLE_HEIGHT);
-            return spawnCoordinates.stream()
-                    .map(c -> new Obstacle(c, dimension, GameObjectBoundType.RECTANGLE))
-                    .toList();
+        spawnAreas = gameObjectSpawningStrategy.getObstacleSpawnAreas();
+        List<Coordinate> spawnCoordinates = spawnAreas.getRandomCoordinateOfEach();
+        Dimension dimension = new Dimension(GameConfig.OBSTACLE_WIDTH, GameConfig.OBSTACLE_HEIGHT);
+        return spawnCoordinates.stream()
+                .map(c -> new Obstacle(c, dimension, GameObjectBoundType.RECTANGLE))
+                .toList();
 
-        } else if (gameMode.equals(GameMode.MULTIPLAYER)) {
-            throw new RuntimeException(); //todo
-        }
-        throw new RuntimeException(); //todo
     }
 
-    public Reward createReward(GameMode gameMode) {
+    public Reward createReward() {
         SpawnAreaList spawnAreas;
-        if (gameMode.equals(GameMode.SINGLEPLAYER)) {
-            spawnAreas = singlePlayerSpawningStrategy.getRewardSpawnAreas();
-            Coordinate spawnCoordinate = spawnAreas.getRandomCoordinate();
-            Dimension dimension = new Dimension(GameConfig.REWARD_WIDTH, GameConfig.REWARD_HEIGHT);
-            return new Life(spawnCoordinate, dimension, GameObjectBoundType.RECTANGLE);
-
-        } else if (gameMode.equals(GameMode.MULTIPLAYER)) {
-            throw new RuntimeException(); //todo
-        }
-        throw new RuntimeException(); //todo
+        spawnAreas = gameObjectSpawningStrategy.getRewardSpawnAreas();
+        Coordinate spawnCoordinate = spawnAreas.getRandomCoordinate();
+        Dimension dimension = new Dimension(GameConfig.REWARD_WIDTH, GameConfig.REWARD_HEIGHT);
+        return new Life(spawnCoordinate, dimension, GameObjectBoundType.RECTANGLE);
     }
 
 
-    public AICar createAICar(GameMode gameMode, AICarType aiCarType) {
+    public AICar createAICar(AICarType aiCarType) {
         Dimension dimension = new Dimension(GameConfig.AI_CAR_WIDTH, GameConfig.AI_CAR_HEIGHT);
-        Coordinate spawnCoordinate = new Coordinate(0, 0);
         SpawnAreaList spawnAreas;
-        if (gameMode.equals(GameMode.SINGLEPLAYER)) {
-            spawnAreas = singlePlayerSpawningStrategy.getAiCarSpawnAreas();
-            spawnCoordinate = spawnAreas.getRandomCoordinate();
-        } else if (false) {
-            //todo
-        }
+        spawnAreas = gameObjectSpawningStrategy.getAiCarSpawnAreas();
+        Coordinate spawnCoordinate = spawnAreas.getRandomCoordinate();
 
         return switch (aiCarType) {
             case CROSS_MOVING ->

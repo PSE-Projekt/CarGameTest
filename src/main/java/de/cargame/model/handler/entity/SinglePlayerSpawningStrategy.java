@@ -11,8 +11,7 @@ public class SinglePlayerSpawningStrategy extends GameObjectSpawningStrategy {
 
     @Override
     protected void setBuildingSpawnArea() {
-        SpawnAreaList spawnAreaList = generateBuildingSpawnAreas();
-        this.buildingSpawnAreas = spawnAreaList;
+        this.buildingSpawnAreas = generateBuildingSpawnAreas();
     }
 
     @Override

@@ -10,8 +10,6 @@ import java.util.concurrent.TimeUnit;
 import java.util.function.Supplier;
 
 public class GameObjectSpawnScheduler {
-
-
     private GameObjectHandler gameObjectHandler;
     private ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor();
 
@@ -22,7 +20,6 @@ public class GameObjectSpawnScheduler {
         scheduleObstacle();
         scheduleReward();
         scheduleBuilding();
-
     }
 
     private void scheduleAICar() {
@@ -32,7 +29,6 @@ public class GameObjectSpawnScheduler {
 
     private void scheduleObstacle() {
         scheduleSpawn(() -> () -> gameObjectHandler.spawnObstacle(), 1500, 1900);
-
     }
 
     private void scheduleReward() {
@@ -54,7 +50,6 @@ public class GameObjectSpawnScheduler {
 
     private void scheduleSpawn(Supplier<Runnable> spawnAction, int minDelay, int maxDelay) {
         int initialDelay = getRandomDelay(minDelay, maxDelay);
-
         scheduler.schedule(() -> {
             spawnAction.get().run();
             scheduleSpawn(spawnAction, minDelay, maxDelay);

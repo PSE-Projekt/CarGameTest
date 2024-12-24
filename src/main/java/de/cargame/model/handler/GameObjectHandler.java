@@ -8,6 +8,8 @@ import de.cargame.model.entity.Player;
 import de.cargame.model.entity.gameobject.*;
 import de.cargame.model.entity.gameobject.car.AICar;
 import de.cargame.model.entity.gameobject.car.PlayerCar;
+import de.cargame.model.handler.entity.MultiplayerSpawningStrategy;
+import de.cargame.model.handler.entity.SinglePlayerSpawningStrategy;
 import de.cargame.model.service.GameObjectCreationService;
 import lombok.extern.slf4j.Slf4j;
 
@@ -35,16 +37,17 @@ public class GameObjectHandler {
 
 
     public void startGame() {
-
         GameMode gameMode = gameStateController.getGameMode();
         switch (gameMode) {
             case SINGLEPLAYER:
+                gameObjectCreationService.setGameObjectSpawningStrategy(new SinglePlayerSpawningStrategy());
                 gameObjectSpawnScheduler.startSpawning(this);
-                gameObjectSpawnScheduler.stopSpawning();
-                gameObjectSpawnScheduler.startSpawning(this);
+                break;
             case MULTIPLAYER:
+                gameObjectCreationService.setGameObjectSpawningStrategy(new MultiplayerSpawningStrategy());
+                gameObjectSpawnScheduler.startSpawning(this);
+                break;
         }
-
     }
 
     public void stopGame() {
@@ -81,8 +84,7 @@ public class GameObjectHandler {
     }
 
     public void spawnBuilding() {
-        GameMode gameMode = gameStateController.getGameMode();
-        List<Building> building = gameObjectCreationService.createBuildings(gameMode);
+        List<Building> building = gameObjectCreationService.createBuildings();
         gameObjects.addAll(building);
     }
 
@@ -92,21 +94,17 @@ public class GameObjectHandler {
     }
 
     public void spawnObstacle() {
-        GameMode gameMode = gameStateController.getGameMode();
-        List<Obstacle> obstacle = gameObjectCreationService.createObstacle(gameMode);
+        List<Obstacle> obstacle = gameObjectCreationService.createObstacle();
         gameObjects.addAll(obstacle);
     }
 
     public void spawnReward() {
-        GameMode gameMode = gameStateController.getGameMode();
-        Reward reward = gameObjectCreationService.createReward(gameMode);
+        Reward reward = gameObjectCreationService.createReward();
         gameObjects.add(reward);
     }
 
     public void spawnAICar(AICarType aiCarType) {
-        GameMode gameMode = gameStateController.getGameMode();
-        AICar aiCar = gameObjectCreationService.createAICar(gameMode, aiCarType);
-        System.out.println("Spawn AI Car: " + aiCar.getCoordinates().toString() + " /\\ \t" + System.currentTimeMillis());
+        AICar aiCar = gameObjectCreationService.createAICar(aiCarType);
         gameObjects.add(aiCar);
     }
 
