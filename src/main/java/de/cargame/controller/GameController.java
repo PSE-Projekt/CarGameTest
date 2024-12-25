@@ -6,13 +6,11 @@ import de.cargame.controller.input.Keyboard;
 import de.cargame.model.entity.Player;
 import de.cargame.model.entity.gameobject.GameObject;
 import de.cargame.model.handler.PlayerHandler;
-import de.cargame.model.handler.entity.GameStartParameter;
 import de.cargame.view.TestView;
 import lombok.AccessLevel;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Setter(AccessLevel.PRIVATE)
@@ -66,7 +64,7 @@ public class GameController {
         return gameModelData;
     }
 
-    private String initializePlayerKeyboard(){
+    private String initializePlayerKeyboard() {
         Player player1 = new Player();
         Keyboard keyboardPlayer1 = new Keyboard(player1.getId());
         keyboardPlayer1.registerObserver(player1);

@@ -23,7 +23,6 @@ public class GameObjectSpawnScheduler {
     }
 
 
-
     private void scheduleAICar() {
         //todo implement random event for straight / cross moving
         scheduleSpawn(() -> () -> gameObjectHandler.spawnAICar(AICarType.STRAIGHT_MOVING), 1200, 3000);

@@ -152,7 +152,7 @@ public class GameObjectHandler {
 
     public void checkCollision() {
         List<Collision> collisions = collisionHandler.checkCollision(gameObjects);
-        if(!playerHandler.atLeastOneActivePlayerAlive()){
+        if (!playerHandler.atLeastOneActivePlayerAlive()) {
             stopGame();
         }
     }

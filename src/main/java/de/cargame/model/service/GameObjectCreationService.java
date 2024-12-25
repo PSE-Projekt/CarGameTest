@@ -4,7 +4,6 @@ import de.cargame.config.GameConfig;
 import de.cargame.exception.InvalidCarSelectionException;
 import de.cargame.model.entity.Coordinate;
 import de.cargame.model.entity.Dimension;
-import de.cargame.model.entity.Player;
 import de.cargame.model.entity.gameobject.*;
 import de.cargame.model.entity.gameobject.car.*;
 import de.cargame.model.handler.entity.GameObjectSpawningStrategy;

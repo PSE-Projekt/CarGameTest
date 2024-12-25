@@ -41,7 +41,7 @@ public class Player implements UserInputObserver {
         return score.getValue();
     }
 
-    public void setDefaultValues(){
+    public void setDefaultValues() {
         this.currentUserInput = UserInput.NONE;
         this.score = new Score();
         this.lives = GameConfig.MAX_LIVES;

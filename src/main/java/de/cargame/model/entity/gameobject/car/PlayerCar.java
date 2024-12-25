@@ -3,7 +3,6 @@ package de.cargame.model.entity.gameobject.car;
 import de.cargame.config.GameConfig;
 import de.cargame.model.entity.Coordinate;
 import de.cargame.model.entity.Dimension;
-import de.cargame.model.entity.gameobject.GameObject;
 import de.cargame.model.entity.gameobject.GameObjectBoundType;
 import lombok.Getter;
 import lombok.Setter;
@@ -20,7 +19,8 @@ public abstract class PlayerCar extends Car {
     private long lastCrashTime;
 
     public PlayerCar(Coordinate coordinate, Dimension dimension, GameObjectBoundType gameObjectBoundType) {
-        super(coordinate, dimension, gameObjectBoundType);;
+        super(coordinate, dimension, gameObjectBoundType);
+        ;
     }
 
     @Override
@@ -33,12 +33,12 @@ public abstract class PlayerCar extends Car {
         this.isCollidable = false;
     }
 
-    public boolean hasCrashCooldown(){
+    public boolean hasCrashCooldown() {
         long now = System.currentTimeMillis();
         return (now - lastCrashTime) < GameConfig.CRASH_COOLDOWN_TIME;
     }
 
-    public void setLastCrashTime(){
+    public void setLastCrashTime() {
         lastCrashTime = System.currentTimeMillis();
     }
 }

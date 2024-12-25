@@ -14,7 +14,6 @@ import java.awt.*;
 import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Slf4j
 public class CollisionHandler {
@@ -65,18 +64,22 @@ public class CollisionHandler {
     }
 
     private void handleCollisionReward(PlayerCar playerCar, Reward reward) {
-        if (reward instanceof Life) {
+        if (reward instanceof Life && !reward.isCollected()) {
+            log.info("Reward collected - Lives increased");
             playerHandler.increaseLife(playerCar.getPlayerId());
+        } else {
+            log.info("Reward collected but already collected");
         }
+        reward.setCollected(true);
     }
 
     private void handleCollisionCrash(PlayerCar playerCar) {
-        if(!playerCar.hasCrashCooldown()){
-            System.out.println("Crash - Lives decreased");
+        if (!playerCar.hasCrashCooldown()) {
+            log.info("Crash - Lives decreased");
             playerHandler.decreaseLife(playerCar.getPlayerId());
             playerCar.setLastCrashTime();
-        }{
-            System.out.println("Crash - Cooldown");
+        } else {
+            log.info("Crash - Cooldown");
         }
     }
 

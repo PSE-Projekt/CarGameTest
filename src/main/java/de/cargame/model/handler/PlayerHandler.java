@@ -64,36 +64,36 @@ public class PlayerHandler {
         this.playerGamepad = playerGamepad;
     }
 
-    public void setPlayerCar(String playerId, PlayerCar playerCar){
+    public void setPlayerCar(String playerId, PlayerCar playerCar) {
         getPlayer(playerId).setPlayerCar(playerCar);
     }
 
 
-    public String getKeyboardPlayerId(){
+    public String getKeyboardPlayerId() {
         return playerKeyboard.getId();
     }
 
-    public String getGamepadPlayerId(){
+    public String getGamepadPlayerId() {
         return playerGamepad.getId();
     }
 
-   public boolean atLeastOneActivePlayerAlive(){
+    public boolean atLeastOneActivePlayerAlive() {
         return playerKeyboard.isAlive() || playerGamepad.isAlive();
-   }
+    }
 
-    public List<Player> getActiveAndAlivePlayers(){
+    public List<Player> getActiveAndAlivePlayers() {
         List<Player> players = new ArrayList<>();
-        if(playerKeyboard.isAlive()) players.add(playerKeyboard);
-        if(playerGamepad.isAlive()) players.add(playerGamepad);
+        if (playerKeyboard.isAlive()) players.add(playerKeyboard);
+        if (playerGamepad.isAlive()) players.add(playerGamepad);
         return Collections.unmodifiableList(players);
     }
 
     private Player getPlayer(String id) {
-        if(playerGamepad.getId().equals(id)){
+        if (playerGamepad.getId().equals(id)) {
             return playerGamepad;
-        }else if(playerKeyboard.getId().equals(id)){
+        } else if (playerKeyboard.getId().equals(id)) {
             return playerKeyboard;
-        }else{
+        } else {
             log.error("Player not found");
             throw new PlayerNotFoundException("Player not found");
         }
