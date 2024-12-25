@@ -1,7 +1,7 @@
 package de.cargame.controller;
 
 import de.cargame.controller.entity.GameMode;
-import de.cargame.controller.entity.ViewState;
+import de.cargame.controller.entity.GameState;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -12,11 +12,11 @@ public class GameStateController {
 
     private GameMode gameMode;
 
-    private ViewState viewState;
+    private GameState gameState;
 
 
     public GameStateController() {
         gameMode = GameMode.NOT_SET;
-        viewState = ViewState.MAIN_MENU;
+        gameState = GameState.MAIN_MENU;
     }
 }

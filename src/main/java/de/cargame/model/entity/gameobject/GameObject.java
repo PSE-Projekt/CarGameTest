@@ -18,10 +18,12 @@ public abstract class GameObject {
     protected GameObjectBound gameObjectBound;
     protected boolean isStatic;
     protected boolean isDespawnable;
+    protected boolean isCollidable;
 
     public GameObject(double x, double y, int width, int height, GameObjectBoundType gameObjectBoundType) {
         setDespawnable();
         setIsStatic();
+        setCollidable();
         switch (gameObjectBoundType) {
             case RECTANGLE:
                 gameObjectBound = new RectangularGameObjectBound(x, y, width, height);
@@ -38,12 +40,18 @@ public abstract class GameObject {
 
     protected abstract void setDespawnable();
 
+    protected abstract void setCollidable();
+
     public boolean isStatic() {
         return isStatic;
     }
 
     public boolean isDespawnable() {
         return isDespawnable;
+    }
+
+    public boolean isCollidable() {
+        return isCollidable;
     }
 
     public void moveBy(double xAmount, double yAmount) {

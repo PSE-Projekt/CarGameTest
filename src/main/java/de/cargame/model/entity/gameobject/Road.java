@@ -18,4 +18,9 @@ public class Road extends GameObject {
     protected void setDespawnable() {
         this.isDespawnable = false;
     }
+
+    @Override
+    protected void setCollidable() {
+        this.isCollidable = true;
+    }
 }

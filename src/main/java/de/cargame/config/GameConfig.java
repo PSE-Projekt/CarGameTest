@@ -9,6 +9,8 @@ public abstract class GameConfig {
 
     public static final int GAME_SPEED = 100;
 
+    public static final int CRASH_COOLDOWN_TIME = 3000;
+
 
     public static final int OBSTACLE_SPAWN_RATE = 5;
     public static final int KAMIKAZE_CAR_SPAWN_RATE = 2;

@@ -36,8 +36,7 @@ public class GameObjectController {
     public void update(double deltaTime) {
         gameObjectHandler.moveElements(deltaTime);
         gameObjectHandler.despawnPassedObjects();
-
-        System.out.println(gameObjectHandler.getGameAllObjects().size());
+        gameObjectHandler.checkCollision();
     }
 
 }

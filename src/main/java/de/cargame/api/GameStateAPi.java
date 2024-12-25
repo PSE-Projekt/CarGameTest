@@ -1,7 +1,7 @@
 package de.cargame.api;
 
 import de.cargame.controller.entity.GameMode;
-import de.cargame.controller.entity.ViewState;
+import de.cargame.controller.entity.GameState;
 
 public interface GameStateAPi {
 
@@ -9,7 +9,7 @@ public interface GameStateAPi {
 
     void setGameMode(GameMode gameMode);
 
-    ViewState getViewState();
+    GameState getViewState();
 
-    void setViewState(ViewState viewState);
+    void setViewState(GameState gameState);
 }

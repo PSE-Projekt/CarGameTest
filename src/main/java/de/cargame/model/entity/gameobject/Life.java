@@ -18,4 +18,9 @@ public class Life extends Reward {
     protected void setDespawnable() {
         this.isDespawnable = true;
     }
+
+    @Override
+    protected void setCollidable() {
+        this.isCollidable = true;
+    }
 }

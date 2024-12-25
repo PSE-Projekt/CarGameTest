@@ -4,12 +4,11 @@ import de.cargame.config.GameConfig;
 import de.cargame.controller.GameStateController;
 import de.cargame.controller.entity.GameMode;
 import de.cargame.controller.input.UserInput;
+import de.cargame.model.entity.Collision;
 import de.cargame.model.entity.Coordinate;
-import de.cargame.model.entity.Player;
 import de.cargame.model.entity.gameobject.*;
 import de.cargame.model.entity.gameobject.car.AICar;
 import de.cargame.model.entity.gameobject.car.PlayerCar;
-import de.cargame.model.handler.entity.GameStartParameter;
 import de.cargame.model.handler.entity.MultiplayerSpawningStrategy;
 import de.cargame.model.handler.entity.SinglePlayerSpawningStrategy;
 import de.cargame.model.service.GameObjectCreationService;
@@ -54,6 +53,7 @@ public class GameObjectHandler {
 
     public void stopGame() {
         gameObjectSpawnScheduler.stopSpawning();
+        gameObjects.removeAll(gameObjects);
     }
 
     public void moveElements(double deltaTime) {
@@ -103,6 +103,7 @@ public class GameObjectHandler {
     public void spawnPlayerCar(String playerId, CarType carType) {
         PlayerCar playerCar = gameObjectCreationService.createPlayerCar(carType);
         playerCar.setPlayerId(playerId);
+        playerHandler.setPlayerCar(playerId, playerCar);
         gameObjects.add(playerCar);
     }
 
@@ -149,4 +150,10 @@ public class GameObjectHandler {
         gameObject.moveBy(-GameConfig.GAME_SPEED * deltaTime * GameConfig.AI_CAR_SPEED, 0);
     }
 
+    public void checkCollision() {
+        List<Collision> collisions = collisionHandler.checkCollision(gameObjects);
+        if(!playerHandler.atLeastOneActivePlayerAlive()){
+            stopGame();
+        }
+    }
 }

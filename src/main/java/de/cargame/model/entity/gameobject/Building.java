@@ -18,4 +18,9 @@ public class Building extends GameObject {
     protected void setDespawnable() {
         this.isDespawnable = true;
     }
+
+    @Override
+    protected void setCollidable() {
+        this.isCollidable = true;
+    }
 }

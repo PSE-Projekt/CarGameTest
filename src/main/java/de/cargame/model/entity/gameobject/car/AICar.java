@@ -21,4 +21,9 @@ public abstract class AICar extends Car {
         this.isDespawnable = true;
     }
 
+    @Override
+    protected void setCollidable() {
+        this.isCollidable = true;
+    }
+
 }

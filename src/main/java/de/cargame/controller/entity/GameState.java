@@ -1,6 +1,6 @@
 package de.cargame.controller.entity;
 
-public enum ViewState {
+public enum GameState {
 
     MAIN_MENU,
     CAR_SELECTION,

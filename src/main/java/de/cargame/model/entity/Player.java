@@ -59,4 +59,8 @@ public class Player implements UserInputObserver {
         return --lives;
     }
 
+    public boolean isAlive() {
+        return lives > 0 && isPlaying;
+    }
+
 }

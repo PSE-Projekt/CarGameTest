@@ -7,6 +7,10 @@ import de.cargame.model.entity.gameobject.CarType;
 import de.cargame.model.entity.gameobject.car.PlayerCar;
 import lombok.extern.slf4j.Slf4j;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 @Slf4j
 public class PlayerHandler {
 
@@ -60,12 +64,28 @@ public class PlayerHandler {
         this.playerGamepad = playerGamepad;
     }
 
+    public void setPlayerCar(String playerId, PlayerCar playerCar){
+        getPlayer(playerId).setPlayerCar(playerCar);
+    }
+
+
     public String getKeyboardPlayerId(){
         return playerKeyboard.getId();
     }
 
     public String getGamepadPlayerId(){
         return playerGamepad.getId();
+    }
+
+   public boolean atLeastOneActivePlayerAlive(){
+        return playerKeyboard.isAlive() || playerGamepad.isAlive();
+   }
+
+    public List<Player> getActiveAndAlivePlayers(){
+        List<Player> players = new ArrayList<>();
+        if(playerKeyboard.isAlive()) players.add(playerKeyboard);
+        if(playerGamepad.isAlive()) players.add(playerGamepad);
+        return Collections.unmodifiableList(players);
     }
 
     private Player getPlayer(String id) {

@@ -70,7 +70,14 @@ public class GameController {
         Player player1 = new Player();
         Keyboard keyboardPlayer1 = new Keyboard(player1.getId());
         keyboardPlayer1.registerObserver(player1);
-        playerHandler.setPlayerKeyboard(player1 );
+        playerHandler.setPlayerKeyboard(player1);
+
+
+        //TODO REMOVE
+        player1.setPlaying(true);
+        //TODO REMOVE
+
+
         return player1.getId();
     }
 
