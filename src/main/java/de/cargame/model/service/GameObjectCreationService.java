@@ -20,17 +20,19 @@ public class GameObjectCreationService {
     @Setter
     private GameObjectSpawningStrategy gameObjectSpawningStrategy;
 
-    public PlayerCar createPlayerCar(Coordinate coordinate, Player player, CarType carType) {
+    public PlayerCar createPlayerCar(CarType carType) {
         Dimension dimension;
+        SpawnAreaList playerSpawnAreas = gameObjectSpawningStrategy.getPlayerSpawnAreas();
+        Coordinate spawnCoordinate = playerSpawnAreas.getRandomCoordinate();
         switch (carType) {
             case FAST_CAR:
                 dimension = new Dimension(GameConfig.FAST_CAR_WIDTH, GameConfig.FAST_CAR_HEIGHT);
-                return new FastCar(coordinate, dimension, GameObjectBoundType.RECTANGLE);
+                return new FastCar(spawnCoordinate, dimension, GameObjectBoundType.RECTANGLE);
             case AGILE_CAR:
                 dimension = new Dimension(GameConfig.AGILE_CAR_WIDTH, GameConfig.AGILE_CAR_HEIGHT);
-                return new AgileCar(coordinate, dimension, GameObjectBoundType.RECTANGLE);
+                return new AgileCar(spawnCoordinate, dimension, GameObjectBoundType.RECTANGLE);
         }
-        log.error("No valid car-selection has been made for player {}", player.getId());
+        log.error("No valid car-selection has been made");
         throw new InvalidCarSelectionException("No valid car-selection has been made");
     }
 

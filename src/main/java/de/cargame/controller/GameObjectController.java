@@ -36,10 +36,8 @@ public class GameObjectController {
     public void update(double deltaTime) {
         gameObjectHandler.moveElements(deltaTime);
         gameObjectHandler.despawnPassedObjects();
-    }
 
-    public void spawnPlayerCar(Coordinate coordinate, Player player, CarType carType) {
-        gameObjectHandler.spawnPlayerCar(coordinate, player, carType);
+        System.out.println(gameObjectHandler.getGameAllObjects().size());
     }
 
 }

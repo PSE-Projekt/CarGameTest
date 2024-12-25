@@ -3,6 +3,7 @@ package de.cargame.model.handler;
 import de.cargame.config.GameConfig;
 import de.cargame.controller.GameStateController;
 import de.cargame.controller.entity.GameMode;
+import de.cargame.controller.input.UserInput;
 import de.cargame.model.entity.Coordinate;
 import de.cargame.model.entity.Player;
 import de.cargame.model.entity.gameobject.*;
@@ -47,6 +48,7 @@ public class GameObjectHandler {
                 gameObjectCreationService.setGameObjectSpawningStrategy(new MultiplayerSpawningStrategy());
                 break;
         }
+        spawnPlayerCar(playerHandler.getKeyboardPlayerId(), CarType.AGILE_CAR);
         gameObjectSpawnScheduler.startSpawning(this);
     }
 
@@ -56,30 +58,51 @@ public class GameObjectHandler {
 
     public void moveElements(double deltaTime) {
         for (GameObject gameObject : gameObjects) {
-            if (isStaticElement(gameObject)) {
+            if (gameObject.isStatic()) {
                 moveObjectStatic(gameObject, deltaTime);
             } else if (gameObject instanceof AICar) {
                 moveAICar(gameObject, deltaTime); //todo logik für verschiedene Fahrweisen
+            } else if (gameObject instanceof PlayerCar) {
+                movePlayerCar(gameObject, deltaTime);
             }
         }
     }
 
+    private void movePlayerCar(GameObject gameObject, double deltaTime) {
+        PlayerCar playerCar = (PlayerCar) gameObject;
+        String playerId = playerCar.getPlayerId();
+
+        UserInput currentUserInput = playerHandler.getCurrentUserInput(playerId);
+
+        switch (currentUserInput) {
+            case UP:
+                gameObject.moveBy(0, -playerCar.getSpeed() * deltaTime);
+                break;
+            case DOWN:
+                gameObject.moveBy(0, playerCar.getSpeed() * deltaTime);
+                break;
+        }
+
+    }
+
     public void despawnPassedObjects() {
         List<GameObject> gameObjectsToRemove = new ArrayList<>();
+        List<GameObject> despawnableObjects = gameObjects.stream()
+                .filter(GameObject::isDespawnable)
+                .toList();
 
-        for (GameObject gameObject : gameObjects) {
-            if (!(gameObject instanceof PlayerCar) && !(gameObject instanceof Road)) {
-                if (gameObject.getX() + GameConfig.SCREEN_WIDTH < 0) {
-                    gameObjectsToRemove.add(gameObject);
-                }
+        for (GameObject gameObject : despawnableObjects) {
+            if ((gameObject.getX() + GameConfig.SCREEN_WIDTH) < 0) {
+                gameObjectsToRemove.add(gameObject);
             }
         }
         gameObjects.removeAll(gameObjectsToRemove);
     }
 
 
-    public void spawnPlayerCar(Coordinate coordinate, Player player, CarType carType) {
-        PlayerCar playerCar = gameObjectCreationService.createPlayerCar(coordinate, player, carType);
+    public void spawnPlayerCar(String playerId, CarType carType) {
+        PlayerCar playerCar = gameObjectCreationService.createPlayerCar(carType);
+        playerCar.setPlayerId(playerId);
         gameObjects.add(playerCar);
     }
 
@@ -114,19 +137,9 @@ public class GameObjectHandler {
 
     public List<GameObject> getAllStaticElements() {
         return gameObjects.stream()
-                .filter(this::isStaticElement)
+                .filter(GameObject::isStatic)
                 .toList();
     }
-
-    private boolean isStaticElement(GameObject gameObject) {
-        boolean isRoad = gameObject instanceof Road;
-        boolean isObstacle = gameObject instanceof Obstacle;
-        boolean isReward = gameObject instanceof Reward;
-        boolean isBuilding = gameObject instanceof Building;
-
-        return isRoad || isObstacle || isReward || isBuilding;
-    }
-
 
     private void moveObjectStatic(GameObject gameObject, Double deltaTime) {
         gameObject.moveBy(-GameConfig.GAME_SPEED * deltaTime, 0);

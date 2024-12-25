@@ -3,45 +3,31 @@ package de.cargame.model.entity;
 
 import de.cargame.config.GameConfig;
 import de.cargame.controller.input.UserInput;
+import de.cargame.model.entity.gameobject.CarType;
 import de.cargame.model.entity.gameobject.car.PlayerCar;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.util.UUID;
 
+@Getter
+@Setter
 public class Player implements UserInputObserver {
 
-
-    @Getter
     private final String id;
     private String name;
-    @Getter
     private UserInput currentUserInput;
     private Score score;
-
-    @Setter
-    @Getter
     private PlayerCar playerCar;
-
-    @Getter
-    @Setter
     private int lives;
-
-    @Setter
-    @Getter
     private boolean isPlaying;
-
-    @Setter
-    @Getter
-    private PlayerIdentifier playerIdentifier;
+    private CarType carSelection;
 
 
     public Player() {
         this.id = UUID.randomUUID().toString();
         this.name = "Player_" + id;
-        this.currentUserInput = UserInput.NONE;
-        this.score = new Score();
-        this.lives = GameConfig.MAX_LIVES;
+        setDefaultValues();
         this.isPlaying = false;
     }
 
@@ -53,6 +39,12 @@ public class Player implements UserInputObserver {
     public int increaseScore(int value) {
         score.increaseScore(value);
         return score.getValue();
+    }
+
+    public void setDefaultValues(){
+        this.currentUserInput = UserInput.NONE;
+        this.score = new Score();
+        this.lives = GameConfig.MAX_LIVES;
     }
 
     public void resetScore() {

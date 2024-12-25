@@ -68,11 +68,9 @@ public class Keyboard extends InputDevice implements NativeKeyListener {
 
     @Override
     public void nativeKeyReleased(NativeKeyEvent e) {
+        System.out.println(pressedKeys.size());
         int keyCode = e.getKeyCode();
-
-        if (!pressedKeys.contains(keyCode)) {
-            pressedKeys.remove(keyCode);
-        }
+        pressedKeys.remove(keyCode);
         if (pressedKeys.isEmpty()) {
             notifyObservers(UserInput.NONE);
         }

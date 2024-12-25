@@ -31,7 +31,8 @@ public class SinglePlayerSpawningStrategy extends GameObjectSpawningStrategy {
 
     @Override
     protected void setPlayerSpawnArea() {
-
+        SpawnArea spawnArea = new SpawnArea(GameConfig.SCREEN_WIDTH/5, GameConfig.SCREEN_HEIGHT/2, GameConfig.SCREEN_WIDTH/5, GameConfig.SCREEN_HEIGHT/2);
+        this.playerSpawnAreas.add(spawnArea);
     }
 
     @Override

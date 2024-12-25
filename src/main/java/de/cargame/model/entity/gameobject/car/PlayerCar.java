@@ -3,24 +3,25 @@ package de.cargame.model.entity.gameobject.car;
 import de.cargame.model.entity.Coordinate;
 import de.cargame.model.entity.Dimension;
 import de.cargame.model.entity.gameobject.GameObjectBoundType;
+import lombok.Getter;
+import lombok.Setter;
 
+
+@Getter
+@Setter
 public abstract class PlayerCar extends Car {
 
 
     private String playerId;
-
-    public PlayerCar(int x, int y, int width, int height, GameObjectBoundType gameObjectBoundType) {
-        super(x, y, width, height, gameObjectBoundType);
-    }
+    private int speed;
+    private double inertia;
 
     public PlayerCar(Coordinate coordinate, Dimension dimension, GameObjectBoundType gameObjectBoundType) {
-        super(coordinate, dimension, gameObjectBoundType);
+        super(coordinate, dimension, gameObjectBoundType);;
     }
 
-    public void setPlayerId(String playerId) {
-        this.playerId = playerId;
-    }
-    public String getPlayerId() {
-        return playerId;
+    @Override
+    public void setDespawnable() {
+        this.isDespawnable = false;
     }
 }

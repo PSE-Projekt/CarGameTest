@@ -14,12 +14,12 @@ public abstract class GameConfig {
     public static final int KAMIKAZE_CAR_SPAWN_RATE = 2;
     public static final int GAME_SPEED_FAST_FORWARD = 3;
 
-    public static final int FAST_CAR_WIDTH = 150;
-    public static final int FAST_CAR_HEIGHT = 75;
+    public static final int FAST_CAR_WIDTH = 120;
+    public static final int FAST_CAR_HEIGHT = 80;
     public static final int FAST_CAR_SPEED = 300;
     public static final double FAST_CAR_INERTIA = 0.5;
-    public static final int AGILE_CAR_WIDTH = 200;
-    public static final int AGILE_CAR_HEIGHT = 100;
+    public static final int AGILE_CAR_WIDTH = 80;
+    public static final int AGILE_CAR_HEIGHT = 50;
     public static final int AGILE_CAR_SPEED = 150;
     public static final double AGILE_CAR_INERTIA = 0.1;
 

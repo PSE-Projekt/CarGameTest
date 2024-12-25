@@ -10,13 +10,15 @@ public abstract class AICar extends Car {
     @Getter
     private MovementStrategy movementStrategy;
 
-    public AICar(int x, int y, int width, int height, GameObjectBoundType gameObjectBoundType, MovementStrategy movementStrategy) {
-        super(x, y, width, height, gameObjectBoundType);
-        this.movementStrategy = movementStrategy;
-    }
 
     public AICar(Coordinate coordinate, Dimension dimension, GameObjectBoundType gameObjectBoundType, MovementStrategy movementStrategy) {
         super(coordinate, dimension, gameObjectBoundType);
+        this.movementStrategy = movementStrategy;
+    }
+
+    @Override
+    protected void setDespawnable() {
+        this.isDespawnable = true;
     }
 
 }

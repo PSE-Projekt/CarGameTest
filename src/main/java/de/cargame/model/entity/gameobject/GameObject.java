@@ -16,9 +16,12 @@ import java.awt.*;
 public abstract class GameObject {
 
     protected GameObjectBound gameObjectBound;
+    protected boolean isStatic;
+    protected boolean isDespawnable;
 
     public GameObject(double x, double y, int width, int height, GameObjectBoundType gameObjectBoundType) {
-
+        setDespawnable();
+        setIsStatic();
         switch (gameObjectBoundType) {
             case RECTANGLE:
                 gameObjectBound = new RectangularGameObjectBound(x, y, width, height);
@@ -29,6 +32,18 @@ public abstract class GameObject {
 
     public GameObject(Coordinate coordinate, Dimension dimension, GameObjectBoundType gameObjectBoundType) {
         this(coordinate.getX(), coordinate.getY(), dimension.getWidth(), dimension.getHeight(), gameObjectBoundType);
+    }
+
+    protected abstract void setIsStatic();
+
+    protected abstract void setDespawnable();
+
+    public boolean isStatic() {
+        return isStatic;
+    }
+
+    public boolean isDespawnable() {
+        return isDespawnable;
     }
 
     public void moveBy(double xAmount, double yAmount) {

@@ -10,15 +10,13 @@ import lombok.Setter;
 @Getter
 @Setter
 public abstract class Car extends GameObject {
-    private int speed;
-    private double inertia;
-
-
-    public Car(int x, int y, int width, int height, GameObjectBoundType gameObjectBoundType) {
-        super(x, y, width, height, gameObjectBoundType);
-    }
 
     public Car(Coordinate coordinate, Dimension dimension, GameObjectBoundType gameObjectBoundType) {
         super(coordinate, dimension, gameObjectBoundType);
+    }
+
+    @Override
+    protected void setIsStatic() {
+        this.isStatic = false;
     }
 }

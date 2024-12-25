@@ -1,55 +1,38 @@
 package de.cargame.model.handler;
 
 import de.cargame.controller.input.UserInput;
+import de.cargame.exception.PlayerNotFoundException;
 import de.cargame.model.entity.Player;
 import de.cargame.model.entity.gameobject.CarType;
 import de.cargame.model.entity.gameobject.car.PlayerCar;
 import lombok.extern.slf4j.Slf4j;
 
-import java.util.HashMap;
-import java.util.Map;
-
 @Slf4j
 public class PlayerHandler {
 
-    private Map<String, Player> players;
+    private Player playerKeyboard;
+    private Player playerGamepad;
 
     public PlayerHandler() {
-        this.players = new HashMap<>();
+        playerKeyboard = new Player();
+        playerGamepad = new Player();
     }
 
 
-    public void addPlayer(Player player) {
-        if (!players.containsKey(player.getId())) {
-            players.put(player.getId(), player);
-            return;
-        }
-        log.warn("The player {} is already present in the playerhandler", player);
+    public void increaseScore(String playerId, int value) {
+        getPlayer(playerId).increaseScore(value);
     }
 
-    public void removePlayer(Player player) {
-        if (players.containsKey(player.getId())) {
-            players.remove(player.getId());
-            return;
-        }
-        log.warn("The player {} has already been removed from playerhandler", player);
+    public void resetScore(String playerId) {
+        getPlayer(playerId).resetScore();
     }
 
-    public void increaseScore(String id, int value) {
-        getPlayer(id).increaseScore(value);
-    }
-
-    public void resetScore(String id) {
-        getPlayer(id).resetScore();
-    }
-
-    public UserInput getCurrentUserInput(String id) {
-        return getPlayer(id).getCurrentUserInput();
+    public UserInput getCurrentUserInput(String playerId) {
+        return getPlayer(playerId).getCurrentUserInput();
     }
 
     public void setCarSelection(String playerId, CarType carSelection) {
-
-
+        getPlayer(playerId).setCarSelection(carSelection);
     }
 
     public PlayerCar getCarSelection(String playerId) {
@@ -69,18 +52,30 @@ public class PlayerHandler {
         return getPlayer(playerId).getLives();
     }
 
-
-    private Player getPlayer(String id) {
-        return players.get(id);
+    public void setPlayerKeyboard(Player playerKeyboard) {
+        this.playerKeyboard = playerKeyboard;
     }
 
-//    private Player getPlayer(PlayerCar playerCar) {
-//        Optional<Player> playerOptional = players.values()
-//                .stream()
-//                .filter(p -> p.getPlayerCar() == playerCar)
-//                .findFirst();
+    public void setPlayerGamepad(Player playerGamepad) {
+        this.playerGamepad = playerGamepad;
+    }
 
-//        if (playerOptional.isPresent()) return playerOptional.get();
-//        log.error("Player not found");
-//        throw new PlayerNotFoundException("Player not found");
+    public String getKeyboardPlayerId(){
+        return playerKeyboard.getId();
+    }
+
+    public String getGamepadPlayerId(){
+        return playerGamepad.getId();
+    }
+
+    private Player getPlayer(String id) {
+        if(playerGamepad.getId().equals(id)){
+            return playerGamepad;
+        }else if(playerKeyboard.getId().equals(id)){
+            return playerKeyboard;
+        }else{
+            log.error("Player not found");
+            throw new PlayerNotFoundException("Player not found");
+        }
+    }
 }
