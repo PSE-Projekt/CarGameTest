@@ -1,6 +1,7 @@
 package de.cargame.model.handler;
 
 import de.cargame.config.GameConfig;
+import de.cargame.controller.GameObjectController;
 import de.cargame.controller.GameStateController;
 import de.cargame.controller.entity.GameMode;
 import de.cargame.controller.input.UserInput;
@@ -76,10 +77,10 @@ public class GameObjectHandler {
 
         switch (currentUserInput) {
             case UP:
-                gameObject.moveBy(0, -playerCar.getSpeed() * deltaTime);
+                gameObject.moveBy(0, -playerCar.getSpeed() * deltaTime, true);
                 break;
             case DOWN:
-                gameObject.moveBy(0, playerCar.getSpeed() * deltaTime);
+                gameObject.moveBy(0, playerCar.getSpeed() * deltaTime, true);
                 break;
         }
 

@@ -1,5 +1,6 @@
 package de.cargame.model.entity.gameobject;
 
+import de.cargame.config.GameConfig;
 import de.cargame.model.entity.Coordinate;
 import de.cargame.model.entity.Dimension;
 import de.cargame.model.entity.GameObjectBound;
@@ -57,6 +58,24 @@ public abstract class GameObject {
     public void moveBy(double xAmount, double yAmount) {
         gameObjectBound.moveBy(xAmount, yAmount);
     }
+
+
+    public void moveBy(double xAmount, double yAmount, boolean respectingGameBounds) {
+        double xOld = gameObjectBound.getCoordinate().getX();
+        double yOld = gameObjectBound.getCoordinate().getY();
+
+        gameObjectBound.moveBy(xAmount, yAmount);
+
+        if(respectingGameBounds){
+            double xNew = gameObjectBound.getCoordinate().getX();
+            double yNew = gameObjectBound.getCoordinate().getY();
+            if(xNew<0 || xNew > GameConfig.SCREEN_WIDTH || yNew<0 || yNew > GameConfig.SCREEN_HEIGHT){
+                gameObjectBound.getCoordinate().setX(xOld);
+                gameObjectBound.getCoordinate().setY(yOld);
+            }
+        }
+    }
+
 
     public Shape getBound() {
         return gameObjectBound.getBound();

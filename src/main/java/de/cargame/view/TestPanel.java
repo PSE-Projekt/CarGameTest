@@ -7,6 +7,7 @@ import de.cargame.model.entity.gameobject.GameObject;
 import de.cargame.model.entity.gameobject.Obstacle;
 import de.cargame.model.entity.gameobject.Reward;
 import de.cargame.model.entity.gameobject.car.AICar;
+import de.cargame.model.entity.gameobject.car.PlayerCar;
 
 import javax.swing.*;
 import java.awt.*;
@@ -37,6 +38,8 @@ public class TestPanel extends JPanel {
                 g2d.setColor(Color.YELLOW);
             } else if (gameObject instanceof Building) {
                 g2d.setColor(Color.BLACK);
+            }else if(gameObject instanceof PlayerCar){
+                g2d.setColor(Color.GREEN);
             }
             g2d.fill(bounds);
         }

@@ -9,13 +9,14 @@ import de.cargame.model.entity.gameobject.Life;
 import de.cargame.model.entity.gameobject.Reward;
 import de.cargame.model.entity.gameobject.car.PlayerCar;
 import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.awt.*;
 import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 import java.util.List;
 
-@Slf4j
 public class CollisionHandler {
 
     private final PlayerHandler playerHandler;
@@ -42,13 +43,14 @@ public class CollisionHandler {
                         collisions.add(handleCollision(playerCar, collidableObject));
                     }
                 } else {
-                    log.error("The collision detection algorithm does not support this kind of collision detection yet.");
+                    System.out.println("The collision detection algorithm does not support this kind of collision detection yet.");
                     throw new IllegalGameObjectBoundException("The collision detection algorithm does not support this kind of collision detection yet.");
                 }
             }
         }
         return collisions;
     }
+
 
 
     private Collision handleCollision(PlayerCar playerCar, GameObject collisionObject) {
@@ -63,23 +65,26 @@ public class CollisionHandler {
 
     }
 
+
     private void handleCollisionReward(PlayerCar playerCar, Reward reward) {
         if (reward instanceof Life && !reward.isCollected()) {
-            log.info("Reward collected - Lives increased");
+            System.out.println("Reward collected - Lives increased");
             playerHandler.increaseLife(playerCar.getPlayerId());
         } else {
-            log.info("Reward collected but already collected");
+            System.out.println("Reward collected but already collected");
         }
         reward.setCollected(true);
     }
 
+
+
     private void handleCollisionCrash(PlayerCar playerCar) {
         if (!playerCar.hasCrashCooldown()) {
-            log.info("Crash - Lives decreased");
+            System.out.println("Crash - Lives decreased");
             playerHandler.decreaseLife(playerCar.getPlayerId());
             playerCar.setLastCrashTime();
         } else {
-            log.info("Crash - Cooldown");
+            System.out.println("Crash - Cooldown");
         }
     }
 
