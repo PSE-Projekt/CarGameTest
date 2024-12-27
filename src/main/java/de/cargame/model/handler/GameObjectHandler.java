@@ -101,9 +101,9 @@ public class GameObjectHandler {
         gameObjects.addAll(building);
     }
 
-    public void spawnRoad(Coordinate coordinate) {
-        Road road = gameObjectCreationService.createRoad(coordinate);
-        gameObjects.add(road);
+    public void spawnRoadMarks() {
+        List<RoadMark> roadMark = gameObjectCreationService.createRoad();
+        gameObjects.addAll(roadMark);
     }
 
     public void spawnObstacle() {

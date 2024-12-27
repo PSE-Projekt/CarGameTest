@@ -4,9 +4,9 @@ import de.cargame.config.GameConfig;
 import de.cargame.model.entity.Coordinate;
 import de.cargame.model.entity.Dimension;
 
-public class Road extends GameObject {
+public class RoadMark extends GameObject {
 
-    public Road(Coordinate coordinate, Dimension dimension, GameObjectBoundType gameObjectBoundType) {
+    public RoadMark(Coordinate coordinate, Dimension dimension, GameObjectBoundType gameObjectBoundType) {
         super(coordinate, dimension, gameObjectBoundType);
     }
 
@@ -22,11 +22,11 @@ public class Road extends GameObject {
 
     @Override
     protected void setDespawnable() {
-        this.isDespawnable = false;
+        this.isDespawnable = true;
     }
 
     @Override
     protected void setCollidable() {
-        this.isCollidable = true;
+        this.isCollidable = false;
     }
 }

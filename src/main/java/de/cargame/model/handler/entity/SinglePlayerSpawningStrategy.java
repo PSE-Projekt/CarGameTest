@@ -4,6 +4,12 @@ import de.cargame.config.GameConfig;
 
 public class SinglePlayerSpawningStrategy extends GameObjectSpawningStrategy {
 
+
+    private final int PLAYER_SPAWN_X = GameConfig.SCREEN_WIDTH / 5;
+    private final int SCREEN_HALVE_Y = GameConfig.SCREEN_HEIGHT / 2;
+    private final int ROADMARK_Y1 = GameConfig.BUILDING_WIDTH + (GameConfig.SCREEN_HEIGHT-2*(GameConfig.BUILDING_HEIGHT))/3;;
+    private final int ROADMARK_Y2 = ROADMARK_Y1*2;
+
     public SinglePlayerSpawningStrategy() {
         super();
         setBuildingSpawnArea();
@@ -25,12 +31,17 @@ public class SinglePlayerSpawningStrategy extends GameObjectSpawningStrategy {
     }
 
     @Override
-    protected void setRoadSpawnArea() {
+    protected void setRoadMarkSpawnArea() {
+        SpawnArea spawnArea1 = new SpawnArea(GameConfig.SCREEN_WIDTH, ROADMARK_Y1 , GameConfig.SCREEN_WIDTH, ROADMARK_Y1);
+        SpawnArea spawnArea2 = new SpawnArea(GameConfig.SCREEN_WIDTH, ROADMARK_Y2, GameConfig.SCREEN_WIDTH, ROADMARK_Y2);
+
+        this.roadSpawnAreas.add(spawnArea1);
+        this.roadSpawnAreas.add(spawnArea2);
     }
 
     @Override
     protected void setPlayerSpawnArea() {
-        SpawnArea spawnArea = new SpawnArea(GameConfig.SCREEN_WIDTH / 5, GameConfig.SCREEN_HEIGHT / 2, GameConfig.SCREEN_WIDTH / 5, GameConfig.SCREEN_HEIGHT / 2);
+        SpawnArea spawnArea = new SpawnArea(PLAYER_SPAWN_X, SCREEN_HALVE_Y, PLAYER_SPAWN_X, SCREEN_HALVE_Y);
         this.playerSpawnAreas.add(spawnArea);
     }
 
@@ -38,6 +49,7 @@ public class SinglePlayerSpawningStrategy extends GameObjectSpawningStrategy {
     protected void setAiCarSpawnArea() {
         this.aiCarSpawnAreas.add(generateRoadSpawnArea(GameConfig.AI_CAR_HEIGHT));
     }
+
 
 
     private SpawnArea generateRoadSpawnArea(int customHeight) {

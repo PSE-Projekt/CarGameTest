@@ -21,6 +21,7 @@ public class GameObjectSpawnScheduler {
         scheduleObstacle();
         scheduleReward();
         scheduleBuilding();
+        scheduleRoadMark();
     }
 
 
@@ -40,6 +41,13 @@ public class GameObjectSpawnScheduler {
     private void scheduleBuilding() {
         scheduleSpawn(() -> () -> gameObjectHandler.spawnBuilding(), 500, 1300);
     }
+
+
+    private void scheduleRoadMark() {
+        scheduleSpawn(() -> () -> gameObjectHandler.spawnRoadMarks(), 1000, 1001);
+    }
+
+
 
     public void stopSpawning() {
         scheduler.shutdownNow();

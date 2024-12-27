@@ -33,10 +33,10 @@ public abstract class PlayerCar extends Car {
 
         switch (currentUserInput) {
             case UP:
-                moveBy(0, -getSpeed() * deltaTime, true);
+                moveByRespectingGameBoundaries(0, -getSpeed() * deltaTime);
                 break;
             case DOWN:
-                moveBy(0, getSpeed() * deltaTime, true);
+                moveByRespectingGameBoundaries(0, getSpeed() * deltaTime);
                 break;
         }
     }

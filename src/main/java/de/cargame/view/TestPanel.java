@@ -2,10 +2,7 @@ package de.cargame.view;
 
 import de.cargame.controller.GameController;
 import de.cargame.controller.entity.GameModelData;
-import de.cargame.model.entity.gameobject.Building;
-import de.cargame.model.entity.gameobject.GameObject;
-import de.cargame.model.entity.gameobject.Obstacle;
-import de.cargame.model.entity.gameobject.Reward;
+import de.cargame.model.entity.gameobject.*;
 import de.cargame.model.entity.gameobject.car.AICar;
 import de.cargame.model.entity.gameobject.car.PlayerCar;
 
@@ -40,8 +37,14 @@ public class TestPanel extends JPanel {
                 g2d.setColor(Color.BLACK);
             }else if(gameObject instanceof PlayerCar){
                 g2d.setColor(Color.GREEN);
+            } else if (gameObject instanceof RoadMark) {
+                g2d.setColor(Color.GRAY);
             }
             g2d.fill(bounds);
         }
+    }
+
+    private void paintComponents(List<GameObject> gameObjects){
+
     }
 }

@@ -45,9 +45,14 @@ public class GameObjectCreationService {
     }
 
 
-    public Road createRoad(Coordinate coordinate) {
-        Dimension dimension = new Dimension(GameConfig.ROAD_WIDTH, GameConfig.ROAD_HEIGHT);
-        return new Road(coordinate, dimension, GameObjectBoundType.RECTANGLE);
+    public List<RoadMark> createRoad() {
+        SpawnAreaList spawnAreas;
+        spawnAreas = gameObjectSpawningStrategy.getRoadSpawnAreas();
+        List<Coordinate> spawnCoordinates = spawnAreas.getRandomCoordinateOfEach();
+        Dimension dimension = new Dimension(GameConfig.ROAD_MARK_WIDTH, GameConfig.ROAD_MARK_HEIGHT);
+        return spawnCoordinates.stream()
+                .map(c -> new RoadMark(c, dimension, GameObjectBoundType.RECTANGLE))
+                .toList();
     }
 
     public List<Obstacle> createObstacle() {

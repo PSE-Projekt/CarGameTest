@@ -18,7 +18,7 @@ public abstract class GameObjectSpawningStrategy {
         setBuildingSpawnArea();
         setObstacleSpawnArea();
         setRewardSpawnArea();
-        setRoadSpawnArea();
+        setRoadMarkSpawnArea();
         setPlayerSpawnArea();
         setAiCarSpawnArea();
     }
@@ -29,7 +29,7 @@ public abstract class GameObjectSpawningStrategy {
 
     protected abstract void setRewardSpawnArea();
 
-    protected abstract void setRoadSpawnArea();
+    protected abstract void setRoadMarkSpawnArea();
 
     protected abstract void setPlayerSpawnArea();
 

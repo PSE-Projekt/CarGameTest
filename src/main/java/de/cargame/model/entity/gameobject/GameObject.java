@@ -5,6 +5,8 @@ import de.cargame.model.entity.Coordinate;
 import de.cargame.model.entity.Dimension;
 import de.cargame.model.entity.GameObjectBound;
 import de.cargame.model.entity.RectangularGameObjectBound;
+import de.cargame.model.entity.gameobject.interfaces.Collidable;
+import de.cargame.model.entity.gameobject.interfaces.Despawnable;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
@@ -14,7 +16,7 @@ import java.awt.*;
 @Getter
 @Setter
 @Slf4j
-public abstract class GameObject {
+public abstract class GameObject implements Collidable, Despawnable {
 
     protected GameObjectBound gameObjectBound;
     protected boolean isStatic;
@@ -47,10 +49,12 @@ public abstract class GameObject {
         return isStatic;
     }
 
+    @Override
     public boolean isDespawnable() {
         return isDespawnable;
     }
 
+    @Override
     public boolean isCollidable() {
         return isCollidable;
     }
@@ -63,20 +67,20 @@ public abstract class GameObject {
     }
 
 
-    protected void moveBy(double xAmount, double yAmount, boolean respectingGameBounds) {
+    protected void moveByRespectingGameBoundaries(double xAmount, double yAmount) {
         double xOld = gameObjectBound.getCoordinate().getX();
         double yOld = gameObjectBound.getCoordinate().getY();
 
         gameObjectBound.moveBy(xAmount, yAmount);
 
-        if (respectingGameBounds) {
-            double xNew = gameObjectBound.getCoordinate().getX();
-            double yNew = gameObjectBound.getCoordinate().getY();
-            if (xNew < 0 || xNew > GameConfig.SCREEN_WIDTH || yNew < 0 || yNew > GameConfig.SCREEN_HEIGHT) {
-                gameObjectBound.getCoordinate().setX(xOld);
-                gameObjectBound.getCoordinate().setY(yOld);
-            }
+        double xNew = gameObjectBound.getCoordinate().getX();
+        double yNew = gameObjectBound.getCoordinate().getY();
+
+        if (xNew < 0 || xNew > GameConfig.SCREEN_WIDTH || yNew < 0 || yNew > GameConfig.SCREEN_HEIGHT) {
+            gameObjectBound.getCoordinate().setX(xOld);
+            gameObjectBound.getCoordinate().setY(yOld);
         }
+
     }
 
 

@@ -25,7 +25,7 @@ public class MultiplayerSpawningStrategy extends GameObjectSpawningStrategy {
     }
 
     @Override
-    protected void setRoadSpawnArea() {
+    protected void setRoadMarkSpawnArea() {
 
     }
 

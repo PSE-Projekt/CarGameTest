@@ -8,7 +8,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public abstract class Reward extends GameObject implements Collectable {
+public abstract class Reward extends GameObject {
 
     private boolean collected = false;
 

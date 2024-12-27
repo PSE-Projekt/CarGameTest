@@ -40,8 +40,8 @@ public abstract class GameConfig {
      */
     public static final int BUILDING_SPAWN_WIDTH = 10;
 
-    public static final int ROAD_WIDTH = SCREEN_WIDTH;
-    public static final int ROAD_HEIGHT = (int) (SCREEN_HEIGHT / 2.5);
+    public static final int ROAD_MARK_WIDTH = 30;
+    public static final int ROAD_MARK_HEIGHT = 10;
 
     public static final int OBSTACLE_WIDTH = 40;
     public static final int OBSTACLE_HEIGHT = 40;
