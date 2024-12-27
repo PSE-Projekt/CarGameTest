@@ -19,7 +19,6 @@ public class InputController {
     public Optional<Controller> pollGamePad() {
         Event event = new Event();
 
-        /* Get the available controllers */
         Controller[] controllers = ControllerEnvironment.getDefaultEnvironment().getControllers();
 
         if (controllers.length == 0) {
@@ -27,6 +26,5 @@ public class InputController {
             return Optional.empty();
         }
         return Optional.of(controllers[0]);
-
     }
 }

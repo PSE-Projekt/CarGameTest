@@ -53,30 +53,38 @@ public class GameController {
         }
     }
 
-
     public void startGame() {
         gameObjectController.startGame();
     }
 
     public GameModelData getModel() {
         List<GameObject> allGameObjects = gameObjectController.getAllGameObjects();
-        GameModelData gameModelData = new GameModelData(allGameObjects);
-        return gameModelData;
+        return new GameModelData(allGameObjects);
     }
 
     private String initializePlayerKeyboard() {
-        Player player1 = new Player();
-        Keyboard keyboardPlayer1 = new Keyboard(player1.getId());
-        keyboardPlayer1.registerObserver(player1);
-        playerHandler.setPlayerKeyboard(player1);
-
+        Player player = new Player();
+        Keyboard keyboardPlayer = new Keyboard(player.getId());
+        keyboardPlayer.registerObserver(player);
+        playerHandler.setPlayerKeyboard(player);
 
         //TODO REMOVE
-        player1.setPlaying(true);
+        player.setPlaying(true);
         //TODO REMOVE
 
-
-        return player1.getId();
+        return player.getId();
     }
 
+    private String initializePlayerGamePad() {
+        Player player = new Player();
+        Keyboard keyboardPlayer = new Keyboard(player.getId());
+        keyboardPlayer.registerObserver(player);
+        playerHandler.setPlayerKeyboard(player);
+
+        //TODO REMOVE
+        player.setPlaying(true);
+        //TODO REMOVE
+
+        return player.getId();
+    }
 }

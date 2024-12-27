@@ -8,9 +8,6 @@ import de.cargame.model.entity.gameobject.GameObject;
 import de.cargame.model.entity.gameobject.Life;
 import de.cargame.model.entity.gameobject.Reward;
 import de.cargame.model.entity.gameobject.car.PlayerCar;
-import lombok.extern.slf4j.Slf4j;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.awt.*;
 import java.awt.geom.Rectangle2D;
@@ -28,8 +25,15 @@ public class CollisionHandler {
 
     public List<Collision> checkCollision(List<GameObject> gameObjects) {
         List<Player> activeAndAlivePlayers = playerHandler.getActiveAndAlivePlayers();
-        List<PlayerCar> playerCars = activeAndAlivePlayers.stream().map(Player::getPlayerCar).toList();
-        List<GameObject> collidableObjects = gameObjects.stream().filter(GameObject::isCollidable).toList();
+        List<PlayerCar> playerCars = activeAndAlivePlayers
+                .stream()
+                .map(Player::getPlayerCar)
+                .toList();
+
+        List<GameObject> collidableObjects = gameObjects
+                .stream()
+                .filter(GameObject::isCollidable)
+                .toList();
         List<Collision> collisions = new ArrayList<>();
 
 
@@ -54,15 +58,12 @@ public class CollisionHandler {
 
 
     private Collision handleCollision(PlayerCar playerCar, GameObject collisionObject) {
-
         if (collisionObject instanceof Reward) {
             handleCollisionReward(playerCar, (Reward) collisionObject);
             return new Collision(CollisionType.REWARD, playerCar, collisionObject);
         }
-        //Kollision mit Lebensverlust logische Konsequenz
         handleCollisionCrash(playerCar);
         return new Collision(CollisionType.CRASH, playerCar, collisionObject);
-
     }
 
 

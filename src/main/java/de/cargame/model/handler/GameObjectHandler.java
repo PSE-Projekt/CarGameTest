@@ -1,9 +1,9 @@
 package de.cargame.model.handler;
 
 import de.cargame.config.GameConfig;
-import de.cargame.controller.GameObjectController;
 import de.cargame.controller.GameStateController;
 import de.cargame.controller.entity.GameMode;
+import de.cargame.controller.entity.GameState;
 import de.cargame.controller.input.UserInput;
 import de.cargame.model.entity.Collision;
 import de.cargame.model.entity.Coordinate;
@@ -55,6 +55,7 @@ public class GameObjectHandler {
     public void stopGame() {
         gameObjectSpawnScheduler.stopSpawning();
         gameObjects.removeAll(gameObjects);
+        gameStateController.setGameState(GameState.SCORE_BOARD);
     }
 
     public void moveElements(double deltaTime) {
@@ -83,7 +84,6 @@ public class GameObjectHandler {
                 gameObject.moveBy(0, playerCar.getSpeed() * deltaTime, true);
                 break;
         }
-
     }
 
     public void despawnPassedObjects() {
@@ -137,11 +137,6 @@ public class GameObjectHandler {
         return gameObjects;
     }
 
-    public List<GameObject> getAllStaticElements() {
-        return gameObjects.stream()
-                .filter(GameObject::isStatic)
-                .toList();
-    }
 
     private void moveObjectStatic(GameObject gameObject, Double deltaTime) {
         gameObject.moveBy(-GameConfig.GAME_SPEED * deltaTime, 0);
