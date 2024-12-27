@@ -55,21 +55,24 @@ public abstract class GameObject {
         return isCollidable;
     }
 
-    public void moveBy(double xAmount, double yAmount) {
+
+    public abstract void move(double deltaTime);
+
+    protected void moveBy(double xAmount, double yAmount) {
         gameObjectBound.moveBy(xAmount, yAmount);
     }
 
 
-    public void moveBy(double xAmount, double yAmount, boolean respectingGameBounds) {
+    protected void moveBy(double xAmount, double yAmount, boolean respectingGameBounds) {
         double xOld = gameObjectBound.getCoordinate().getX();
         double yOld = gameObjectBound.getCoordinate().getY();
 
         gameObjectBound.moveBy(xAmount, yAmount);
 
-        if(respectingGameBounds){
+        if (respectingGameBounds) {
             double xNew = gameObjectBound.getCoordinate().getX();
             double yNew = gameObjectBound.getCoordinate().getY();
-            if(xNew<0 || xNew > GameConfig.SCREEN_WIDTH || yNew<0 || yNew > GameConfig.SCREEN_HEIGHT){
+            if (xNew < 0 || xNew > GameConfig.SCREEN_WIDTH || yNew < 0 || yNew > GameConfig.SCREEN_HEIGHT) {
                 gameObjectBound.getCoordinate().setX(xOld);
                 gameObjectBound.getCoordinate().setY(yOld);
             }

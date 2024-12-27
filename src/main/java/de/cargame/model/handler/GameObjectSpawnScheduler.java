@@ -51,6 +51,7 @@ public class GameObjectSpawnScheduler {
     }
 
     private void scheduleSpawn(Supplier<Runnable> spawnAction, int minDelay, int maxDelay) {
+        System.out.println("Schedule");
         int initialDelay = getRandomDelay(minDelay, maxDelay);
         scheduler.schedule(() -> {
             spawnAction.get().run();

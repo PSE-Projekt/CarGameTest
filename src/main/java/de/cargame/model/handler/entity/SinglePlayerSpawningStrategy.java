@@ -26,7 +26,6 @@ public class SinglePlayerSpawningStrategy extends GameObjectSpawningStrategy {
 
     @Override
     protected void setRoadSpawnArea() {
-
     }
 
     @Override

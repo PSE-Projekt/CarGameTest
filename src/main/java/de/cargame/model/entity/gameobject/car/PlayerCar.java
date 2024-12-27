@@ -1,9 +1,11 @@
 package de.cargame.model.entity.gameobject.car;
 
 import de.cargame.config.GameConfig;
+import de.cargame.controller.input.UserInput;
 import de.cargame.model.entity.Coordinate;
 import de.cargame.model.entity.Dimension;
 import de.cargame.model.entity.gameobject.GameObjectBoundType;
+import de.cargame.model.handler.PlayerHandler;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -17,10 +19,26 @@ public abstract class PlayerCar extends Car {
     private int speed;
     private double inertia;
     private long lastCrashTime;
+    private PlayerHandler playerHandler;
 
     public PlayerCar(Coordinate coordinate, Dimension dimension, GameObjectBoundType gameObjectBoundType) {
         super(coordinate, dimension, gameObjectBoundType);
-        ;
+        setPlayerHandler(playerHandler);
+    }
+
+
+    @Override
+    public void move(double deltaTime) {
+        UserInput currentUserInput = playerHandler.getCurrentUserInput(playerId);
+
+        switch (currentUserInput) {
+            case UP:
+                moveBy(0, -getSpeed() * deltaTime, true);
+                break;
+            case DOWN:
+                moveBy(0, getSpeed() * deltaTime, true);
+                break;
+        }
     }
 
     @Override

@@ -60,13 +60,7 @@ public class GameObjectHandler {
 
     public void moveElements(double deltaTime) {
         for (GameObject gameObject : gameObjects) {
-            if (gameObject.isStatic()) {
-                moveObjectStatic(gameObject, deltaTime);
-            } else if (gameObject instanceof AICar) {
-                moveAICar(gameObject, deltaTime); //todo logik für verschiedene Fahrweisen
-            } else if (gameObject instanceof PlayerCar) {
-                movePlayerCar(gameObject, deltaTime);
-            }
+            gameObject.move(deltaTime);
         }
     }
 
@@ -76,14 +70,7 @@ public class GameObjectHandler {
 
         UserInput currentUserInput = playerHandler.getCurrentUserInput(playerId);
 
-        switch (currentUserInput) {
-            case UP:
-                gameObject.moveBy(0, -playerCar.getSpeed() * deltaTime, true);
-                break;
-            case DOWN:
-                gameObject.moveBy(0, playerCar.getSpeed() * deltaTime, true);
-                break;
-        }
+
     }
 
     public void despawnPassedObjects() {
@@ -104,6 +91,7 @@ public class GameObjectHandler {
     public void spawnPlayerCar(String playerId, CarType carType) {
         PlayerCar playerCar = gameObjectCreationService.createPlayerCar(carType);
         playerCar.setPlayerId(playerId);
+        playerCar.setPlayerHandler(playerHandler);
         playerHandler.setPlayerCar(playerId, playerCar);
         gameObjects.add(playerCar);
     }
@@ -137,14 +125,6 @@ public class GameObjectHandler {
         return gameObjects;
     }
 
-
-    private void moveObjectStatic(GameObject gameObject, Double deltaTime) {
-        gameObject.moveBy(-GameConfig.GAME_SPEED * deltaTime, 0);
-    }
-
-    private void moveAICar(GameObject gameObject, Double deltaTime) {
-        gameObject.moveBy(-GameConfig.GAME_SPEED * deltaTime * GameConfig.AI_CAR_SPEED, 0);
-    }
 
     public void checkCollision() {
         List<Collision> collisions = collisionHandler.checkCollision(gameObjects);
