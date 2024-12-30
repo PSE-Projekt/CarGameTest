@@ -2,6 +2,7 @@ package de.cargame.controller;
 
 import de.cargame.controller.entity.GameMode;
 import de.cargame.controller.entity.GameModelData;
+import de.cargame.controller.entity.GameState;
 import de.cargame.controller.input.GamePad;
 import de.cargame.controller.input.Keyboard;
 import de.cargame.model.entity.Player;
@@ -24,6 +25,9 @@ public class GameController {
     private final PlayerController playerController = new PlayerController(playerHandler);
     private final GameObjectController gameObjectController = new GameObjectController(gameStateController, playerHandler);
 
+
+    private final TestView testView = new TestView(this);
+
     public GameController() {
         run();
     }
@@ -36,15 +40,18 @@ public class GameController {
         //TODO REMOVE--------
         String playerId = playerHandler.getKeyboardPlayerId();
         playerHandler.setCarSelection(playerId, CarType.AGILE_CAR);
-        //TODO REMOVE--------
-
 
         gameStateController.setGameMode(GameMode.SINGLEPLAYER);
-        TestView testView = new TestView(this, gameObjectController);
         startGame();
+        //TODO REMOVE--------
 
+        startGame();
+    }
+
+    public void startGame() {
+        gameObjectController.startGame();
         long lastTime = System.nanoTime();
-        while (true) {
+        while (gameStateController.getGameState().equals(GameState.IN_GAME)) {
             long currentTime = System.nanoTime();
             double deltaTime = (currentTime - lastTime) / 1_000_000_000.0;
             lastTime = currentTime;
@@ -58,10 +65,7 @@ public class GameController {
                 log.error(e.getMessage());
             }
         }
-    }
-
-    public void startGame() {
-        gameObjectController.startGame();
+        System.out.println("leave");
     }
 
     public GameModelData getModel() {

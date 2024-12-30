@@ -40,6 +40,7 @@ public class GameObjectHandler {
 
     public void startGame() {
         GameMode gameMode = gameStateController.getGameMode();
+        gameStateController.setGameState(GameState.IN_GAME);
         List<Player> activeAndAlivePlayers = playerHandler.getActiveAndAlivePlayers();
         switch (gameMode) {
             case SINGLEPLAYER:

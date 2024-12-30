@@ -1,5 +1,6 @@
 package de.cargame.view;
 
+import de.cargame.api.GameObjectApi;
 import de.cargame.config.GameConfig;
 import de.cargame.controller.GameController;
 import de.cargame.controller.GameObjectController;
@@ -9,15 +10,9 @@ import java.awt.*;
 
 public class TestView extends JFrame {
 
-    private GameController gameController;
-    private GameObjectController gameObjectController;
 
     private JPanel jPanel;
-    private Graphics2D g2d;
-
-    public TestView(GameController gameController, GameObjectController gameObjectController) {
-        this.gameController = gameController;
-        this.gameObjectController = gameObjectController;
+    public TestView(GameController gameController) {
 
 
         setSize(GameConfig.SCREEN_WIDTH, GameConfig.SCREEN_HEIGHT);
