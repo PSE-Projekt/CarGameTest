@@ -2,12 +2,9 @@ package de.cargame.model.handler;
 
 import de.cargame.config.GameConfig;
 import de.cargame.controller.GameStateController;
-import de.cargame.controller.PlayerController;
 import de.cargame.controller.entity.GameMode;
 import de.cargame.controller.entity.GameState;
-import de.cargame.controller.input.UserInput;
 import de.cargame.model.entity.Collision;
-import de.cargame.model.entity.Coordinate;
 import de.cargame.model.entity.gameobject.*;
 import de.cargame.model.entity.gameobject.car.AICar;
 import de.cargame.model.entity.gameobject.car.PlayerCar;

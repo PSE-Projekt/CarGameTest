@@ -7,8 +7,6 @@ import de.cargame.model.entity.Player;
 import de.cargame.model.entity.gameobject.GameObject;
 import de.cargame.model.handler.PlayerHandler;
 import de.cargame.view.TestView;
-import lombok.AccessLevel;
-import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.List;

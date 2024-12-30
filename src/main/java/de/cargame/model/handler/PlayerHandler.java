@@ -3,7 +3,6 @@ package de.cargame.model.handler;
 import de.cargame.controller.input.UserInput;
 import de.cargame.exception.PlayerNotFoundException;
 import de.cargame.model.entity.Player;
-import de.cargame.model.entity.Score;
 import de.cargame.model.entity.gameobject.CarType;
 import de.cargame.model.entity.gameobject.car.PlayerCar;
 import lombok.extern.slf4j.Slf4j;
