@@ -1,7 +1,6 @@
 package de.cargame.controller.input;
 
 import de.cargame.model.entity.UserInputObserver;
-import net.java.games.input.Controller;
 
 public class GamePad extends InputDevice {
     private boolean deviceConnected = false;
@@ -11,7 +10,8 @@ public class GamePad extends InputDevice {
         initController();
     }
 
-    private void initController() {}
+    private void initController() {
+    }
 
     public void inputTriggerUp() {
         //todo

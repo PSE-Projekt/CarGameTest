@@ -1,5 +1,6 @@
 package de.cargame.controller;
 
+import de.cargame.config.GameConfig;
 import de.cargame.controller.entity.GameMode;
 import de.cargame.controller.entity.GameModelData;
 import de.cargame.controller.entity.GameState;
@@ -8,8 +9,6 @@ import de.cargame.controller.input.Keyboard;
 import de.cargame.model.entity.Player;
 import de.cargame.model.entity.gameobject.CarType;
 import de.cargame.model.entity.gameobject.GameObject;
-import de.cargame.model.entity.gameobject.car.AgileCar;
-import de.cargame.model.entity.gameobject.car.PlayerCar;
 import de.cargame.model.handler.PlayerHandler;
 import de.cargame.view.TestView;
 import lombok.extern.slf4j.Slf4j;
@@ -26,7 +25,7 @@ public class GameController {
     private final GameObjectController gameObjectController = new GameObjectController(gameStateController, playerHandler);
 
 
-    private final TestView testView = new TestView(this);
+    private TestView testView;
 
     public GameController() {
         run();
@@ -34,18 +33,9 @@ public class GameController {
 
     private void run() {
         //createUI();
-
+        testView = new TestView(this);
         initializePlayerKeyboard();
-
-        //TODO REMOVE--------
-        String playerId = playerHandler.getKeyboardPlayerId();
-        playerHandler.setCarSelection(playerId, CarType.AGILE_CAR);
-
-        gameStateController.setGameMode(GameMode.SINGLEPLAYER);
-        startGame();
-        //TODO REMOVE--------
-
-        startGame();
+        dummyStartGame();
     }
 
     public void startGame() {
@@ -60,7 +50,7 @@ public class GameController {
             testView.render();
 
             try {
-                Thread.sleep(16);
+                Thread.sleep(GameConfig.FPS);
             } catch (InterruptedException e) {
                 log.error(e.getMessage());
             }
@@ -95,5 +85,18 @@ public class GameController {
         //TODO REMOVE
 
         return player.getId();
+    }
+
+
+    private void dummyStartGame() {
+        //TODO REMOVE--------
+        String playerId = playerHandler.getKeyboardPlayerId();
+        playerHandler.setCarSelection(playerId, CarType.AGILE_CAR);
+
+        gameStateController.setGameMode(GameMode.SINGLEPLAYER);
+        startGame();
+        //TODO REMOVE--------
+
+        startGame();
     }
 }

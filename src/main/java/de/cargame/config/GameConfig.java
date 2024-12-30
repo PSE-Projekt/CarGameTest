@@ -32,6 +32,15 @@ public abstract class GameConfig {
     public static final int AI_CAR_SPEED = 2;
 
 
+    /**
+     * Value:
+     *
+     * 16 -> ~60 FPS
+     * 32 -> ~30 FPS
+     */
+    public static final int FPS = 8;
+
+
     public static final int BUILDING_WIDTH = 50;
     public static final int BUILDING_HEIGHT = 80;
 

@@ -1,16 +1,17 @@
 package de.cargame.model.entity;
 
 
-import lombok.Getter;
-
-@Getter
 public class Score {
 
     private int value = 0;
 
 
-    public int increaseScore(int value) {
+    public double increaseScore(int value) {
         value += value;
+        return value;
+    }
+
+    public int getValue() {
         return value;
     }
 

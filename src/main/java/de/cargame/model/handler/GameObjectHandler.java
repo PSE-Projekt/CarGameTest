@@ -46,7 +46,7 @@ public class GameObjectHandler {
             case SINGLEPLAYER:
                 gameObjectCreationService.setGameObjectSpawningStrategy(new SinglePlayerSpawningStrategy());
                 Optional<Player> playerOptional = activeAndAlivePlayers.stream().findFirst();
-                if(playerOptional.isPresent()){
+                if (playerOptional.isPresent()) {
                     Player player = playerOptional.get();
                     spawnPlayerCar(player.getId(), player.getCarSelection());
                 }

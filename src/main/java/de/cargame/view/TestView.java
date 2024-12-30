@@ -1,9 +1,7 @@
 package de.cargame.view;
 
-import de.cargame.api.GameObjectApi;
 import de.cargame.config.GameConfig;
 import de.cargame.controller.GameController;
-import de.cargame.controller.GameObjectController;
 
 import javax.swing.*;
 import java.awt.*;
@@ -12,6 +10,7 @@ public class TestView extends JFrame {
 
 
     private JPanel jPanel;
+
     public TestView(GameController gameController) {
 
 

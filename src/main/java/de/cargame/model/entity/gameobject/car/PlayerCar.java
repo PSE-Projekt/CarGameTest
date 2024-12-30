@@ -33,14 +33,17 @@ public abstract class PlayerCar extends Car {
 
         double width = getBound().getBounds().getWidth();
         double height = getBound().getBounds().getHeight();
+
+        double distance = getSpeed() * deltaTime;
         switch (currentUserInput) {
             case UP:
-                moveByRespectingGameBoundaries(0, -getSpeed() * deltaTime, width, height);
+                moveByRespectingGameBoundaries(0, -distance, width, height);
                 break;
             case DOWN:
-                moveByRespectingGameBoundaries(0, getSpeed() * deltaTime, width, height);
+                moveByRespectingGameBoundaries(0, distance, width, height);
                 break;
         }
+        playerHandler.increaseScore(playerId, GameConfig.GAME_SPEED);
     }
 
     @Override
