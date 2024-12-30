@@ -1,4 +1,4 @@
-package de.cargame.model.entity;
+package de.cargame.model.entity.collision;
 
 import de.cargame.model.entity.gameobject.GameObject;
 import de.cargame.model.entity.gameobject.car.PlayerCar;

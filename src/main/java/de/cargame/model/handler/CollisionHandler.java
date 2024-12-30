@@ -1,9 +1,9 @@
 package de.cargame.model.handler;
 
 import de.cargame.exception.IllegalGameObjectBoundException;
-import de.cargame.model.entity.Collision;
-import de.cargame.model.entity.CollisionType;
-import de.cargame.model.entity.Player;
+import de.cargame.model.entity.collision.Collision;
+import de.cargame.model.entity.collision.CollisionType;
+import de.cargame.model.entity.player.Player;
 import de.cargame.model.entity.gameobject.GameObject;
 import de.cargame.model.entity.gameobject.Life;
 import de.cargame.model.entity.gameobject.Reward;

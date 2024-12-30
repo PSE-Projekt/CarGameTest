@@ -3,7 +3,7 @@ package de.cargame.controller.input;
 import com.github.kwhat.jnativehook.GlobalScreen;
 import com.github.kwhat.jnativehook.keyboard.NativeKeyEvent;
 import com.github.kwhat.jnativehook.keyboard.NativeKeyListener;
-import de.cargame.model.entity.UserInputObserver;
+import de.cargame.model.entity.gameobject.UserInputObserver;
 
 import java.util.ArrayList;
 import java.util.HashSet;

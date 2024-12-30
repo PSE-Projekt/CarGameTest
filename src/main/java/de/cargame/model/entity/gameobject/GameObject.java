@@ -1,10 +1,6 @@
 package de.cargame.model.entity.gameobject;
 
 import de.cargame.config.GameConfig;
-import de.cargame.model.entity.Coordinate;
-import de.cargame.model.entity.Dimension;
-import de.cargame.model.entity.GameObjectBound;
-import de.cargame.model.entity.RectangularGameObjectBound;
 import de.cargame.model.entity.gameobject.interfaces.Collidable;
 import de.cargame.model.entity.gameobject.interfaces.Despawnable;
 import lombok.Getter;

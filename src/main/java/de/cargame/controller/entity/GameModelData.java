@@ -8,10 +8,10 @@ import java.util.List;
 @Getter
 public class GameModelData {
 
-    private List<GameObject> gameObjects;
+    private final List<GameObject> gameObjects;
 
 
-    public GameModelData(List<GameObject> gameObjects) {
+    public GameModelData(final List<GameObject> gameObjects) {
         this.gameObjects = gameObjects;
     }
 }

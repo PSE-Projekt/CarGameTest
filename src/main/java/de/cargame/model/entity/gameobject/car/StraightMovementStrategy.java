@@ -1,6 +1,6 @@
 package de.cargame.model.entity.gameobject.car;
 
-import de.cargame.model.entity.Coordinate;
+import de.cargame.model.entity.gameobject.Coordinate;
 
 public class StraightMovementStrategy extends MovementStrategy {
 

@@ -6,7 +6,7 @@ import de.cargame.controller.entity.GameModelData;
 import de.cargame.controller.entity.GameState;
 import de.cargame.controller.input.GamePad;
 import de.cargame.controller.input.Keyboard;
-import de.cargame.model.entity.Player;
+import de.cargame.model.entity.player.Player;
 import de.cargame.model.entity.gameobject.CarType;
 import de.cargame.model.entity.gameobject.GameObject;
 import de.cargame.model.handler.PlayerHandler;
@@ -92,6 +92,7 @@ public class GameController {
         //TODO REMOVE--------
         String playerId = playerHandler.getKeyboardPlayerId();
         playerHandler.setCarSelection(playerId, CarType.AGILE_CAR);
+        playerHandler.registerPlayerObserver(testView.getjPanel());
 
         gameStateController.setGameMode(GameMode.SINGLEPLAYER);
         startGame();

@@ -2,33 +2,51 @@ package de.cargame.model.handler;
 
 import de.cargame.controller.input.UserInput;
 import de.cargame.exception.PlayerNotFoundException;
-import de.cargame.model.entity.Player;
+import de.cargame.model.entity.player.Player;
+import de.cargame.model.entity.player.PlayerObserver;
+import de.cargame.model.entity.player.PlayerUpdate;
 import de.cargame.model.entity.gameobject.CarType;
 import de.cargame.model.entity.gameobject.car.PlayerCar;
+import de.cargame.model.service.PlayerUpdateNotifyService;
+import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+@Setter
 @Slf4j
 public class PlayerHandler {
+
+    private final PlayerUpdateNotifyService playerUpdateNotifyService;
 
     private Player playerKeyboard;
     private Player playerGamepad;
 
     public PlayerHandler() {
+        this.playerUpdateNotifyService = new PlayerUpdateNotifyService();
+
         playerKeyboard = new Player();
         playerGamepad = new Player();
     }
 
 
-    public void increaseScore(String playerId, int value) {
+    public void increaseScore(String playerId, double value) {
         getPlayer(playerId).increaseScore(value);
+        PlayerUpdate playerUpdate = generatePlayerUpdate(playerId);
+        this.playerUpdateNotifyService.notifyObservers(playerUpdate);
     }
 
     public void resetScore(String playerId) {
         getPlayer(playerId).resetScore();
+        PlayerUpdate playerUpdate = generatePlayerUpdate(playerId);
+        this.playerUpdateNotifyService.notifyObservers(playerUpdate);
+    }
+
+    public void resetScores() {
+        resetScore(playerKeyboard.getId());
+        resetScore(playerGamepad.getId());
     }
 
     public UserInput getCurrentUserInput(String playerId) {
@@ -43,32 +61,34 @@ public class PlayerHandler {
         return getPlayer(playerId).getPlayerCar();
     }
 
+
+    public void registerPlayerObserver(PlayerObserver playerObserver){
+        playerUpdateNotifyService.addObserver(playerObserver);
+    }
     public int increaseLife(String playerId) {
-        return getPlayer(playerId).increaseLife();
+        getPlayer(playerId).increaseLife();
+        PlayerUpdate playerUpdate = generatePlayerUpdate(playerId);
+        this.playerUpdateNotifyService.notifyObservers(playerUpdate);
+        return getLifeCount(playerId);
     }
 
 
     public int decreaseLife(String playerId) {
-        return getPlayer(playerId).decreaseLife();
+        getPlayer(playerId).decreaseLife();
+        PlayerUpdate playerUpdate = generatePlayerUpdate(playerId);
+        this.playerUpdateNotifyService.notifyObservers(playerUpdate);
+        return getLifeCount(playerId);
     }
 
     public int getLifeCount(String playerId) {
         return getPlayer(playerId).getLives();
     }
 
-    public void setPlayerKeyboard(Player playerKeyboard) {
-        this.playerKeyboard = playerKeyboard;
-    }
-
-    public void setPlayerGamepad(Player playerGamepad) {
-        this.playerGamepad = playerGamepad;
-    }
-
     public void setPlayerCar(String playerId, PlayerCar playerCar) {
         getPlayer(playerId).setPlayerCar(playerCar);
     }
 
-    public int getScore(String playerId) {
+    public double getScore(String playerId) {
         return getPlayer(playerId).getScore().getValue();
     }
 
@@ -101,5 +121,9 @@ public class PlayerHandler {
             log.error("Player not found");
             throw new PlayerNotFoundException("Player not found");
         }
+    }
+
+    private PlayerUpdate generatePlayerUpdate(String playerId) {
+        return new PlayerUpdate(playerId, (int) getScore(playerId), getLifeCount(playerId));
     }
 }

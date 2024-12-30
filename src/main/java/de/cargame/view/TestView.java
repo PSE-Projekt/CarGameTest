@@ -2,6 +2,7 @@ package de.cargame.view;
 
 import de.cargame.config.GameConfig;
 import de.cargame.controller.GameController;
+import de.cargame.model.entity.player.PlayerObserver;
 
 import javax.swing.*;
 import java.awt.*;
@@ -9,7 +10,7 @@ import java.awt.*;
 public class TestView extends JFrame {
 
 
-    private JPanel jPanel;
+    private TestPanel jPanel;
 
     public TestView(GameController gameController) {
 
@@ -28,4 +29,7 @@ public class TestView extends JFrame {
         jPanel.repaint();
     }
 
+    public PlayerObserver getjPanel() {
+        return jPanel;
+    }
 }

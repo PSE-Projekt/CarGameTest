@@ -2,20 +2,31 @@ package de.cargame.view;
 
 import de.cargame.controller.GameController;
 import de.cargame.controller.entity.GameModelData;
+import de.cargame.model.PlayerObservable;
 import de.cargame.model.entity.gameobject.*;
 import de.cargame.model.entity.gameobject.car.AICar;
 import de.cargame.model.entity.gameobject.car.PlayerCar;
+import de.cargame.model.entity.player.PlayerObserver;
+import de.cargame.model.entity.player.PlayerUpdate;
 
 import javax.swing.*;
 import java.awt.*;
 import java.util.List;
 
-public class TestPanel extends JPanel {
+public class TestPanel extends JPanel implements PlayerObserver {
 
     private GameController gameController;
+    private JLabel liveLabel;
+    private JLabel scoreLabel;
 
     public TestPanel(GameController gameController) {
         this.gameController = gameController;
+        liveLabel = new JLabel("", SwingConstants.LEFT);
+        scoreLabel = new JLabel("", SwingConstants.RIGHT);
+
+        add(liveLabel);
+        add(scoreLabel);
+
         setDoubleBuffered(true);
     }
 
@@ -47,5 +58,13 @@ public class TestPanel extends JPanel {
 
     private void paintComponents(List<GameObject> gameObjects) {
 
+    }
+
+    @Override
+    public void update(PlayerUpdate playerUpdate) {
+        liveLabel.setText("Lives: "+playerUpdate.getLives());
+        scoreLabel.setText("Score: "+playerUpdate.getScoreValue());
+        System.out.println("Score: "+playerUpdate.getScoreValue());
+        repaint();
     }
 }

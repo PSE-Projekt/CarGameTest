@@ -1,8 +1,9 @@
-package de.cargame.model.entity;
+package de.cargame.model.entity.player;
 
 
 import de.cargame.config.GameConfig;
 import de.cargame.controller.input.UserInput;
+import de.cargame.model.entity.gameobject.UserInputObserver;
 import de.cargame.model.entity.gameobject.CarType;
 import de.cargame.model.entity.gameobject.car.PlayerCar;
 import lombok.Getter;
@@ -36,7 +37,7 @@ public class Player implements UserInputObserver {
         currentUserInput = userInput;
     }
 
-    public int increaseScore(int value) {
+    public double increaseScore(double value) {
         score.increaseScore(value);
         return score.getValue();
     }

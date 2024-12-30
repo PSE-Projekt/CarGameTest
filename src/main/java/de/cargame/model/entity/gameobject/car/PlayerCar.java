@@ -2,8 +2,8 @@ package de.cargame.model.entity.gameobject.car;
 
 import de.cargame.config.GameConfig;
 import de.cargame.controller.input.UserInput;
-import de.cargame.model.entity.Coordinate;
-import de.cargame.model.entity.Dimension;
+import de.cargame.model.entity.gameobject.Coordinate;
+import de.cargame.model.entity.gameobject.Dimension;
 import de.cargame.model.entity.gameobject.GameObjectBoundType;
 import de.cargame.model.handler.PlayerHandler;
 import lombok.Getter;
@@ -42,7 +42,7 @@ public abstract class PlayerCar extends Car {
                 moveByRespectingGameBoundaries(0, distance, width, height);
                 break;
         }
-        playerHandler.increaseScore(playerId, GameConfig.GAME_SPEED);
+        playerHandler.increaseScore(playerId, GameConfig.SCORE_INCREASE_NORMAL_SPEED);
     }
 
     @Override

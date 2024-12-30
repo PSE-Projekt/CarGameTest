@@ -1,4 +1,4 @@
-package de.cargame.model.entity;
+package de.cargame.model.entity.gameobject;
 
 
 import de.cargame.controller.input.UserInput;

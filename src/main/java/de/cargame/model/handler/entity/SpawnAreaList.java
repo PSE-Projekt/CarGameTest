@@ -1,6 +1,6 @@
 package de.cargame.model.handler.entity;
 
-import de.cargame.model.entity.Coordinate;
+import de.cargame.model.entity.gameobject.Coordinate;
 
 import java.util.ArrayList;
 import java.util.List;

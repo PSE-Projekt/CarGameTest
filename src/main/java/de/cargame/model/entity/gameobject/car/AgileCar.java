@@ -1,8 +1,8 @@
 package de.cargame.model.entity.gameobject.car;
 
 import de.cargame.config.GameConfig;
-import de.cargame.model.entity.Coordinate;
-import de.cargame.model.entity.Dimension;
+import de.cargame.model.entity.gameobject.Coordinate;
+import de.cargame.model.entity.gameobject.Dimension;
 import de.cargame.model.entity.gameobject.GameObjectBoundType;
 
 public class AgileCar extends PlayerCar {

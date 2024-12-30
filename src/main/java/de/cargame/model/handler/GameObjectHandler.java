@@ -4,8 +4,8 @@ import de.cargame.config.GameConfig;
 import de.cargame.controller.GameStateController;
 import de.cargame.controller.entity.GameMode;
 import de.cargame.controller.entity.GameState;
-import de.cargame.model.entity.Collision;
-import de.cargame.model.entity.Player;
+import de.cargame.model.entity.collision.Collision;
+import de.cargame.model.entity.player.Player;
 import de.cargame.model.entity.gameobject.*;
 import de.cargame.model.entity.gameobject.car.AICar;
 import de.cargame.model.entity.gameobject.car.PlayerCar;
@@ -55,6 +55,7 @@ public class GameObjectHandler {
                 gameObjectCreationService.setGameObjectSpawningStrategy(new MultiplayerSpawningStrategy());
                 break;
         }
+        playerHandler.resetScores();
         gameObjectSpawnScheduler.startSpawning(this);
     }
 
