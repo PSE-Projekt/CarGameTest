@@ -31,9 +31,7 @@ public class GameObjectController implements GameObjectApi {
 
 
     public void update(double deltaTime) {
-        gameObjectHandler.moveElements(deltaTime);
-        gameObjectHandler.despawnPassedObjects();
-        gameObjectHandler.checkCollision();
+        gameObjectHandler.update(deltaTime);
     }
 
 }

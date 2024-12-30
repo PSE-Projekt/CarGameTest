@@ -6,12 +6,12 @@ import net.java.games.input.Controller;
 public class GamePad extends InputDevice {
     private boolean deviceConnected = false;
 
-    public GamePad(String id, Controller controller) {
+    public GamePad(String id) {
         super(id);
-        if (controller != null) {
-            deviceConnected = true;
-        }
+        initController();
     }
+
+    private void initController() {}
 
     public void inputTriggerUp() {
         //todo

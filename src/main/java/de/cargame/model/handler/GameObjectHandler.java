@@ -5,6 +5,7 @@ import de.cargame.controller.GameStateController;
 import de.cargame.controller.entity.GameMode;
 import de.cargame.controller.entity.GameState;
 import de.cargame.model.entity.Collision;
+import de.cargame.model.entity.Player;
 import de.cargame.model.entity.gameobject.*;
 import de.cargame.model.entity.gameobject.car.AICar;
 import de.cargame.model.entity.gameobject.car.PlayerCar;
@@ -15,6 +16,7 @@ import lombok.extern.slf4j.Slf4j;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 @Slf4j
@@ -38,15 +40,20 @@ public class GameObjectHandler {
 
     public void startGame() {
         GameMode gameMode = gameStateController.getGameMode();
+        List<Player> activeAndAlivePlayers = playerHandler.getActiveAndAlivePlayers();
         switch (gameMode) {
             case SINGLEPLAYER:
                 gameObjectCreationService.setGameObjectSpawningStrategy(new SinglePlayerSpawningStrategy());
+                Optional<Player> playerOptional = activeAndAlivePlayers.stream().findFirst();
+                if(playerOptional.isPresent()){
+                    Player player = playerOptional.get();
+                    spawnPlayerCar(player.getId(), player.getCarSelection());
+                }
                 break;
             case MULTIPLAYER:
                 gameObjectCreationService.setGameObjectSpawningStrategy(new MultiplayerSpawningStrategy());
                 break;
         }
-        spawnPlayerCar(playerHandler.getKeyboardPlayerId(), CarType.AGILE_CAR);
         gameObjectSpawnScheduler.startSpawning(this);
     }
 
@@ -54,6 +61,13 @@ public class GameObjectHandler {
         gameObjectSpawnScheduler.stopSpawning();
         gameObjects.removeAll(gameObjects);
         gameStateController.setGameState(GameState.SCORE_BOARD);
+    }
+
+
+    public void update(double deltaTime) {
+        moveElements(deltaTime);
+        despawnPassedObjects();
+        checkCollision();
     }
 
     public void moveElements(double deltaTime) {
@@ -121,4 +135,5 @@ public class GameObjectHandler {
             stopGame();
         }
     }
+
 }
