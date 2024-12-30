@@ -68,7 +68,7 @@ public class PlayerHandler {
         getPlayer(playerId).setPlayerCar(playerCar);
     }
 
-    public int getScore(String playerId){
+    public int getScore(String playerId) {
         return getPlayer(playerId).getScore().getValue();
     }
 

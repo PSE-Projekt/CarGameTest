@@ -80,8 +80,10 @@ public class GameObjectCreationService {
         Coordinate spawnCoordinate = spawnAreas.getRandomCoordinate();
 
         return switch (aiCarType) {
-            case CROSS_MOVING -> new KamikazeCar(spawnCoordinate, dimension, GameObjectBoundType.RECTANGLE, new CrossMovementStrategy());
-            case STRAIGHT_MOVING -> new KamikazeCar(spawnCoordinate, dimension, GameObjectBoundType.RECTANGLE, new StraightMovementStrategy());
+            case CROSS_MOVING ->
+                    new KamikazeCar(spawnCoordinate, dimension, GameObjectBoundType.RECTANGLE, new CrossMovementStrategy());
+            case STRAIGHT_MOVING ->
+                    new KamikazeCar(spawnCoordinate, dimension, GameObjectBoundType.RECTANGLE, new StraightMovementStrategy());
         };
     }
 }

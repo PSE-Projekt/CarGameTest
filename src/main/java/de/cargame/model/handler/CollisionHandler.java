@@ -56,7 +56,6 @@ public class CollisionHandler {
     }
 
 
-
     private Collision handleCollision(PlayerCar playerCar, GameObject collisionObject) {
         if (collisionObject instanceof Reward) {
             handleCollisionReward(playerCar, (Reward) collisionObject);
@@ -76,7 +75,6 @@ public class CollisionHandler {
         }
         reward.setCollected(true);
     }
-
 
 
     private void handleCollisionCrash(PlayerCar playerCar) {

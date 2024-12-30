@@ -6,6 +6,6 @@ public class StraightMovementStrategy extends MovementStrategy {
 
     @Override
     public Coordinate calcNewTargetPos(Coordinate currentPos) {
-        return new Coordinate(0,0);
+        return new Coordinate(0, 0);
     }
 }

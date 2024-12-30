@@ -14,7 +14,6 @@ public class GameObjectSpawnScheduler {
     private ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor();
 
 
-
     public void startSpawning(GameObjectHandler gameObjectHandler) {
         this.gameObjectHandler = gameObjectHandler;
         scheduleAICar();
@@ -46,7 +45,6 @@ public class GameObjectSpawnScheduler {
     private void scheduleRoadMark() {
         scheduleSpawn(() -> () -> gameObjectHandler.spawnRoadMarks(), 1000, 1001);
     }
-
 
 
     public void stopSpawning() {

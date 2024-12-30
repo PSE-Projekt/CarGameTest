@@ -35,7 +35,7 @@ public class TestPanel extends JPanel {
                 g2d.setColor(Color.YELLOW);
             } else if (gameObject instanceof Building) {
                 g2d.setColor(Color.BLACK);
-            }else if(gameObject instanceof PlayerCar){
+            } else if (gameObject instanceof PlayerCar) {
                 g2d.setColor(Color.GREEN);
             } else if (gameObject instanceof RoadMark) {
                 g2d.setColor(Color.GRAY);
@@ -44,7 +44,7 @@ public class TestPanel extends JPanel {
         }
     }
 
-    private void paintComponents(List<GameObject> gameObjects){
+    private void paintComponents(List<GameObject> gameObjects) {
 
     }
 }

@@ -7,7 +7,6 @@ import java.util.List;
 public interface GameObjectApi {
 
 
-
     List<GameObject> getAllGameObjects();
 
     void startGame();

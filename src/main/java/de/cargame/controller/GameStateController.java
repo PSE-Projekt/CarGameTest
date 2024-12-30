@@ -35,6 +35,6 @@ public class GameStateController implements GameStateAPi {
 
     @Override
     public void setGameState(GameState gameState) {
-        setGameState( gameState);
+        setGameState(gameState);
     }
 }
