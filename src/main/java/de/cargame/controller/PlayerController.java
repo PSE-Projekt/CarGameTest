@@ -1,6 +1,7 @@
 package de.cargame.controller;
 
 import de.cargame.api.PlayerApi;
+import de.cargame.model.entity.Player;
 import de.cargame.model.handler.PlayerHandler;
 
 public class PlayerController implements PlayerApi {
@@ -17,7 +18,12 @@ public class PlayerController implements PlayerApi {
     }
 
     @Override
-    public int getScore(String id) {
-        return 0;
+    public int getScore(String playerId) {
+        return playerHandler.getScore(playerId);
+    }
+
+
+    public void setPlayerKeyboard(Player player) {
+        playerHandler.setPlayerKeyboard(player);
     }
 }

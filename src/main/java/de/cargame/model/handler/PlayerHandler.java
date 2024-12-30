@@ -3,6 +3,7 @@ package de.cargame.model.handler;
 import de.cargame.controller.input.UserInput;
 import de.cargame.exception.PlayerNotFoundException;
 import de.cargame.model.entity.Player;
+import de.cargame.model.entity.Score;
 import de.cargame.model.entity.gameobject.CarType;
 import de.cargame.model.entity.gameobject.car.PlayerCar;
 import lombok.extern.slf4j.Slf4j;
@@ -66,6 +67,10 @@ public class PlayerHandler {
 
     public void setPlayerCar(String playerId, PlayerCar playerCar) {
         getPlayer(playerId).setPlayerCar(playerCar);
+    }
+
+    public int getScore(String playerId){
+        return getPlayer(playerId).getScore().getValue();
     }
 
 

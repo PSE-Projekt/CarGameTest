@@ -9,7 +9,7 @@ public interface GameStateAPi {
 
     void setGameMode(GameMode gameMode);
 
-    GameState getViewState();
+    GameState getGameState();
 
-    void setViewState(GameState gameState);
+    void setGameState(GameState gameState);
 }

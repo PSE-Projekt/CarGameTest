@@ -31,12 +31,14 @@ public abstract class PlayerCar extends Car {
     public void move(double deltaTime) {
         UserInput currentUserInput = playerHandler.getCurrentUserInput(playerId);
 
+        double width = getBound().getBounds().getWidth();
+        double height = getBound().getBounds().getHeight();
         switch (currentUserInput) {
             case UP:
-                moveByRespectingGameBoundaries(0, -getSpeed() * deltaTime);
+                moveByRespectingGameBoundaries(0, -getSpeed() * deltaTime, width, height);
                 break;
             case DOWN:
-                moveByRespectingGameBoundaries(0, getSpeed() * deltaTime);
+                moveByRespectingGameBoundaries(0, getSpeed() * deltaTime, width, height);
                 break;
         }
     }

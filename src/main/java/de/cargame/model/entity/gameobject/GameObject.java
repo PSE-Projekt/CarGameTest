@@ -67,20 +67,22 @@ public abstract class GameObject implements Collidable, Despawnable {
     }
 
 
-    protected void moveByRespectingGameBoundaries(double xAmount, double yAmount) {
+    protected void moveByRespectingGameBoundaries(double xAmount, double yAmount, double objectWidth, double objectHeight) {
         double xOld = gameObjectBound.getCoordinate().getX();
         double yOld = gameObjectBound.getCoordinate().getY();
 
+        // Objekt bewegen
         gameObjectBound.moveBy(xAmount, yAmount);
 
         double xNew = gameObjectBound.getCoordinate().getX();
         double yNew = gameObjectBound.getCoordinate().getY();
 
-        if (xNew < 0 || xNew > GameConfig.SCREEN_WIDTH || yNew < 0 || yNew > GameConfig.SCREEN_HEIGHT) {
+        // Überprüfung: Überschreitet das Objekt die Spielfeldgrenzen?
+        if (xNew < 0 || xNew + objectWidth > GameConfig.SCREEN_WIDTH || yNew < 0 || yNew + objectHeight > GameConfig.SCREEN_HEIGHT) {
+            // Bewegung rückgängig machen, da das Objekt die Grenzen überschreitet
             gameObjectBound.getCoordinate().setX(xOld);
             gameObjectBound.getCoordinate().setY(yOld);
         }
-
     }
 
 

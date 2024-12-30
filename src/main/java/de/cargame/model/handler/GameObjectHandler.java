@@ -2,6 +2,7 @@ package de.cargame.model.handler;
 
 import de.cargame.config.GameConfig;
 import de.cargame.controller.GameStateController;
+import de.cargame.controller.PlayerController;
 import de.cargame.controller.entity.GameMode;
 import de.cargame.controller.entity.GameState;
 import de.cargame.controller.input.UserInput;
@@ -30,8 +31,8 @@ public class GameObjectHandler {
 
 
     public GameObjectHandler(GameStateController gameStateController, PlayerHandler playerHandler) {
-        this.gameStateController = gameStateController;
         this.playerHandler = playerHandler;
+        this.gameStateController = gameStateController;
         this.collisionHandler = new CollisionHandler(playerHandler);
         this.gameObjectCreationService = new GameObjectCreationService();
         this.gameObjectSpawnScheduler = new GameObjectSpawnScheduler();
@@ -64,15 +65,6 @@ public class GameObjectHandler {
         }
     }
 
-    private void movePlayerCar(GameObject gameObject, double deltaTime) {
-        PlayerCar playerCar = (PlayerCar) gameObject;
-        String playerId = playerCar.getPlayerId();
-
-        UserInput currentUserInput = playerHandler.getCurrentUserInput(playerId);
-
-
-    }
-
     public void despawnPassedObjects() {
         List<GameObject> gameObjectsToRemove = new ArrayList<>();
         List<GameObject> despawnableObjects = gameObjects.stream()
@@ -102,7 +94,7 @@ public class GameObjectHandler {
     }
 
     public void spawnRoadMarks() {
-        List<RoadMark> roadMark = gameObjectCreationService.createRoad();
+        List<RoadMark> roadMark = gameObjectCreationService.createRoadMark();
         gameObjects.addAll(roadMark);
     }
 

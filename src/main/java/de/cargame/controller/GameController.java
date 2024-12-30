@@ -13,16 +13,14 @@ import lombok.extern.slf4j.Slf4j;
 
 import java.util.List;
 
-@Setter(AccessLevel.PRIVATE)
 @Slf4j
 public class GameController {
 
 
     private final GameStateController gameStateController = new GameStateController();
-    private final InputController inputController = new InputController();
     private final PlayerHandler playerHandler = new PlayerHandler();
-    private final GameObjectController gameObjectController = new GameObjectController(gameStateController, playerHandler);
     private final PlayerController playerController = new PlayerController(playerHandler);
+    private final GameObjectController gameObjectController = new GameObjectController(gameStateController, playerHandler);
 
     public GameController() {
         run();
@@ -66,7 +64,7 @@ public class GameController {
         Player player = new Player();
         Keyboard keyboardPlayer = new Keyboard(player.getId());
         keyboardPlayer.registerObserver(player);
-        playerHandler.setPlayerKeyboard(player);
+        playerController.setPlayerKeyboard(player);
 
         //TODO REMOVE
         player.setPlaying(true);

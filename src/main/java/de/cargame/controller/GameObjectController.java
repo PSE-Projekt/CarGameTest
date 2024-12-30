@@ -1,12 +1,13 @@
 package de.cargame.controller;
 
+import de.cargame.api.GameObjectApi;
 import de.cargame.model.entity.gameobject.GameObject;
 import de.cargame.model.handler.GameObjectHandler;
 import de.cargame.model.handler.PlayerHandler;
 
 import java.util.List;
 
-public class GameObjectController {
+public class GameObjectController implements GameObjectApi {
 
 
     private GameObjectHandler gameObjectHandler;

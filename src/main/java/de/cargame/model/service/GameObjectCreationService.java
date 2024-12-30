@@ -45,7 +45,7 @@ public class GameObjectCreationService {
     }
 
 
-    public List<RoadMark> createRoad() {
+    public List<RoadMark> createRoadMark() {
         SpawnAreaList spawnAreas;
         spawnAreas = gameObjectSpawningStrategy.getRoadSpawnAreas();
         List<Coordinate> spawnCoordinates = spawnAreas.getRandomCoordinateOfEach();

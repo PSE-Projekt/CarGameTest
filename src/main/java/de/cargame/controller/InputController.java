@@ -13,8 +13,6 @@ public class InputController {
     private Keyboard keyboard;
     private GamePad gamePad;
 
-    public InputController() {
-    }
 
     public Optional<Controller> pollGamePad() {
         Event event = new Event();
