@@ -4,8 +4,13 @@ import de.cargame.model.entity.Coordinate;
 
 public class StraightMovementStrategy extends MovementStrategy {
 
+    public StraightMovementStrategy(Coordinate gameObjectSpawnCoordinate) {
+        super(gameObjectSpawnCoordinate);
+    }
+
     @Override
-    public Coordinate calcNewTargetPos(Coordinate currentPos) {
-        return new Coordinate(0, 0);
+    public Coordinate calcTargetPos() {
+        this.targetPos = new Coordinate(-1000, gameObjectSpawnCoordinate.getY());
+        return targetPos;
     }
 }

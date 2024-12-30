@@ -9,7 +9,12 @@ public class AgileCar extends PlayerCar {
 
     public AgileCar(Coordinate coordinate, Dimension dimension, GameObjectBoundType gameObjectBoundType) {
         super(coordinate, dimension, gameObjectBoundType);
-        setSpeed(GameConfig.AGILE_CAR_SPEED);
+        setSpeed();
         setInertia(GameConfig.AGILE_CAR_INERTIA);
+    }
+
+    @Override
+    protected void setSpeed() {
+        this.speed = GameConfig.AGILE_CAR_SPEED;
     }
 }

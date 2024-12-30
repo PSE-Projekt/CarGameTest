@@ -4,6 +4,23 @@ import de.cargame.model.entity.Coordinate;
 
 public abstract class MovementStrategy {
 
+    protected Coordinate targetPos;
+    protected Coordinate gameObjectSpawnCoordinate;
 
-    public abstract Coordinate calcNewTargetPos(Coordinate currentPos);
+
+    public MovementStrategy(Coordinate gameObjectSpawnCoordinate) {
+        this.gameObjectSpawnCoordinate = gameObjectSpawnCoordinate;
+        calcTargetPos();
+    }
+
+    public abstract Coordinate calcTargetPos();
+
+
+    public double getTargetPosX() {
+        return targetPos.getX();
+    }
+
+    public double getTargetPosY() {
+        return targetPos.getY();
+    }
 }

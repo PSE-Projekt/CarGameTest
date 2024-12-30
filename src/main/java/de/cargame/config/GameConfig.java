@@ -7,7 +7,7 @@ public abstract class GameConfig {
 
     public static final int MAX_LIVES = 3;
 
-    public static final int GAME_SPEED = 100;
+    public static final int GAME_SPEED = 150;
 
     public static final int CRASH_COOLDOWN_TIME = 3000;
 
@@ -18,18 +18,18 @@ public abstract class GameConfig {
 
     public static final int FAST_CAR_WIDTH = 120;
     public static final int FAST_CAR_HEIGHT = 80;
-    public static final int FAST_CAR_SPEED = 300;
+    public static final int FAST_CAR_SPEED = 350;
     public static final double FAST_CAR_INERTIA = 0.5;
     public static final int AGILE_CAR_WIDTH = 80;
     public static final int AGILE_CAR_HEIGHT = 50;
-    public static final int AGILE_CAR_SPEED = 150;
+    public static final int AGILE_CAR_SPEED = 170;
     public static final double AGILE_CAR_INERTIA = 0.1;
 
 
     public static final int AI_CAR_WIDTH = 100;
     public static final int AI_CAR_HEIGHT = 60;
 
-    public static final int AI_CAR_SPEED = 2;
+    public static final int AI_CAR_SPEED = 23;
 
 
     /**

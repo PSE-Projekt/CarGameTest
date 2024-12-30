@@ -16,7 +16,6 @@ public abstract class PlayerCar extends Car {
 
 
     private String playerId;
-    private int speed;
     private double inertia;
     private long lastCrashTime;
     private PlayerHandler playerHandler;

@@ -3,6 +3,7 @@ package de.cargame.model.handler;
 
 import de.cargame.model.entity.gameobject.AICarType;
 
+import java.util.Random;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ThreadLocalRandom;
@@ -25,12 +26,11 @@ public class GameObjectSpawnScheduler {
 
 
     private void scheduleAICar() {
-        //todo implement random event for straight / cross moving
-        scheduleSpawn(() -> () -> gameObjectHandler.spawnAICar(AICarType.STRAIGHT_MOVING), 1200, 3000);
+        scheduleSpawn(() -> () -> gameObjectHandler.spawnAICar(), 400, 1500);
     }
 
     private void scheduleObstacle() {
-        scheduleSpawn(() -> () -> gameObjectHandler.spawnObstacle(), 1500, 1900);
+        scheduleSpawn(() -> () -> gameObjectHandler.spawnObstacle(), 700, 1400);
     }
 
     private void scheduleReward() {
@@ -57,13 +57,14 @@ public class GameObjectSpawnScheduler {
     }
 
     private void scheduleSpawn(Supplier<Runnable> spawnAction, int minDelay, int maxDelay) {
-        System.out.println("Schedule");
         int initialDelay = getRandomDelay(minDelay, maxDelay);
         scheduler.schedule(() -> {
             spawnAction.get().run();
             scheduleSpawn(spawnAction, minDelay, maxDelay);
         }, initialDelay, TimeUnit.MILLISECONDS);
     }
+
+
 
 
 }

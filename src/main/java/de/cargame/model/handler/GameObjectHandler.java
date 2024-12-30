@@ -120,8 +120,8 @@ public class GameObjectHandler {
         gameObjects.add(reward);
     }
 
-    public void spawnAICar(AICarType aiCarType) {
-        AICar aiCar = gameObjectCreationService.createAICar(aiCarType);
+    public void spawnAICar() {
+        AICar aiCar = gameObjectCreationService.createAICar();
         gameObjects.add(aiCar);
     }
 

@@ -8,8 +8,9 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Getter
-@Setter
 public abstract class Car extends GameObject {
+
+    protected int speed;
 
     public Car(Coordinate coordinate, Dimension dimension, GameObjectBoundType gameObjectBoundType) {
         super(coordinate, dimension, gameObjectBoundType);
@@ -19,4 +20,7 @@ public abstract class Car extends GameObject {
     protected void setIsStatic() {
         this.isStatic = false;
     }
+
+    abstract protected void setSpeed();
+
 }

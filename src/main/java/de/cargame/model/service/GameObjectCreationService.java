@@ -12,6 +12,9 @@ import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.List;
+import java.util.Random;
+
+
 
 @Slf4j
 public class GameObjectCreationService {
@@ -74,16 +77,24 @@ public class GameObjectCreationService {
     }
 
 
-    public AICar createAICar(AICarType aiCarType) {
+    public AICar createAICar() {
         Dimension dimension = new Dimension(GameConfig.AI_CAR_WIDTH, GameConfig.AI_CAR_HEIGHT);
         SpawnAreaList spawnAreas = gameObjectSpawningStrategy.getAiCarSpawnAreas();
         Coordinate spawnCoordinate = spawnAreas.getRandomCoordinate();
 
+        AICarType aiCarType = getRandomAICarType();
+
         return switch (aiCarType) {
             case CROSS_MOVING ->
-                    new KamikazeCar(spawnCoordinate, dimension, GameObjectBoundType.RECTANGLE, new CrossMovementStrategy());
+                    new KamikazeCar(spawnCoordinate, dimension, GameObjectBoundType.RECTANGLE, new CrossMovementStrategy(spawnCoordinate));
             case STRAIGHT_MOVING ->
-                    new KamikazeCar(spawnCoordinate, dimension, GameObjectBoundType.RECTANGLE, new StraightMovementStrategy());
+                    new KamikazeCar(spawnCoordinate, dimension, GameObjectBoundType.RECTANGLE, new StraightMovementStrategy(spawnCoordinate));
         };
     }
+
+
+    private AICarType getRandomAICarType(){
+        return AICarType.values()[new Random().nextInt(AICarType.values().length)];
+    }
+
 }

@@ -21,7 +21,7 @@ public class TestPanel extends JPanel {
 
     @Override
     protected void paintComponent(Graphics g) {
-        
+
         super.paintComponent(g);
         Graphics2D g2d = (Graphics2D) g;
         GameModelData model = gameController.getModel();
