@@ -1,6 +1,7 @@
 package de.cargame.model.handler;
 
 
+import de.cargame.config.GameConfig;
 import de.cargame.model.entity.gameobject.AICarType;
 
 import java.util.Random;
@@ -26,24 +27,24 @@ public class GameObjectSpawnScheduler {
 
 
     private void scheduleAICar() {
-        scheduleSpawn(() -> () -> gameObjectHandler.spawnAICar(), 400, 1500);
+        scheduleSpawn(() -> () -> gameObjectHandler.spawnAICar(), GameConfig.AI_CAR_SPAWN_TIME_MIN, GameConfig.AI_CAR_SPAWN_TIME_MAX);
     }
 
     private void scheduleObstacle() {
-        scheduleSpawn(() -> () -> gameObjectHandler.spawnObstacle(), 700, 1400);
+        scheduleSpawn(() -> () -> gameObjectHandler.spawnObstacle(), GameConfig.OBSTACLE_SPAWN_TIME_MIN, GameConfig.OBSTACLE_SPAWN_TIME_MAX);
     }
 
     private void scheduleReward() {
-        scheduleSpawn(() -> () -> gameObjectHandler.spawnReward(), 20000, 50000);
+        scheduleSpawn(() -> () -> gameObjectHandler.spawnReward(), GameConfig.REWARD_SPAWN_TIME_MIN, GameConfig.REWARD_SPAWN_TIME_MAX);
     }
 
     private void scheduleBuilding() {
-        scheduleSpawn(() -> () -> gameObjectHandler.spawnBuilding(), 500, 1300);
+        scheduleSpawn(() -> () -> gameObjectHandler.spawnBuilding(), GameConfig.BUILDING_SPAWN_TIME_MIN, GameConfig.BUILDING_SPAWN_TIME_MAX);
     }
 
 
     private void scheduleRoadMark() {
-        scheduleSpawn(() -> () -> gameObjectHandler.spawnRoadMarks(), 1000, 1001);
+        scheduleSpawn(() -> () -> gameObjectHandler.spawnRoadMarks(), GameConfig.ROAD_MARK_SPAWN_TIME_MIN, GameConfig.ROAD_MARK_SPAWN_TIME_MAX);
     }
 
 
