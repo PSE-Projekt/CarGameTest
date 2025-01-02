@@ -42,6 +42,7 @@ public class PlayerHandler {
         getPlayer(playerId).resetScore();
         PlayerUpdate playerUpdate = generatePlayerUpdate(playerId);
         this.playerUpdateNotifyService.notifyObservers(playerUpdate);
+        System.out.println("reset score");
     }
 
     public void resetScores() {

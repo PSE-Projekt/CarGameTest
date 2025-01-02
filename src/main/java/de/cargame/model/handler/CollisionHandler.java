@@ -8,6 +8,7 @@ import de.cargame.model.entity.gameobject.GameObject;
 import de.cargame.model.entity.gameobject.Life;
 import de.cargame.model.entity.gameobject.Reward;
 import de.cargame.model.entity.gameobject.car.PlayerCar;
+import de.cargame.model.service.SoundService;
 
 import java.awt.*;
 import java.awt.geom.Rectangle2D;
@@ -17,9 +18,11 @@ import java.util.List;
 public class CollisionHandler {
 
     private final PlayerHandler playerHandler;
+    private final SoundService soundService;
 
     public CollisionHandler(PlayerHandler playerHandler) {
         this.playerHandler = playerHandler;
+        this.soundService = new SoundService();
     }
 
 
@@ -70,6 +73,7 @@ public class CollisionHandler {
         if (reward instanceof Life && !reward.isCollected()) {
             System.out.println("Reward collected - Lives increased");
             playerHandler.increaseLife(playerCar.getPlayerId());
+            soundService.collectRewardSound();
         } else {
             System.out.println("Reward collected but already collected");
         }
@@ -79,6 +83,7 @@ public class CollisionHandler {
 
     private void handleCollisionCrash(PlayerCar playerCar) {
         if (!playerCar.hasCrashCooldown()) {
+            soundService.playCrashSound();
             System.out.println("Crash - Lives decreased");
             playerHandler.decreaseLife(playerCar.getPlayerId());
             playerCar.setLastCrashTime();

@@ -97,7 +97,5 @@ public class GameController {
         gameStateController.setGameMode(GameMode.SINGLEPLAYER);
         startGame();
         //TODO REMOVE--------
-
-        startGame();
     }
 }
