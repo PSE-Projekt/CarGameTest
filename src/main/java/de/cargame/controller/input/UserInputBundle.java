@@ -8,12 +8,13 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 @Getter
 @Setter
 public class UserInputBundle {
 
-    private final List<UserInput> userInputs = new ArrayList<>();
+    private final List<UserInput> userInputs = new CopyOnWriteArrayList<>();
     private boolean fastForward;
 
     private final UserInput USER_INPUT_NONE = new UserInput(UserInputType.NONE) ;

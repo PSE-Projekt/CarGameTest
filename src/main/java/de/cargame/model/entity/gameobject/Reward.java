@@ -10,8 +10,8 @@ public abstract class Reward extends GameObject {
 
     private boolean collected = false;
 
-    public Reward(Coordinate coordinate, Dimension dimension, GameObjectBoundType gameObjectBoundType) {
-        super(coordinate, dimension, gameObjectBoundType);
+    public Reward(Coordinate coordinate, Dimension dimension, GameObjectBoundType gameObjectBoundType, String playerId) {
+        super(coordinate, dimension, gameObjectBoundType, playerId);
     }
 
     @Override

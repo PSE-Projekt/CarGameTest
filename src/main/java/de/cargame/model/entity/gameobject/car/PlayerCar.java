@@ -20,8 +20,8 @@ public abstract class PlayerCar extends Car {
     private long lastCrashTime;
     private PlayerHandler playerHandler;
 
-    public PlayerCar(Coordinate coordinate, Dimension dimension, GameObjectBoundType gameObjectBoundType) {
-        super(coordinate, dimension, gameObjectBoundType);
+    public PlayerCar(Coordinate coordinate, Dimension dimension, GameObjectBoundType gameObjectBoundType, String belongingPlayerId) {
+        super(coordinate, dimension, gameObjectBoundType, belongingPlayerId);
         setPlayerHandler(playerHandler);
     }
 

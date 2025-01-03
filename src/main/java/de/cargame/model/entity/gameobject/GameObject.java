@@ -15,15 +15,17 @@ import java.awt.*;
 public abstract class GameObject implements Collidable, Despawnable {
 
 
+    private String belongingPlayerId;
     protected GameObjectBound gameObjectBound;
     protected boolean isStatic;
     protected boolean isDespawnable;
     protected boolean isCollidable;
 
-    public GameObject(double x, double y, int width, int height, GameObjectBoundType gameObjectBoundType) {
+    public GameObject(double x, double y, int width, int height, GameObjectBoundType gameObjectBoundType, String belongingPlayerId) {
         setDespawnable();
         setIsStatic();
         setCollidable();
+        this.belongingPlayerId = belongingPlayerId;
         switch (gameObjectBoundType) {
             case RECTANGLE:
                 gameObjectBound = new RectangularGameObjectBound(x, y, width, height);
@@ -32,8 +34,8 @@ public abstract class GameObject implements Collidable, Despawnable {
         log.error("A hitbox was tried to initialize with an illegal shape");
     }
 
-    public GameObject(Coordinate coordinate, Dimension dimension, GameObjectBoundType gameObjectBoundType) {
-        this(coordinate.getX(), coordinate.getY(), dimension.getWidth(), dimension.getHeight(), gameObjectBoundType);
+    public GameObject(Coordinate coordinate, Dimension dimension, GameObjectBoundType gameObjectBoundType, String belongingPlayerId) {
+        this(coordinate.getX(), coordinate.getY(), dimension.getWidth(), dimension.getHeight(), gameObjectBoundType, belongingPlayerId);
     }
 
     protected abstract void setIsStatic();
@@ -98,6 +100,15 @@ public abstract class GameObject implements Collidable, Despawnable {
     public double getY() {
         return getCoordinates().getY();
     }
+
+    public int getWidth() {
+        return gameObjectBound.getBound().getBounds().width;
+    }
+
+    public int getHeight() {
+        return gameObjectBound.getBound().getBounds().height;
+    }
+
 
 
 }

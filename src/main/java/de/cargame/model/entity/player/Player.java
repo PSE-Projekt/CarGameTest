@@ -72,5 +72,4 @@ public class Player implements UserInputObserver {
         return this.userInputBundle.getLatestInput();
     }
 
-
 }

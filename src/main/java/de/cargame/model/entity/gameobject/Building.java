@@ -4,8 +4,8 @@ import de.cargame.config.GameConfig;
 
 public class Building extends GameObject {
 
-    public Building(Coordinate coordinate, Dimension dimension, GameObjectBoundType gameObjectBoundType) {
-        super(coordinate, dimension, gameObjectBoundType);
+    public Building(Coordinate coordinate, Dimension dimension, GameObjectBoundType gameObjectBoundType, String belongingPlayerId) {
+        super(coordinate, dimension, gameObjectBoundType, belongingPlayerId);
     }
 
     @Override

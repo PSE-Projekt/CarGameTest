@@ -4,8 +4,8 @@ import de.cargame.config.GameConfig;
 
 public class RoadMark extends GameObject {
 
-    public RoadMark(Coordinate coordinate, Dimension dimension, GameObjectBoundType gameObjectBoundType) {
-        super(coordinate, dimension, gameObjectBoundType);
+    public RoadMark(Coordinate coordinate, Dimension dimension, GameObjectBoundType gameObjectBoundType, String belongingPlayerId) {
+        super(coordinate, dimension, gameObjectBoundType, belongingPlayerId);
     }
 
     @Override

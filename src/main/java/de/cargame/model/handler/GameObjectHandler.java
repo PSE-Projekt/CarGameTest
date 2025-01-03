@@ -34,7 +34,7 @@ public class GameObjectHandler {
         this.gameStateController = gameStateController;
         this.collisionHandler = new CollisionHandler(playerHandler);
         this.gameObjectCreationService = new GameObjectCreationService();
-        this.gameObjectSpawnScheduler = new GameObjectSpawnScheduler();
+        this.gameObjectSpawnScheduler = new GameObjectSpawnScheduler(this.playerHandler);
     }
 
 
@@ -70,11 +70,14 @@ public class GameObjectHandler {
         moveElements(deltaTime);
         despawnPassedObjects();
         checkCollision();
+        System.out.println(gameObjects.size());
     }
 
     public void moveElements(double deltaTime) {
         for (GameObject gameObject : gameObjects) {
-            gameObject.move(deltaTime, playerHandler.isFastForwarding(playerHandler.getKeyboardPlayerId()));
+            String belongingPlayerId = gameObject.getBelongingPlayerId();
+            boolean fastForwarding = playerHandler.isFastForwarding(belongingPlayerId);
+            gameObject.move(deltaTime, fastForwarding);
         }
     }
 
@@ -85,44 +88,45 @@ public class GameObjectHandler {
                 .toList();
 
         for (GameObject gameObject : despawnableObjects) {
-            if ((gameObject.getX() + GameConfig.SCREEN_WIDTH) < 0) {
+            if ((gameObject.getX() +gameObject.getWidth() < 0)) {
                 gameObjectsToRemove.add(gameObject);
             }
         }
+        System.out.println("Remove: "+gameObjectsToRemove.size());
         gameObjects.removeAll(gameObjectsToRemove);
     }
 
 
     public void spawnPlayerCar(String playerId, CarType carType) {
-        PlayerCar playerCar = gameObjectCreationService.createPlayerCar(carType);
+        PlayerCar playerCar = gameObjectCreationService.createPlayerCar(carType, playerId);
         playerCar.setPlayerId(playerId);
         playerCar.setPlayerHandler(playerHandler);
         playerHandler.setPlayerCar(playerId, playerCar);
         gameObjects.add(playerCar);
     }
 
-    public void spawnBuilding() {
-        List<Building> building = gameObjectCreationService.createBuildings();
+    public void spawnBuilding(String playerId) {
+        List<Building> building = gameObjectCreationService.createBuildings(playerId);
         gameObjects.addAll(building);
     }
 
-    public void spawnRoadMarks() {
-        List<RoadMark> roadMark = gameObjectCreationService.createRoadMark();
+    public void spawnRoadMarks(String playerId) {
+        List<RoadMark> roadMark = gameObjectCreationService.createRoadMark(playerId);
         gameObjects.addAll(roadMark);
     }
 
-    public void spawnObstacle() {
-        List<Obstacle> obstacle = gameObjectCreationService.createObstacle();
+    public void spawnObstacle(String playerId) {
+        List<Obstacle> obstacle = gameObjectCreationService.createObstacle(playerId);
         gameObjects.addAll(obstacle);
     }
 
-    public void spawnReward() {
-        Reward reward = gameObjectCreationService.createReward();
+    public void spawnReward(String playerId) {
+        Reward reward = gameObjectCreationService.createReward(playerId);
         gameObjects.add(reward);
     }
 
-    public void spawnAICar() {
-        AICar aiCar = gameObjectCreationService.createAICar();
+    public void spawnAICar(String playerId) {
+        AICar aiCar = gameObjectCreationService.createAICar(playerId);
         gameObjects.add(aiCar);
     }
 

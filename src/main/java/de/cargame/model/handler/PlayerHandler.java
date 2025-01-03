@@ -58,6 +58,7 @@ public class PlayerHandler {
         return getPlayer(playerId).isFastForwarding();
     }
 
+
     public void setCarSelection(String playerId, CarType carSelection) {
         getPlayer(playerId).setCarSelection(carSelection);
     }

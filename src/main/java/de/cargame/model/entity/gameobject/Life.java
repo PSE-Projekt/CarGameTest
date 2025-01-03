@@ -2,8 +2,8 @@ package de.cargame.model.entity.gameobject;
 
 public class Life extends Reward {
 
-    public Life(Coordinate coordinate, Dimension dimension, GameObjectBoundType gameObjectBoundType) {
-        super(coordinate, dimension, gameObjectBoundType);
+    public Life(Coordinate coordinate, Dimension dimension, GameObjectBoundType gameObjectBoundType, String belongingPlayerId) {
+        super(coordinate, dimension, gameObjectBoundType, belongingPlayerId);
     }
 
     @Override

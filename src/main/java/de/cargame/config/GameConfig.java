@@ -10,7 +10,7 @@ public abstract class GameConfig {
     //----------------------UI------------------------------
     //----------------------GENERAL-------------------------
 
-    public static final int MAX_LIVES = 3;
+    public static final int MAX_LIVES = 20;
     public static final int GAME_SPEED = 150;
     public static final int GAME_SPEED_FAST_FORWARD = 300;
     public static final int CRASH_COOLDOWN_TIME = 3000;
@@ -64,7 +64,7 @@ public abstract class GameConfig {
     //----------------------BUILDING------------------------
     //----------------------ROAD MARK-----------------------
 
-    public static final int ROAD_MARK_WIDTH = 50;
+    public static final int ROAD_MARK_WIDTH = 200;
     public static final int ROAD_MARK_HEIGHT = 10;
     public static final int ROAD_MARK_SPAWN_TIME_MIN=1000;
     public static final int ROAD_MARK_SPAWN_TIME_MAX=1001;
