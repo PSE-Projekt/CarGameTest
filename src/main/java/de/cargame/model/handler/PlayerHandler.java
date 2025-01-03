@@ -1,6 +1,6 @@
 package de.cargame.model.handler;
 
-import de.cargame.controller.input.UserInput;
+import de.cargame.controller.input.UserInputType;
 import de.cargame.exception.PlayerNotFoundException;
 import de.cargame.model.entity.player.Player;
 import de.cargame.model.entity.player.PlayerObserver;
@@ -50,8 +50,12 @@ public class PlayerHandler {
         resetScore(playerGamepad.getId());
     }
 
-    public UserInput getCurrentUserInput(String playerId) {
-        return getPlayer(playerId).getCurrentUserInput();
+    public UserInputType getCurrentUserInput(String playerId) {
+        return getPlayer(playerId).getUserInput();
+    }
+
+    public boolean isFastForwarding(String playerId) {
+        return getPlayer(playerId).isFastForwarding();
     }
 
     public void setCarSelection(String playerId, CarType carSelection) {

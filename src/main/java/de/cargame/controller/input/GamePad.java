@@ -36,7 +36,7 @@ public class GamePad extends InputDevice {
     }
 
     @Override
-    public void notifyObservers(UserInput userInput) {
+    public void notifyObservers(UserInputBundle userInputBundle) {
 
     }
 }

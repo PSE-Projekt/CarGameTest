@@ -9,6 +9,6 @@ public interface UserInputObservable {
 
     void removeObserver(UserInputObserver o);
 
-    void notifyObservers(UserInput userInput);
+    void notifyObservers(UserInputBundle userInputBundle);
 
 }

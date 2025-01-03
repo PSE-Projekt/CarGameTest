@@ -1,7 +1,7 @@
 package de.cargame.model.entity.gameobject.car;
 
 import de.cargame.config.GameConfig;
-import de.cargame.controller.input.UserInput;
+import de.cargame.controller.input.UserInputType;
 import de.cargame.model.entity.gameobject.Coordinate;
 import de.cargame.model.entity.gameobject.Dimension;
 import de.cargame.model.entity.gameobject.GameObjectBoundType;
@@ -28,13 +28,23 @@ public abstract class PlayerCar extends Car {
 
     @Override
     public void move(double deltaTime) {
-        UserInput currentUserInput = playerHandler.getCurrentUserInput(playerId);
+        UserInputType currentUserInputType = playerHandler.getCurrentUserInput(playerId);
+        boolean isFastForwarding = playerHandler.isFastForwarding(playerId);
 
         double width = getBound().getBounds().getWidth();
         double height = getBound().getBounds().getHeight();
 
         double distance = getSpeed() * deltaTime;
-        switch (currentUserInput) {
+        if(isFastForwarding){
+            double speedUpFactor = (distance + GameConfig.SCORE_INCREASE_FAST_FORWARD_SPEED);
+            distance = distance + speedUpFactor;
+            playerHandler.increaseScore(playerId, GameConfig.SCORE_INCREASE_FAST_FORWARD_SPEED);
+        }else{
+            playerHandler.increaseScore(playerId, GameConfig.SCORE_INCREASE_NORMAL_SPEED);
+
+        }
+
+        switch (currentUserInputType) {
             case UP:
                 moveByRespectingGameBoundaries(0, -distance, width, height);
                 break;
@@ -42,7 +52,6 @@ public abstract class PlayerCar extends Car {
                 moveByRespectingGameBoundaries(0, distance, width, height);
                 break;
         }
-        playerHandler.increaseScore(playerId, GameConfig.SCORE_INCREASE_NORMAL_SPEED);
     }
 
     @Override

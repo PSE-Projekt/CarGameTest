@@ -62,9 +62,8 @@ public class TestPanel extends JPanel implements PlayerObserver {
 
     @Override
     public void update(PlayerUpdate playerUpdate) {
-        liveLabel.setText("Lives: "+playerUpdate.getLives());
-        scoreLabel.setText("Score: "+playerUpdate.getScoreValue());
-        System.out.println("Score: "+playerUpdate.getScoreValue());
         repaint();
+        liveLabel.setText("Live : " + playerUpdate.getLives());
+        scoreLabel.setText("Score: "+playerUpdate.getScoreValue());
     }
 }

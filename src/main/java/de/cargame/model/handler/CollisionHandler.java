@@ -71,11 +71,8 @@ public class CollisionHandler {
 
     private void handleCollisionReward(PlayerCar playerCar, Reward reward) {
         if (reward instanceof Life && !reward.isCollected()) {
-            System.out.println("Reward collected - Lives increased");
             playerHandler.increaseLife(playerCar.getPlayerId());
             soundService.collectRewardSound();
-        } else {
-            System.out.println("Reward collected but already collected");
         }
         reward.setCollected(true);
     }
@@ -84,11 +81,8 @@ public class CollisionHandler {
     private void handleCollisionCrash(PlayerCar playerCar) {
         if (!playerCar.hasCrashCooldown()) {
             soundService.playCrashSound();
-            System.out.println("Crash - Lives decreased");
             playerHandler.decreaseLife(playerCar.getPlayerId());
             playerCar.setLastCrashTime();
-        } else {
-            System.out.println("Crash - Cooldown");
         }
     }
 
