@@ -15,8 +15,12 @@ public abstract class Reward extends GameObject {
     }
 
     @Override
-    public void move(double deltaTime) {
-        moveBy(-GameConfig.GAME_SPEED * deltaTime, 0);
+    public void move(double deltaTime, boolean isFastForwarding) {
+        if(isFastForwarding){
+            moveBy(-GameConfig.GAME_SPEED_FAST_FORWARD * deltaTime, 0);
+        }else {
+            moveBy(-GameConfig.GAME_SPEED * deltaTime, 0);
+        }
     }
 
     @Override

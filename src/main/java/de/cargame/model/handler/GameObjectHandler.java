@@ -74,7 +74,7 @@ public class GameObjectHandler {
 
     public void moveElements(double deltaTime) {
         for (GameObject gameObject : gameObjects) {
-            gameObject.move(deltaTime);
+            gameObject.move(deltaTime, playerHandler.isFastForwarding(playerHandler.getKeyboardPlayerId()));
         }
     }
 

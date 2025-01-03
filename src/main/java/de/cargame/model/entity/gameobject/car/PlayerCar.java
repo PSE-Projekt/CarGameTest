@@ -27,9 +27,8 @@ public abstract class PlayerCar extends Car {
 
 
     @Override
-    public void move(double deltaTime) {
+    public void move(double deltaTime, boolean isFastForwarding) {
         UserInputType currentUserInputType = playerHandler.getCurrentUserInput(playerId);
-        boolean isFastForwarding = playerHandler.isFastForwarding(playerId);
 
         double width = getBound().getBounds().getWidth();
         double height = getBound().getBounds().getHeight();

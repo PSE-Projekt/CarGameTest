@@ -54,7 +54,13 @@ public class GameObjectSpawnScheduler {
     }
 
     private int getRandomDelay(int minDelay, int maxDelay) {
-        return ThreadLocalRandom.current().nextInt(minDelay, maxDelay);
+        double speedFactor = (GameConfig.GAME_SPEED_FAST_FORWARD > 0) ? (double) GameConfig.GAME_SPEED / GameConfig.GAME_SPEED_FAST_FORWARD: 1; // Schutz vor Division durch Null
+
+        int scaledMinDelay = (int) Math.max(1, minDelay * speedFactor);
+        int scaledMaxDelay = (int) Math.max(1, maxDelay * speedFactor)+1;
+
+        System.out.println("Scaled Delays: " + scaledMinDelay + " - " + scaledMaxDelay);
+        return ThreadLocalRandom.current().nextInt(scaledMinDelay, scaledMaxDelay);
     }
 
     private void scheduleSpawn(Supplier<Runnable> spawnAction, int minDelay, int maxDelay) {

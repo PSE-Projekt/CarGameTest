@@ -12,6 +12,7 @@ public abstract class GameConfig {
 
     public static final int MAX_LIVES = 3;
     public static final int GAME_SPEED = 150;
+    public static final int GAME_SPEED_FAST_FORWARD = 300;
     public static final int CRASH_COOLDOWN_TIME = 3000;
     public static final double SCORE_INCREASE_NORMAL_SPEED = 0.1;
     public static final double SCORE_INCREASE_FAST_FORWARD_SPEED = 0.2;
@@ -29,7 +30,7 @@ public abstract class GameConfig {
 
     public static final int AI_CAR_WIDTH = 100;
     public static final int AI_CAR_HEIGHT = 60;
-    public static final int AI_CAR_SPEED = 20;
+    public static final double AI_CAR_SPEED = 2;
     public static final int AI_CAR_SPAWN_TIME_MIN=400;
     public static final int AI_CAR_SPAWN_TIME_MAX=1500;
 

@@ -9,7 +9,7 @@ import lombok.Getter;
 @Getter
 public abstract class Car extends GameObject {
 
-    protected int speed;
+    protected double speed;
 
     public Car(Coordinate coordinate, Dimension dimension, GameObjectBoundType gameObjectBoundType) {
         super(coordinate, dimension, gameObjectBoundType);

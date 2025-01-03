@@ -14,6 +14,7 @@ import java.awt.*;
 @Slf4j
 public abstract class GameObject implements Collidable, Despawnable {
 
+
     protected GameObjectBound gameObjectBound;
     protected boolean isStatic;
     protected boolean isDespawnable;
@@ -56,7 +57,7 @@ public abstract class GameObject implements Collidable, Despawnable {
     }
 
 
-    public abstract void move(double deltaTime);
+    public abstract void move(double deltaTime, boolean isFastForwarding);
 
     protected void moveBy(double xAmount, double yAmount) {
         gameObjectBound.moveBy(xAmount, yAmount);
