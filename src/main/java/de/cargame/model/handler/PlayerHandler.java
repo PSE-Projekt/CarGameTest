@@ -1,19 +1,16 @@
 package de.cargame.model.handler;
 
 import de.cargame.controller.input.UserInputType;
-import de.cargame.exception.PlayerNotFoundException;
+import de.cargame.model.entity.gameobject.CarType;
+import de.cargame.model.entity.gameobject.car.PlayerCar;
 import de.cargame.model.entity.player.Player;
 import de.cargame.model.entity.player.PlayerObserver;
 import de.cargame.model.entity.player.PlayerUpdate;
-import de.cargame.model.entity.gameobject.CarType;
-import de.cargame.model.entity.gameobject.car.PlayerCar;
 import de.cargame.model.service.PlayerUpdateNotifyService;
+import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 
 @Setter
 @Slf4j
@@ -21,123 +18,80 @@ public class PlayerHandler {
 
     private final PlayerUpdateNotifyService playerUpdateNotifyService;
 
-    private Player playerKeyboard;
-    private Player playerGamepad;
+    @Getter
+    private Player player;
 
     public PlayerHandler() {
         this.playerUpdateNotifyService = new PlayerUpdateNotifyService();
-
-        playerKeyboard = new Player(true);
-        playerGamepad = new Player(false);
     }
 
 
-    public void increaseScore(String playerId, double value) {
-        getPlayer(playerId).increaseScore(value);
-        PlayerUpdate playerUpdate = generatePlayerUpdate(playerId);
+    public void increaseScore(double value) {
+        player.increaseScore(value);
+        PlayerUpdate playerUpdate = generatePlayerUpdate();
         this.playerUpdateNotifyService.notifyObservers(playerUpdate);
     }
 
-    public void resetScore(String playerId) {
-        getPlayer(playerId).resetScore();
-        PlayerUpdate playerUpdate = generatePlayerUpdate(playerId);
+    public void resetScore() {
+        player.resetScore();
+        PlayerUpdate playerUpdate = generatePlayerUpdate();
         this.playerUpdateNotifyService.notifyObservers(playerUpdate);
         System.out.println("reset score");
     }
 
-    public void resetScores() {
-        resetScore(playerKeyboard.getId());
-        resetScore(playerGamepad.getId());
+    public UserInputType getCurrentUserInput() {
+        return player.getUserInput();
     }
 
-    public UserInputType getCurrentUserInput(String playerId) {
-        return getPlayer(playerId).getUserInput();
+    public boolean isFastForwarding() {
+        return player.isFastForwarding();
     }
 
-    public boolean isFastForwarding(String playerId) {
-        return getPlayer(playerId).isFastForwarding();
+    public PlayerCar getCarSelection() {
+        return player.getPlayerCar();
     }
 
-
-    public void setCarSelection(String playerId, CarType carSelection) {
-        getPlayer(playerId).setCarSelection(carSelection);
+    public void setCarSelection(CarType carSelection) {
+        player.setCarSelection(carSelection);
     }
 
-    public PlayerCar getCarSelection(String playerId) {
-        return getPlayer(playerId).getPlayerCar();
-    }
-
-
-    public void registerPlayerObserver(PlayerObserver playerObserver){
+    public void registerPlayerObserver(PlayerObserver playerObserver) {
         playerUpdateNotifyService.addObserver(playerObserver);
     }
-    public int increaseLife(String playerId) {
-        getPlayer(playerId).increaseLife();
-        PlayerUpdate playerUpdate = generatePlayerUpdate(playerId);
+
+    public int increaseLife() {
+        player.increaseLife();
+        PlayerUpdate playerUpdate = generatePlayerUpdate();
         this.playerUpdateNotifyService.notifyObservers(playerUpdate);
-        return getLifeCount(playerId);
+        return getLifeCount();
     }
 
 
-    public int decreaseLife(String playerId) {
-        getPlayer(playerId).decreaseLife();
-        PlayerUpdate playerUpdate = generatePlayerUpdate(playerId);
+    public int decreaseLife() {
+        player.decreaseLife();
+        PlayerUpdate playerUpdate = generatePlayerUpdate();
         this.playerUpdateNotifyService.notifyObservers(playerUpdate);
-        return getLifeCount(playerId);
+        return getLifeCount();
     }
 
-    public int getLifeCount(String playerId) {
-        return getPlayer(playerId).getLives();
+    public int getLifeCount() {
+        return player.getLives();
     }
 
-    public void setPlayerCar(String playerId, PlayerCar playerCar) {
-        getPlayer(playerId).setPlayerCar(playerCar);
+    public void setPlayerCar(PlayerCar playerCar) {
+        player.setPlayerCar(playerCar);
     }
 
-    public double getScore(String playerId) {
-        return getPlayer(playerId).getScore().getValue();
+    public double getScore() {
+        return player.getScore().getValue();
     }
 
 
-    public String getKeyboardPlayerId() {
-        return playerKeyboard.getId();
+    public boolean playerIsAlive() {
+        return player.isAlive();
     }
 
-    public Player getKeyboardPlayer() {
-        return playerKeyboard;
-    }
-
-    public String getGamepadPlayerId() {
-        return playerGamepad.getId();
-    }
-
-    public Player getGamepadPlayer() {
-        return playerGamepad;
-    }
-
-    public boolean atLeastOneActivePlayerAlive() {
-        return playerKeyboard.isAlive() || playerGamepad.isAlive();
-    }
-
-    public List<Player> getActiveAndAlivePlayers() {
-        List<Player> players = new ArrayList<>();
-        if (playerKeyboard.isAlive()) players.add(playerKeyboard);
-        if (playerGamepad.isAlive()) players.add(playerGamepad);
-        return Collections.unmodifiableList(players);
-    }
-
-    private Player getPlayer(String id) {
-        if (playerGamepad.getId().equals(id)) {
-            return playerGamepad;
-        } else if (playerKeyboard.getId().equals(id)) {
-            return playerKeyboard;
-        } else {
-            log.error("Player not found");
-            throw new PlayerNotFoundException("Player not found");
-        }
-    }
-
-    private PlayerUpdate generatePlayerUpdate(String playerId) {
-        return new PlayerUpdate(playerId, (int) getScore(playerId), getLifeCount(playerId));
+    private PlayerUpdate generatePlayerUpdate() {
+        return new PlayerUpdate(player.getId(), (int) getScore(), getLifeCount());
     }
 }

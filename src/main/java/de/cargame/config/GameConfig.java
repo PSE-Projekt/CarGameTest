@@ -19,7 +19,7 @@ public abstract class GameConfig {
 
     /**
      * Value:
-     *  8 -> ~120 FPS
+     * 8 -> ~120 FPS
      * 16 -> ~60 FPS
      * 32 -> ~30 FPS
      */
@@ -31,8 +31,8 @@ public abstract class GameConfig {
     public static final int AI_CAR_WIDTH = 100;
     public static final int AI_CAR_HEIGHT = 60;
     public static final double AI_CAR_SPEED = 2;
-    public static final int AI_CAR_SPAWN_TIME_MIN=400;
-    public static final int AI_CAR_SPAWN_TIME_MAX=1500;
+    public static final int AI_CAR_SPAWN_TIME_MIN = 400;
+    public static final int AI_CAR_SPAWN_TIME_MAX = 1500;
 
     //----------------------AI CAR GENERAL-------------------
     //----------------------FAST CAR-------------------------
@@ -74,8 +74,8 @@ public abstract class GameConfig {
 
     public static final int OBSTACLE_WIDTH = 40;
     public static final int OBSTACLE_HEIGHT = 40;
-    public static final int OBSTACLE_SPAWN_TIME_MIN=700;
-    public static final int OBSTACLE_SPAWN_TIME_MAX=1400;
+    public static final int OBSTACLE_SPAWN_TIME_MIN = 700;
+    public static final int OBSTACLE_SPAWN_TIME_MAX = 1400;
 
 
     //----------------------OBSTACLE-----------------------

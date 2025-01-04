@@ -2,10 +2,10 @@ package de.cargame.model.entity.player;
 
 
 import de.cargame.config.GameConfig;
-import de.cargame.controller.input.UserInputType;
 import de.cargame.controller.input.UserInputBundle;
-import de.cargame.model.entity.gameobject.UserInputObserver;
+import de.cargame.controller.input.UserInputType;
 import de.cargame.model.entity.gameobject.CarType;
+import de.cargame.model.entity.gameobject.UserInputObserver;
 import de.cargame.model.entity.gameobject.car.PlayerCar;
 import lombok.Getter;
 import lombok.Setter;
@@ -23,14 +23,12 @@ public class Player implements UserInputObserver {
     private int lives;
     private boolean isPlaying;
     private CarType carSelection;
-    private boolean isUpperPlayer;
 
-    public Player(boolean isUpperPlayer) {
+    public Player() {
         this.id = UUID.randomUUID().toString();
         this.userInputBundle = new UserInputBundle();
         setDefaultValues();
         this.isPlaying = false;
-        this.isUpperPlayer = isUpperPlayer;
     }
 
     @Override
@@ -73,10 +71,6 @@ public class Player implements UserInputObserver {
 
     public UserInputType getUserInput() {
         return this.userInputBundle.getLatestInput();
-    }
-
-    public boolean isUpperPlayer(){
-        return isUpperPlayer;
     }
 
 }

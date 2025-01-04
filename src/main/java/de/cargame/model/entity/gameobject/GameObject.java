@@ -15,11 +15,11 @@ import java.awt.*;
 public abstract class GameObject implements Collidable, Despawnable {
 
 
-    private String belongingPlayerId;
     protected GameObjectBound gameObjectBound;
     protected boolean isStatic;
     protected boolean isDespawnable;
     protected boolean isCollidable;
+    private String belongingPlayerId;
 
     public GameObject(double x, double y, int width, int height, GameObjectBoundType gameObjectBoundType, String belongingPlayerId) {
         setDespawnable();
@@ -76,9 +76,7 @@ public abstract class GameObject implements Collidable, Despawnable {
         double xNew = gameObjectBound.getCoordinate().getX();
         double yNew = gameObjectBound.getCoordinate().getY();
 
-        // Überprüfung: Überschreitet das Objekt die Spielfeldgrenzen?
         if (xNew < 0 || xNew + objectWidth > GameConfig.SCREEN_WIDTH || yNew < 0 || yNew + objectHeight > GameConfig.SCREEN_HEIGHT) {
-            // Bewegung rückgängig machen, da das Objekt die Grenzen überschreitet
             gameObjectBound.getCoordinate().setX(xOld);
             gameObjectBound.getCoordinate().setY(yOld);
         }
@@ -108,7 +106,6 @@ public abstract class GameObject implements Collidable, Despawnable {
     public int getHeight() {
         return gameObjectBound.getBound().getBounds().height;
     }
-
 
 
 }

@@ -2,8 +2,6 @@ package de.cargame.model.service;
 
 import de.cargame.config.GameConfig;
 import de.cargame.exception.InvalidCarSelectionException;
-import de.cargame.model.entity.gameobject.Coordinate;
-import de.cargame.model.entity.gameobject.Dimension;
 import de.cargame.model.entity.gameobject.*;
 import de.cargame.model.entity.gameobject.car.*;
 import de.cargame.model.handler.entity.GameObjectSpawningStrategy;
@@ -14,7 +12,6 @@ import lombok.extern.slf4j.Slf4j;
 
 import java.util.List;
 import java.util.Random;
-
 
 
 @Slf4j
@@ -90,14 +87,14 @@ public class GameObjectCreationService {
 
         return switch (aiCarType) {
             case CROSS_MOVING ->
-                new KamikazeCar(spawnCoordinate, dimension, GameObjectBoundType.RECTANGLE, new CrossMovementStrategy(spawnCoordinate), playerId);
+                    new KamikazeCar(spawnCoordinate, dimension, GameObjectBoundType.RECTANGLE, new CrossMovementStrategy(spawnCoordinate), playerId);
             case STRAIGHT_MOVING ->
-                new KamikazeCar(spawnCoordinate, dimension, GameObjectBoundType.RECTANGLE, new StraightMovementStrategy(spawnCoordinate), playerId);
+                    new KamikazeCar(spawnCoordinate, dimension, GameObjectBoundType.RECTANGLE, new StraightMovementStrategy(spawnCoordinate), playerId);
         };
     }
 
 
-    private AICarType getRandomAICarType(){
+    private AICarType getRandomAICarType() {
         return AICarType.values()[new Random().nextInt(AICarType.values().length)];
     }
 

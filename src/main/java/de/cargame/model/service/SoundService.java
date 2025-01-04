@@ -6,22 +6,21 @@ import java.io.IOException;
 
 public class SoundService {
 
-    private Clip crashSoundClip;
-    private Clip selectSoundClip;
-    private Clip changeSelectionSoundClip;
-    private Clip collectRewardSoundClip;
     private final String CRASH_SOUND_FILE_PATH = "src/main/resources/sounds/crash.wav";
     private final String SELECT_SOUND_FILE_PATH = "src/main/resources/sounds/select.wav";
     private final String CHANGE_SELECTION_SOUND_FILE_PATH = "src/main/resources/sounds/change_selection.wav";
     private final String COLLECT_REWARD_SOUND_FILE_PATH = "src/main/resources/sounds/collect_reward.wav";
+    private Clip crashSoundClip;
+    private Clip selectSoundClip;
+    private Clip changeSelectionSoundClip;
+    private Clip collectRewardSoundClip;
 
-    public SoundService(){
+    public SoundService() {
         this.crashSoundClip = loadSoundFile(CRASH_SOUND_FILE_PATH);
         this.selectSoundClip = loadSoundFile(SELECT_SOUND_FILE_PATH);
         this.changeSelectionSoundClip = loadSoundFile(CHANGE_SELECTION_SOUND_FILE_PATH);
         this.collectRewardSoundClip = loadSoundFile(COLLECT_REWARD_SOUND_FILE_PATH);
     }
-
 
 
     //https://sfxr.me/
@@ -46,9 +45,7 @@ public class SoundService {
     }
 
 
-
-
-    private Clip loadSoundFile(String soundFilePath)  {
+    private Clip loadSoundFile(String soundFilePath) {
         File f = new File(soundFilePath);
         Clip clip;
         try {

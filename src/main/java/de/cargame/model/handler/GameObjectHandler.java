@@ -1,22 +1,17 @@
 package de.cargame.model.handler;
 
-import de.cargame.config.GameConfig;
 import de.cargame.controller.GameStateController;
-import de.cargame.controller.entity.GameMode;
 import de.cargame.controller.entity.GameState;
-import de.cargame.model.entity.collision.Collision;
-import de.cargame.model.entity.player.Player;
 import de.cargame.model.entity.gameobject.*;
 import de.cargame.model.entity.gameobject.car.AICar;
 import de.cargame.model.entity.gameobject.car.PlayerCar;
-import de.cargame.model.handler.entity.MultiplayerSpawningStrategy;
+import de.cargame.model.entity.player.Player;
 import de.cargame.model.handler.entity.SinglePlayerSpawningStrategy;
 import de.cargame.model.service.GameObjectCreationService;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 @Slf4j
@@ -39,26 +34,13 @@ public class GameObjectHandler {
 
 
     public void startGame() {
-        GameMode gameMode = gameStateController.getGameMode();
+        Player player = playerHandler.getPlayer();
         gameStateController.setGameState(GameState.IN_GAME);
-        List<Player> activeAndAlivePlayers = playerHandler.getActiveAndAlivePlayers();
-        switch (gameMode) {
-            case SINGLEPLAYER:
-                gameObjectCreationService.setGameObjectSpawningStrategy(new SinglePlayerSpawningStrategy());
-                Optional<Player> playerOptional = activeAndAlivePlayers.stream().findFirst();
-                if (playerOptional.isPresent()) {
-                    Player player = playerOptional.get();
-                    spawnPlayerCar(player.getId(), player.getCarSelection());
-                }
-                break;
-            case MULTIPLAYER:
-                gameObjectCreationService.setGameObjectSpawningStrategy(new MultiplayerSpawningStrategy());
-                for (Player player : activeAndAlivePlayers) {
-                    spawnPlayerCar(player.getId(), player.getCarSelection());
-                }
-                break;
-        }
-        playerHandler.resetScores();
+        gameObjectCreationService.setGameObjectSpawningStrategy(new SinglePlayerSpawningStrategy());
+        spawnPlayerCar(player.getId(), player.getCarSelection());
+
+
+        playerHandler.resetScore();
         gameObjectSpawnScheduler.startSpawning(this);
     }
 
@@ -78,7 +60,7 @@ public class GameObjectHandler {
     public void moveElements(double deltaTime) {
         for (GameObject gameObject : gameObjects) {
             String belongingPlayerId = gameObject.getBelongingPlayerId();
-            boolean fastForwarding = playerHandler.isFastForwarding(belongingPlayerId);
+            boolean fastForwarding = playerHandler.isFastForwarding();
             gameObject.move(deltaTime, fastForwarding);
         }
     }
@@ -90,7 +72,7 @@ public class GameObjectHandler {
                 .toList();
 
         for (GameObject gameObject : despawnableObjects) {
-            if ((gameObject.getX() +gameObject.getWidth() < 0)) {
+            if ((gameObject.getX() + gameObject.getWidth() < 0)) {
                 gameObjectsToRemove.add(gameObject);
             }
         }
@@ -102,7 +84,7 @@ public class GameObjectHandler {
         PlayerCar playerCar = gameObjectCreationService.createPlayerCar(carType, playerId);
         playerCar.setPlayerId(playerId);
         playerCar.setPlayerHandler(playerHandler);
-        playerHandler.setPlayerCar(playerId, playerCar);
+        playerHandler.setPlayerCar(playerCar);
         gameObjects.add(playerCar);
     }
 
@@ -138,7 +120,7 @@ public class GameObjectHandler {
 
     public void checkCollision() {
         collisionHandler.checkCollision(gameObjects);
-        if (!playerHandler.atLeastOneActivePlayerAlive()) {
+        if (!playerHandler.playerIsAlive()) {
             stopGame();
         }
     }

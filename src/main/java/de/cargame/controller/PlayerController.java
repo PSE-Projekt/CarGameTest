@@ -1,7 +1,6 @@
 package de.cargame.controller;
 
 import de.cargame.api.PlayerApi;
-import de.cargame.model.entity.player.Player;
 import de.cargame.model.handler.PlayerHandler;
 
 public class PlayerController implements PlayerApi {
@@ -14,20 +13,13 @@ public class PlayerController implements PlayerApi {
 
     @Override
     public int getLives(String playerId) {
-        return playerHandler.getLifeCount(playerId);
+        return playerHandler.getLifeCount();
     }
 
     @Override
     public int getScore(String playerId) {
-        return (int) playerHandler.getScore(playerId);
+        return (int) playerHandler.getScore();
     }
 
 
-    public void setPlayerKeyboard(Player player) {
-        playerHandler.setPlayerKeyboard(player);
-    }
-
-    public void setPlayerGamepad(Player player) {
-        playerHandler.setPlayerGamepad(player);
-    }
 }

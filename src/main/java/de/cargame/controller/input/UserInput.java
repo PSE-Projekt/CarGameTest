@@ -1,7 +1,6 @@
 package de.cargame.controller.input;
 
 import lombok.Getter;
-import lombok.Setter;
 
 import java.util.Objects;
 

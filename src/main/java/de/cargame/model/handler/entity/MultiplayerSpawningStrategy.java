@@ -1,7 +1,6 @@
 package de.cargame.model.handler.entity;
 
 import de.cargame.config.GameConfig;
-import de.cargame.model.entity.gameobject.Obstacle;
 
 import java.util.List;
 
@@ -41,7 +40,7 @@ public class MultiplayerSpawningStrategy extends GameObjectSpawningStrategy {
     @Override
     protected void setPlayerSpawnArea() {
         SpawnArea upperPlayerSpawnArea = new SpawnArea(PLAYER_SPAWN_X, SCREEN_QUARTER_Y, PLAYER_SPAWN_X, SCREEN_QUARTER_Y);
-        SpawnArea lowerPlayerSpawnArea = new SpawnArea(PLAYER_SPAWN_X, SCREEN_QUARTER_Y*3, PLAYER_SPAWN_X, SCREEN_QUARTER_Y*3);
+        SpawnArea lowerPlayerSpawnArea = new SpawnArea(PLAYER_SPAWN_X, SCREEN_QUARTER_Y * 3, PLAYER_SPAWN_X, SCREEN_QUARTER_Y * 3);
         this.playerSpawnAreas.add(upperPlayerSpawnArea);
         this.playerSpawnAreas.add(lowerPlayerSpawnArea);
     }

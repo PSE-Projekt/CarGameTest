@@ -5,7 +5,9 @@ import com.github.kwhat.jnativehook.keyboard.NativeKeyEvent;
 import com.github.kwhat.jnativehook.keyboard.NativeKeyListener;
 import de.cargame.model.entity.gameobject.UserInputObserver;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
 public class Keyboard extends InputDevice implements NativeKeyListener {
 
@@ -41,7 +43,7 @@ public class Keyboard extends InputDevice implements NativeKeyListener {
     public void nativeKeyPressed(NativeKeyEvent e) {
         int keyCode = e.getKeyCode();
         Optional<UserInputType> userInputTypeOptional = UserInputType.getUserInputForKeyCode(keyCode);
-        if(userInputTypeOptional.isPresent()) {
+        if (userInputTypeOptional.isPresent()) {
             UserInputType userInput = userInputTypeOptional.get();
             userInputBundle.addUserInput(userInput);
             notifyObservers(userInputBundle);

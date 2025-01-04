@@ -22,10 +22,6 @@ public enum UserInputType {
         this.keyCode = keyCode;
     }
 
-    public int getKeyCode() {
-        return keyCode;
-    }
-
     public static Optional<UserInputType> getUserInputForKeyCode(int keyCode) {
         UserInputType[] values = values();
         for (UserInputType value : values) {
@@ -34,5 +30,9 @@ public enum UserInputType {
             }
         }
         return Optional.empty();
+    }
+
+    public int getKeyCode() {
+        return keyCode;
     }
 }

@@ -28,19 +28,18 @@ public abstract class PlayerCar extends Car {
 
     @Override
     public void move(double deltaTime, boolean isFastForwarding) {
-        UserInputType currentUserInputType = playerHandler.getCurrentUserInput(playerId);
+        UserInputType currentUserInputType = playerHandler.getCurrentUserInput();
 
         double width = getBound().getBounds().getWidth();
         double height = getBound().getBounds().getHeight();
 
         double distance = getSpeed() * deltaTime;
-        if(isFastForwarding){
+        if (isFastForwarding) {
             double speedUpFactor = (distance + GameConfig.SCORE_INCREASE_FAST_FORWARD_SPEED);
             distance = distance + speedUpFactor;
-            playerHandler.increaseScore(playerId, GameConfig.SCORE_INCREASE_FAST_FORWARD_SPEED);
-        }else{
-            playerHandler.increaseScore(playerId, GameConfig.SCORE_INCREASE_NORMAL_SPEED);
-
+            playerHandler.increaseScore(GameConfig.SCORE_INCREASE_FAST_FORWARD_SPEED);
+        } else {
+            playerHandler.increaseScore(GameConfig.SCORE_INCREASE_NORMAL_SPEED);
         }
 
         switch (currentUserInputType) {
