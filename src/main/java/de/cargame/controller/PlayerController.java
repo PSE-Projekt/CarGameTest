@@ -26,4 +26,8 @@ public class PlayerController implements PlayerApi {
     public void setPlayerKeyboard(Player player) {
         playerHandler.setPlayerKeyboard(player);
     }
+
+    public void setPlayerGamepad(Player player) {
+        playerHandler.setPlayerGamepad(player);
+    }
 }

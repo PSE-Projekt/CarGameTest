@@ -23,12 +23,14 @@ public class Player implements UserInputObserver {
     private int lives;
     private boolean isPlaying;
     private CarType carSelection;
+    private boolean isUpperPlayer;
 
-    public Player() {
+    public Player(boolean isUpperPlayer) {
         this.id = UUID.randomUUID().toString();
         this.userInputBundle = new UserInputBundle();
         setDefaultValues();
         this.isPlaying = false;
+        this.isUpperPlayer = isUpperPlayer;
     }
 
     @Override
@@ -45,6 +47,7 @@ public class Player implements UserInputObserver {
         this.userInputBundle.reset();
         this.score = new Score();
         this.lives = GameConfig.MAX_LIVES;
+        this.isPlaying = false;
     }
 
     public void resetScore() {
@@ -70,6 +73,10 @@ public class Player implements UserInputObserver {
 
     public UserInputType getUserInput() {
         return this.userInputBundle.getLatestInput();
+    }
+
+    public boolean isUpperPlayer(){
+        return isUpperPlayer;
     }
 
 }

@@ -35,7 +35,8 @@ public class GameController {
         //createUI();
         testView = new TestView(this);
         initializePlayerKeyboard();
-        dummyStartGame();
+        initializePlayerGamePad();
+        dummyStartGameMultiplayer();
     }
 
     public void startGame() {
@@ -64,27 +65,27 @@ public class GameController {
     }
 
     private String initializePlayerKeyboard() {
-        Player player = new Player();
-        Keyboard keyboard = new Keyboard(player.getId());
-        keyboard.registerObserver(player);
-        playerController.setPlayerKeyboard(player);
+        Player keyboardPlayer = playerHandler.getKeyboardPlayer();
+        String keyboardPlayerId = keyboardPlayer.getId();
+        Keyboard keyboard = new Keyboard(keyboardPlayerId);
+        keyboard.registerObserver(keyboardPlayer);
+        playerController.setPlayerKeyboard(keyboardPlayer);
 
-        player.setPlaying(true);
+        keyboardPlayer.setPlaying(true);
 
-        return player.getId();
+        return keyboardPlayerId;
     }
 
     private String initializePlayerGamePad() {
-        Player player = new Player();
-        GamePad gamepad = new GamePad(player.getId());
-        gamepad.registerObserver(player);
-        playerHandler.setPlayerKeyboard(player);
+        Player gamepadPlayer = playerHandler.getGamepadPlayer();
+        String gamepadPlayerId = gamepadPlayer.getId();
+        GamePad gamePad = new GamePad(gamepadPlayerId);
+        gamePad.registerObserver(gamepadPlayer);
+        playerController.setPlayerGamepad(gamepadPlayer);
 
-        //TODO REMOVE
-        player.setPlaying(true);
-        //TODO REMOVE
+        gamepadPlayer.setPlaying(true);
 
-        return player.getId();
+        return gamepadPlayerId;
     }
 
 
@@ -95,6 +96,21 @@ public class GameController {
         playerHandler.registerPlayerObserver(testView.getjPanel());
 
         gameStateController.setGameMode(GameMode.SINGLEPLAYER);
+        startGame();
+        //TODO REMOVE--------
+    }
+
+    private void dummyStartGameMultiplayer() {
+        //TODO REMOVE--------
+        String playerIdKeyboard = playerHandler.getKeyboardPlayerId();
+        String playerIdGamepad = playerHandler.getGamepadPlayerId();
+
+        playerHandler.setCarSelection(playerIdKeyboard, CarType.AGILE_CAR);
+        playerHandler.setCarSelection(playerIdGamepad, CarType.FAST_CAR);
+
+        playerHandler.registerPlayerObserver(testView.getjPanel());
+
+        gameStateController.setGameMode(GameMode.MULTIPLAYER);
         startGame();
         //TODO REMOVE--------
     }

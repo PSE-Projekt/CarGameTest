@@ -53,6 +53,9 @@ public class GameObjectHandler {
                 break;
             case MULTIPLAYER:
                 gameObjectCreationService.setGameObjectSpawningStrategy(new MultiplayerSpawningStrategy());
+                for (Player player : activeAndAlivePlayers) {
+                    spawnPlayerCar(player.getId(), player.getCarSelection());
+                }
                 break;
         }
         playerHandler.resetScores();
@@ -70,7 +73,6 @@ public class GameObjectHandler {
         moveElements(deltaTime);
         despawnPassedObjects();
         checkCollision();
-        System.out.println(gameObjects.size());
     }
 
     public void moveElements(double deltaTime) {
@@ -92,7 +94,6 @@ public class GameObjectHandler {
                 gameObjectsToRemove.add(gameObject);
             }
         }
-        System.out.println("Remove: "+gameObjectsToRemove.size());
         gameObjects.removeAll(gameObjectsToRemove);
     }
 
@@ -136,7 +137,7 @@ public class GameObjectHandler {
 
 
     public void checkCollision() {
-        List<Collision> collisions = collisionHandler.checkCollision(gameObjects);
+        collisionHandler.checkCollision(gameObjects);
         if (!playerHandler.atLeastOneActivePlayerAlive()) {
             stopGame();
         }

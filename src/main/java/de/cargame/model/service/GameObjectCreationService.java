@@ -7,6 +7,7 @@ import de.cargame.model.entity.gameobject.Dimension;
 import de.cargame.model.entity.gameobject.*;
 import de.cargame.model.entity.gameobject.car.*;
 import de.cargame.model.handler.entity.GameObjectSpawningStrategy;
+import de.cargame.model.handler.entity.SpawnArea;
 import de.cargame.model.handler.entity.SpawnAreaList;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
@@ -25,7 +26,10 @@ public class GameObjectCreationService {
     public PlayerCar createPlayerCar(CarType carType, String playerId) {
         Dimension dimension;
         SpawnAreaList playerSpawnAreas = gameObjectSpawningStrategy.getPlayerSpawnAreas();
-        Coordinate spawnCoordinate = playerSpawnAreas.getRandomCoordinate();
+        SpawnArea spawnArea = playerSpawnAreas.getRandomSpawnArea();
+        playerSpawnAreas.remove(spawnArea);
+        Coordinate spawnCoordinate = spawnArea.getRandomCoordinateInArea();
+
         switch (carType) {
             case FAST_CAR:
                 dimension = new Dimension(GameConfig.FAST_CAR_WIDTH, GameConfig.FAST_CAR_HEIGHT);

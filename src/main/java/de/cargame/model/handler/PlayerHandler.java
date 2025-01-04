@@ -27,8 +27,8 @@ public class PlayerHandler {
     public PlayerHandler() {
         this.playerUpdateNotifyService = new PlayerUpdateNotifyService();
 
-        playerKeyboard = new Player();
-        playerGamepad = new Player();
+        playerKeyboard = new Player(true);
+        playerGamepad = new Player(false);
     }
 
 
@@ -103,8 +103,16 @@ public class PlayerHandler {
         return playerKeyboard.getId();
     }
 
+    public Player getKeyboardPlayer() {
+        return playerKeyboard;
+    }
+
     public String getGamepadPlayerId() {
         return playerGamepad.getId();
+    }
+
+    public Player getGamepadPlayer() {
+        return playerGamepad;
     }
 
     public boolean atLeastOneActivePlayerAlive() {

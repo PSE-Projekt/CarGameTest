@@ -4,11 +4,7 @@ import de.cargame.config.GameConfig;
 
 public class SinglePlayerSpawningStrategy extends GameObjectSpawningStrategy {
 
-
-    private final int PLAYER_SPAWN_X = GameConfig.SCREEN_WIDTH / 5;
-    private final int SCREEN_HALVE_Y = GameConfig.SCREEN_HEIGHT / 2;
     private final int ROADMARK_Y1 = GameConfig.BUILDING_WIDTH + (GameConfig.SCREEN_HEIGHT - 2 * (GameConfig.BUILDING_HEIGHT)) / 3;
-    ;
     private final int ROADMARK_Y2 = ROADMARK_Y1 * 2;
 
     public SinglePlayerSpawningStrategy() {

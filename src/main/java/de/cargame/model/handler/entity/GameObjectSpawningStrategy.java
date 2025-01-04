@@ -1,9 +1,15 @@
 package de.cargame.model.handler.entity;
 
+import de.cargame.config.GameConfig;
 import lombok.Getter;
 
 @Getter
 public abstract class GameObjectSpawningStrategy {
+
+
+    protected final int PLAYER_SPAWN_X = GameConfig.SCREEN_WIDTH / 5;
+    protected final int SCREEN_HALVE_Y = GameConfig.SCREEN_HEIGHT / 2;
+    protected final int SCREEN_QUARTER_Y = SCREEN_HALVE_Y / 2;
 
 
     protected SpawnAreaList buildingSpawnAreas = new SpawnAreaList();
