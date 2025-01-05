@@ -2,6 +2,7 @@ package de.cargame.model.handler;
 
 
 import de.cargame.config.GameConfig;
+import de.cargame.model.service.GameObjectService;
 
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -11,7 +12,7 @@ import java.util.function.Supplier;
 
 public class GameObjectSpawnScheduler {
     private final double fastForwardSpeedFactor = (double) GameConfig.GAME_SPEED / GameConfig.GAME_SPEED_FAST_FORWARD;
-    private GameObjectHandler gameObjectHandler;
+    private GameObjectService gameObjectService;
     private ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor();
     private PlayerHandler playerHandler;
 
@@ -20,8 +21,8 @@ public class GameObjectSpawnScheduler {
     }
 
 
-    public void startSpawning(GameObjectHandler gameObjectHandler) {
-        this.gameObjectHandler = gameObjectHandler;
+    public void startSpawning(GameObjectService gameObjectService) {
+        this.gameObjectService = gameObjectService;
         String playerId = this.playerHandler.getPlayer().getId();
 
         scheduleAICar(playerId);
@@ -33,25 +34,25 @@ public class GameObjectSpawnScheduler {
     }
 
     private void scheduleAICar(String playerId) {
-        scheduleSpawn(() -> () -> gameObjectHandler.spawnAICar(playerId), GameConfig.AI_CAR_SPAWN_TIME_MIN, GameConfig.AI_CAR_SPAWN_TIME_MAX, playerId);
+        scheduleSpawn(() -> () -> gameObjectService.spawnAICar(playerId), GameConfig.AI_CAR_SPAWN_TIME_MIN, GameConfig.AI_CAR_SPAWN_TIME_MAX, playerId);
     }
 
     private void scheduleObstacle(String playerId) {
-        scheduleSpawn(() -> () -> gameObjectHandler.spawnObstacle(playerId), GameConfig.OBSTACLE_SPAWN_TIME_MIN, GameConfig.OBSTACLE_SPAWN_TIME_MAX, playerId);
+        scheduleSpawn(() -> () -> gameObjectService.spawnObstacle(playerId), GameConfig.OBSTACLE_SPAWN_TIME_MIN, GameConfig.OBSTACLE_SPAWN_TIME_MAX, playerId);
     }
 
     private void scheduleReward(String playerId) {
-        scheduleSpawn(() -> () -> gameObjectHandler.spawnReward(playerId), GameConfig.REWARD_SPAWN_TIME_MIN, GameConfig.REWARD_SPAWN_TIME_MAX, playerId);
+        scheduleSpawn(() -> () -> gameObjectService.spawnReward(playerId), GameConfig.REWARD_SPAWN_TIME_MIN, GameConfig.REWARD_SPAWN_TIME_MAX, playerId);
     }
 
     private void scheduleBuilding(String playerId) {
-        scheduleSpawn(() -> () -> gameObjectHandler.spawnBuilding(playerId), GameConfig.BUILDING_SPAWN_TIME_MIN, GameConfig.BUILDING_SPAWN_TIME_MAX, playerId);
+        scheduleSpawn(() -> () -> gameObjectService.spawnBuilding(playerId), GameConfig.BUILDING_SPAWN_TIME_MIN, GameConfig.BUILDING_SPAWN_TIME_MAX, playerId);
     }
 
 
     private void scheduleRoadMark(String playerId) {
         System.out.println("-------------ROAD MARK SPAWN--------------");
-        scheduleSpawn(() -> () -> gameObjectHandler.spawnRoadMarks(playerId), GameConfig.ROAD_MARK_SPAWN_TIME_MIN, GameConfig.ROAD_MARK_SPAWN_TIME_MAX, playerId);
+        scheduleSpawn(() -> () -> gameObjectService.spawnRoadMarks(playerId), GameConfig.ROAD_MARK_SPAWN_TIME_MIN, GameConfig.ROAD_MARK_SPAWN_TIME_MAX, playerId);
     }
 
 

@@ -48,6 +48,10 @@ public class GameInstance implements Runnable {
         System.out.println("leave");
     }
 
+    private void stopGame() {
+        gameObjectController.stopGame();
+    }
+
     public List<GameObject> getAllGameObjects() {
         return gameObjectController.getAllGameObjects();
     }
@@ -56,7 +60,7 @@ public class GameInstance implements Runnable {
         return playerHandler.getScore();
     }
 
-    public String getPlayerId() {
+    public String getPlayingPlayerId() {
         return playerHandler.getPlayer().getId();
     }
 }

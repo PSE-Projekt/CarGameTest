@@ -1,4 +1,4 @@
-package de.cargame.model.handler;
+package de.cargame.model.service;
 
 import de.cargame.controller.GameStateController;
 import de.cargame.controller.entity.GameState;
@@ -6,8 +6,10 @@ import de.cargame.model.entity.gameobject.*;
 import de.cargame.model.entity.gameobject.car.AICar;
 import de.cargame.model.entity.gameobject.car.PlayerCar;
 import de.cargame.model.entity.player.Player;
+import de.cargame.model.handler.CollisionHandler;
+import de.cargame.model.handler.GameObjectSpawnScheduler;
+import de.cargame.model.handler.PlayerHandler;
 import de.cargame.model.handler.entity.SinglePlayerSpawningStrategy;
-import de.cargame.model.service.GameObjectCreationService;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.ArrayList;
@@ -15,7 +17,7 @@ import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 @Slf4j
-public class GameObjectHandler {
+public class GameObjectService {
     private final CollisionHandler collisionHandler;
     private final GameObjectCreationService gameObjectCreationService;
     private final GameStateController gameStateController;
@@ -24,7 +26,7 @@ public class GameObjectHandler {
     private final List<GameObject> gameObjects = new CopyOnWriteArrayList<>();
 
 
-    public GameObjectHandler(GameStateController gameStateController, PlayerHandler playerHandler) {
+    public GameObjectService(GameStateController gameStateController, PlayerHandler playerHandler) {
         this.playerHandler = playerHandler;
         this.gameStateController = gameStateController;
         this.collisionHandler = new CollisionHandler(playerHandler);

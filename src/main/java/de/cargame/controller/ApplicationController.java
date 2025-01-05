@@ -7,7 +7,6 @@ import de.cargame.model.GameInstance;
 import de.cargame.model.entity.gameobject.CarType;
 import de.cargame.model.entity.gameobject.GameObject;
 import de.cargame.model.entity.player.Player;
-import de.cargame.model.handler.PlayerHandler;
 import de.cargame.view.TestView;
 import lombok.extern.slf4j.Slf4j;
 
@@ -71,7 +70,7 @@ public class ApplicationController {
 
         List<GameModelData> gameModels = new ArrayList<>();
         for (GameInstance gameInstance : gameInstances) {
-            String playerId = gameInstance.getPlayerId();
+            String playerId = gameInstance.getPlayingPlayerId();
             List<GameObject> gameObjects = gameInstance.getAllGameObjects();
             gameModels.add(new GameModelData(playerId, gameObjects));
         }

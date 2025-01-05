@@ -2,7 +2,7 @@ package de.cargame.controller;
 
 import de.cargame.api.GameObjectApi;
 import de.cargame.model.entity.gameobject.GameObject;
-import de.cargame.model.handler.GameObjectHandler;
+import de.cargame.model.service.GameObjectService;
 import de.cargame.model.handler.PlayerHandler;
 
 import java.util.List;
@@ -10,28 +10,28 @@ import java.util.List;
 public class GameObjectController implements GameObjectApi {
 
 
-    private GameObjectHandler gameObjectHandler;
+    private GameObjectService gameObjectService;
 
 
     public GameObjectController(GameStateController gameStateController, PlayerHandler playerHandler) {
-        this.gameObjectHandler = new GameObjectHandler(gameStateController, playerHandler);
+        this.gameObjectService = new GameObjectService(gameStateController, playerHandler);
     }
 
     public void startGame() {
-        gameObjectHandler.startGame();
+        gameObjectService.startGame();
     }
 
     public void stopGame() {
-        gameObjectHandler.stopGame();
+        gameObjectService.stopGame();
     }
 
     public List<GameObject> getAllGameObjects() {
-        return gameObjectHandler.getGameAllObjects();
+        return gameObjectService.getGameAllObjects();
     }
 
 
     public void update(double deltaTime) {
-        gameObjectHandler.update(deltaTime);
+        gameObjectService.update(deltaTime);
     }
 
 }
