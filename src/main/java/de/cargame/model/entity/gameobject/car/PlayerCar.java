@@ -1,6 +1,7 @@
 package de.cargame.model.entity.gameobject.car;
 
 import de.cargame.config.GameConfig;
+import de.cargame.controller.input.UserInput;
 import de.cargame.controller.input.UserInputType;
 import de.cargame.model.entity.gameobject.Coordinate;
 import de.cargame.model.entity.gameobject.Dimension;
@@ -8,6 +9,8 @@ import de.cargame.model.entity.gameobject.GameObjectBoundType;
 import de.cargame.model.handler.PlayerHandler;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.util.Optional;
 
 
 @Getter
@@ -19,6 +22,7 @@ public abstract class PlayerCar extends Car {
     private double inertia;
     private long lastCrashTime;
     private PlayerHandler playerHandler;
+    private UserInputType currentUserInput = UserInputType.NONE;
 
     public PlayerCar(Coordinate coordinate, Dimension dimension, GameObjectBoundType gameObjectBoundType, String belongingPlayerId) {
         super(coordinate, dimension, gameObjectBoundType, belongingPlayerId);
@@ -28,7 +32,20 @@ public abstract class PlayerCar extends Car {
 
     @Override
     public void move(double deltaTime, boolean isFastForwarding) {
-        UserInputType currentUserInputType = playerHandler.getCurrentUserInput();
+        Optional<UserInput> currentUserInputType = playerHandler.getCurrentUserInput();
+        UserInputType newUserInput;
+        if(currentUserInputType.isPresent()){
+            UserInput userInput = currentUserInputType.get();
+            boolean inertiaHasBeenElapsed = userInput.timeElapsed(getInertia());
+            if(inertiaHasBeenElapsed){
+                newUserInput = userInput.getUserInputType();
+                currentUserInput = newUserInput;
+            }
+
+        }else {
+            currentUserInput = UserInputType.NONE;
+        }
+
 
         double width = getBound().getBounds().getWidth();
         double height = getBound().getBounds().getHeight();
@@ -42,7 +59,7 @@ public abstract class PlayerCar extends Car {
             playerHandler.increaseScore(GameConfig.SCORE_INCREASE_NORMAL_SPEED);
         }
 
-        switch (currentUserInputType) {
+        switch (currentUserInput) {
             case UP:
                 moveByRespectingGameBoundaries(0, -distance, width, height);
                 break;

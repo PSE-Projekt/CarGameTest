@@ -1,6 +1,6 @@
 package de.cargame.model.handler;
 
-import de.cargame.controller.input.UserInputType;
+import de.cargame.controller.input.UserInput;
 import de.cargame.model.entity.gameobject.CarType;
 import de.cargame.model.entity.gameobject.car.PlayerCar;
 import de.cargame.model.entity.player.Player;
@@ -10,6 +10,8 @@ import de.cargame.model.service.PlayerUpdateNotifyService;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
+
+import java.util.Optional;
 
 
 @Setter
@@ -39,7 +41,7 @@ public class PlayerHandler {
         System.out.println("reset score");
     }
 
-    public UserInputType getCurrentUserInput() {
+    public Optional<UserInput> getCurrentUserInput() {
         return player.getUserInput();
     }
 

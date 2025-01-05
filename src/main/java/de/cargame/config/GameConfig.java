@@ -40,7 +40,7 @@ public abstract class GameConfig {
     public static final int FAST_CAR_WIDTH = 120;
     public static final int FAST_CAR_HEIGHT = 80;
     public static final int FAST_CAR_SPEED = 350;
-    public static final double FAST_CAR_INERTIA = 0.5;
+    public static final double FAST_CAR_INERTIA = 100;
 
     //----------------------FAST CAR-------------------------
     //----------------------AGILE CAR------------------------
@@ -48,7 +48,7 @@ public abstract class GameConfig {
     public static final int AGILE_CAR_WIDTH = 80;
     public static final int AGILE_CAR_HEIGHT = 50;
     public static final int AGILE_CAR_SPEED = 170;
-    public static final double AGILE_CAR_INERTIA = 0.1;
+    public static final double AGILE_CAR_INERTIA = 70;
 
     //----------------------AGILE CAR------------------------
     //----------------------BUILDING------------------------

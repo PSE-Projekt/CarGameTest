@@ -2,6 +2,7 @@ package de.cargame.model.entity.player;
 
 
 import de.cargame.config.GameConfig;
+import de.cargame.controller.input.UserInput;
 import de.cargame.controller.input.UserInputBundle;
 import de.cargame.controller.input.UserInputType;
 import de.cargame.model.entity.gameobject.CarType;
@@ -10,6 +11,7 @@ import de.cargame.model.entity.gameobject.car.PlayerCar;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.Optional;
 import java.util.UUID;
 
 @Getter
@@ -69,7 +71,7 @@ public class Player implements UserInputObserver {
         return this.userInputBundle.isFastForward();
     }
 
-    public UserInputType getUserInput() {
+    public Optional<UserInput> getUserInput() {
         return this.userInputBundle.getLatestInput();
     }
 

@@ -4,6 +4,7 @@ package de.cargame.controller.input;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.net.UnknownServiceException;
 import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.CopyOnWriteArrayList;
@@ -65,7 +66,14 @@ public class UserInputBundle {
     }
 
 
-    public UserInputType getLatestInput() {
+    public Optional<UserInput> getLatestInput() {
+        Optional<UserInput> userInput = userInputs.stream()
+                .filter(input -> input.getUserInputType() != UserInputType.FAST_FORWARD)
+                .min((o1, o2) -> Long.compare(o2.getTime(), o1.getTime()));
+        return userInput;
+    }
+
+    public UserInputType getLatestInput(int inertia) {
         Optional<UserInput> userInput = userInputs.stream()
                 .filter(input -> input.getUserInputType() != UserInputType.FAST_FORWARD)
                 .min((o1, o2) -> Long.compare(o2.getTime(), o1.getTime()));

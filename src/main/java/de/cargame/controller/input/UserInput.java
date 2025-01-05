@@ -16,6 +16,11 @@ public class UserInput {
     }
 
 
+    public boolean timeElapsed(double timeMillis) {
+        return System.currentTimeMillis() - time >= timeMillis;
+    }
+
+
     private void setTime() {
         this.time = System.currentTimeMillis();
     }
