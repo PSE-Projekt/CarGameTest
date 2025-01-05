@@ -39,7 +39,12 @@ public class ApplicationController {
     public void startGame() {
         GameInstance gameInstance = new GameInstance(gameStateController, this, playerKeyboard);
         gameInstances.add(gameInstance);
+        gameInstance.registerUI(testView.getjPanel());
         gameInstance.run();
+    }
+
+    public void initUI(){
+
     }
 
 

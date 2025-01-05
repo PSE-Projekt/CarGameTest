@@ -7,6 +7,7 @@ import de.cargame.controller.GameStateController;
 import de.cargame.controller.entity.GameState;
 import de.cargame.model.entity.gameobject.GameObject;
 import de.cargame.model.entity.player.Player;
+import de.cargame.model.entity.player.PlayerObserver;
 import de.cargame.model.handler.PlayerHandler;
 import lombok.extern.slf4j.Slf4j;
 
@@ -62,5 +63,9 @@ public class GameInstance implements Runnable {
 
     public String getPlayingPlayerId() {
         return playerHandler.getPlayer().getId();
+    }
+
+    public void registerUI(PlayerObserver playerObserver){
+        playerHandler.registerPlayerObserver(playerObserver);
     }
 }

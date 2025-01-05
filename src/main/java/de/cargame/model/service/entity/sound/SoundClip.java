@@ -1,4 +1,4 @@
-package de.cargame.model.service.entity;
+package de.cargame.model.service.entity.sound;
 
 import lombok.Getter;
 

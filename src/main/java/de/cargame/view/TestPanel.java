@@ -66,5 +66,6 @@ public class TestPanel extends JPanel implements PlayerObserver {
         repaint();
         liveLabel.setText("Live : " + playerUpdate.getLives());
         scoreLabel.setText("Score: " + playerUpdate.getScoreValue());
+        System.out.println("dfdf");
     }
 }

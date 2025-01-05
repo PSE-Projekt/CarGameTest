@@ -1,8 +1,6 @@
 package de.cargame.model.service;
 
-import de.cargame.model.service.entity.*;
-
-import javax.sound.sampled.*;
+import de.cargame.model.service.entity.sound.*;
 
 public class SoundService {
 
