@@ -65,7 +65,7 @@ public class GameInstance implements Runnable {
         return playerHandler.getPlayer().getId();
     }
 
-    public void registerUI(PlayerObserver playerObserver){
+    public void registerUI(PlayerObserver playerObserver) {
         playerHandler.registerPlayerObserver(playerObserver);
     }
 }

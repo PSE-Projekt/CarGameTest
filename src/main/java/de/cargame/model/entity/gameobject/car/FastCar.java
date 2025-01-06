@@ -7,8 +7,8 @@ import de.cargame.model.entity.gameobject.GameObjectBoundType;
 
 public class FastCar extends PlayerCar {
 
-    public FastCar(Coordinate coordinate, Dimension dimension, GameObjectBoundType gameObjectBoundType, String belongingPlayerId) {
-        super(coordinate, dimension, gameObjectBoundType, belongingPlayerId);
+    public FastCar(Coordinate coordinate, Dimension dimension, GameObjectBoundType gameObjectBoundType) {
+        super(coordinate, dimension, gameObjectBoundType);
         setSpeed();
         setInertia(GameConfig.FAST_CAR_INERTIA);
     }

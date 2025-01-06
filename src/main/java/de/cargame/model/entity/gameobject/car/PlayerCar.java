@@ -24,8 +24,8 @@ public abstract class PlayerCar extends Car {
     private PlayerHandler playerHandler;
     private UserInputType currentUserInput = UserInputType.NONE;
 
-    public PlayerCar(Coordinate coordinate, Dimension dimension, GameObjectBoundType gameObjectBoundType, String belongingPlayerId) {
-        super(coordinate, dimension, gameObjectBoundType, belongingPlayerId);
+    public PlayerCar(Coordinate coordinate, Dimension dimension, GameObjectBoundType gameObjectBoundType) {
+        super(coordinate, dimension, gameObjectBoundType);
         setPlayerHandler(playerHandler);
     }
 
@@ -34,15 +34,15 @@ public abstract class PlayerCar extends Car {
     public void move(double deltaTime, boolean isFastForwarding) {
         Optional<UserInput> currentUserInputType = playerHandler.getCurrentUserInput();
         UserInputType newUserInput;
-        if(currentUserInputType.isPresent()){
+        if (currentUserInputType.isPresent()) {
             UserInput userInput = currentUserInputType.get();
             boolean inertiaHasBeenElapsed = userInput.timeElapsed(getInertia());
-            if(inertiaHasBeenElapsed){
+            if (inertiaHasBeenElapsed) {
                 newUserInput = userInput.getUserInputType();
                 currentUserInput = newUserInput;
             }
 
-        }else {
+        } else {
             currentUserInput = UserInputType.NONE;
         }
 

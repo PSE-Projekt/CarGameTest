@@ -20,14 +20,13 @@ public abstract class SoundClip {
     }
 
 
-
     protected abstract void setPath();
 
     public void play() {
         new Thread(clip::start).start();
     }
 
-    public void reset(){
+    public void reset() {
         clip.setMicrosecondPosition(0);
     }
 

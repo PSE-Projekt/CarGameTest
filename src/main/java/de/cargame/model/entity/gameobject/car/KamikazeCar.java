@@ -7,8 +7,8 @@ import de.cargame.model.entity.gameobject.GameObjectBoundType;
 
 public class KamikazeCar extends AICar {
 
-    public KamikazeCar(Coordinate coordinate, Dimension dimension, GameObjectBoundType gameObjectBoundType, MovementStrategy movementStrategy, String belongingPlayerId) {
-        super(coordinate, dimension, gameObjectBoundType, movementStrategy, belongingPlayerId);
+    public KamikazeCar(Coordinate coordinate, Dimension dimension, GameObjectBoundType gameObjectBoundType, MovementStrategy movementStrategy) {
+        super(coordinate, dimension, gameObjectBoundType, movementStrategy);
         setSpeed();
         System.out.println("Spawn");
     }

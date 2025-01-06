@@ -4,8 +4,8 @@ import de.cargame.config.GameConfig;
 
 public class Obstacle extends GameObject {
 
-    public Obstacle(Coordinate coordinate, Dimension dimension, GameObjectBoundType gameObjectBoundType, String belongingPlayerId) {
-        super(coordinate, dimension, gameObjectBoundType, belongingPlayerId);
+    public Obstacle(Coordinate coordinate, Dimension dimension, GameObjectBoundType gameObjectBoundType) {
+        super(coordinate, dimension, gameObjectBoundType);
     }
 
     @Override

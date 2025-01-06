@@ -61,7 +61,6 @@ public class GameObjectService {
 
     public void moveElements(double deltaTime) {
         for (GameObject gameObject : gameObjects) {
-            String belongingPlayerId = gameObject.getBelongingPlayerId();
             boolean fastForwarding = playerHandler.isFastForwarding();
             gameObject.move(deltaTime, fastForwarding);
         }

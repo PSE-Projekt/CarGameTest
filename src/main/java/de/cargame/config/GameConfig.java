@@ -37,8 +37,8 @@ public abstract class GameConfig {
     //----------------------AI CAR GENERAL-------------------
     //----------------------FAST CAR-------------------------
 
-    public static final int FAST_CAR_WIDTH = 120;
-    public static final int FAST_CAR_HEIGHT = 80;
+    public static final int FAST_CAR_WIDTH = 90;
+    public static final int FAST_CAR_HEIGHT = 60;
     public static final int FAST_CAR_SPEED = 350;
     public static final double FAST_CAR_INERTIA = 100;
 

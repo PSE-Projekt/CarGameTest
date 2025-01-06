@@ -11,8 +11,8 @@ public abstract class AICar extends Car {
     private MovementStrategy movementStrategy;
 
 
-    public AICar(Coordinate coordinate, Dimension dimension, GameObjectBoundType gameObjectBoundType, MovementStrategy movementStrategy, String belongingPlayerId) {
-        super(coordinate, dimension, gameObjectBoundType, belongingPlayerId);
+    public AICar(Coordinate coordinate, Dimension dimension, GameObjectBoundType gameObjectBoundType, MovementStrategy movementStrategy) {
+        super(coordinate, dimension, gameObjectBoundType);
         this.movementStrategy = movementStrategy;
     }
 

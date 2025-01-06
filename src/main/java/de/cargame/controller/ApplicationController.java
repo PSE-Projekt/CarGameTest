@@ -43,7 +43,7 @@ public class ApplicationController {
         gameInstance.run();
     }
 
-    public void initUI(){
+    public void initUI() {
 
     }
 
@@ -57,7 +57,7 @@ public class ApplicationController {
         Keyboard keyboard = new Keyboard(player.getId());
         keyboard.registerObserver(player);
         player.setPlaying(true);
-        player.setCarSelection(CarType.AGILE_CAR);
+        player.setCarSelection(CarType.FAST_CAR);
 
         return player;
     }

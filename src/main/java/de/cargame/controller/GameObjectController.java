@@ -2,8 +2,8 @@ package de.cargame.controller;
 
 import de.cargame.api.GameObjectApi;
 import de.cargame.model.entity.gameobject.GameObject;
-import de.cargame.model.service.GameObjectService;
 import de.cargame.model.handler.PlayerHandler;
+import de.cargame.model.service.GameObjectService;
 
 import java.util.List;
 

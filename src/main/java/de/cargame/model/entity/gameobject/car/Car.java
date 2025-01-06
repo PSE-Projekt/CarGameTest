@@ -11,8 +11,8 @@ public abstract class Car extends GameObject {
 
     protected double speed;
 
-    public Car(Coordinate coordinate, Dimension dimension, GameObjectBoundType gameObjectBoundType, String belongingPlayerId) {
-        super(coordinate, dimension, gameObjectBoundType, belongingPlayerId);
+    public Car(Coordinate coordinate, Dimension dimension, GameObjectBoundType gameObjectBoundType) {
+        super(coordinate, dimension, gameObjectBoundType);
     }
 
     @Override
