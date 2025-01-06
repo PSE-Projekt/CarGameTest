@@ -38,7 +38,7 @@ public abstract class GameConfig {
     //----------------------FAST CAR-------------------------
 
     public static final int FAST_CAR_WIDTH = 90;
-    public static final int FAST_CAR_HEIGHT = 60;
+    public static final int FAST_CAR_HEIGHT = 45;
     public static final int FAST_CAR_SPEED = 350;
     public static final double FAST_CAR_INERTIA = 100;
 
@@ -46,7 +46,7 @@ public abstract class GameConfig {
     //----------------------AGILE CAR------------------------
 
     public static final int AGILE_CAR_WIDTH = 80;
-    public static final int AGILE_CAR_HEIGHT = 50;
+    public static final int AGILE_CAR_HEIGHT = 36;
     public static final int AGILE_CAR_SPEED = 170;
     public static final double AGILE_CAR_INERTIA = 70;
 
@@ -72,8 +72,8 @@ public abstract class GameConfig {
     //----------------------ROAD MARK-----------------------
     //----------------------OBSTACLE------------------------
 
-    public static final int OBSTACLE_WIDTH = 40;
-    public static final int OBSTACLE_HEIGHT = 40;
+    public static final int OBSTACLE_WIDTH = 100;
+    public static final int OBSTACLE_HEIGHT = 55;
     public static final int OBSTACLE_SPAWN_TIME_MIN = 700;
     public static final int OBSTACLE_SPAWN_TIME_MAX = 1400;
 
@@ -81,10 +81,10 @@ public abstract class GameConfig {
     //----------------------OBSTACLE-----------------------
     //----------------------REWARD-------------------------
 
-    public static final int REWARD_WIDTH = 20;
-    public static final int REWARD_HEIGHT = 20;
-    public static final int REWARD_SPAWN_TIME_MIN = 20000;
-    public static final int REWARD_SPAWN_TIME_MAX = 50000;
+    public static final int REWARD_WIDTH = 52;
+    public static final int REWARD_HEIGHT = 40;
+    public static final int REWARD_SPAWN_TIME_MIN = 400;
+    public static final int REWARD_SPAWN_TIME_MAX = 700;
 
     //----------------------REWARD-------------------------
 
