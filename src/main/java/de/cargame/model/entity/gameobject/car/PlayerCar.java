@@ -76,7 +76,7 @@ public abstract class PlayerCar extends Car {
 
     @Override
     protected void setCollidable() {
-        this.isCollidable = false;
+        this.isCollidable = true;
     }
 
     public boolean hasCrashCooldown() {

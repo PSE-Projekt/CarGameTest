@@ -52,12 +52,12 @@ public abstract class GameConfig {
 
     //----------------------AGILE CAR------------------------
     //----------------------BUILDING------------------------
-    public static final int BUILDING_WIDTH = 50;
-    public static final int BUILDING_HEIGHT = 55;
+    public static final int BUILDING_WIDTH = 60;
+    public static final int BUILDING_HEIGHT = 66;
     /**
      * Pixelcount how wide the spawn area for buildings is
      */
-    public static final int BUILDING_SPAWN_WIDTH = 10;
+    public static final int BUILDING_SPAWN_WIDTH = 15;
     public static final int BUILDING_SPAWN_TIME_MIN = 300;
     public static final int BUILDING_SPAWN_TIME_MAX = 1200;
 
@@ -83,8 +83,8 @@ public abstract class GameConfig {
 
     public static final int REWARD_WIDTH = 52;
     public static final int REWARD_HEIGHT = 40;
-    public static final int REWARD_SPAWN_TIME_MIN = 400;
-    public static final int REWARD_SPAWN_TIME_MAX = 700;
+    public static final int REWARD_SPAWN_TIME_MIN = 20000;
+    public static final int REWARD_SPAWN_TIME_MAX = 50000;
 
     //----------------------REWARD-------------------------
 

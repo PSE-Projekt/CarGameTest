@@ -29,10 +29,11 @@ public class CollisionHandler {
     public List<Collision> checkCollision(List<GameObject> gameObjects) {
         Player player = playerHandler.getPlayer();
         PlayerCar playerCar = player.getPlayerCar();
-        List<GameObject> collidableObjects = gameObjects
+        List<GameObject> collidableObjects = new ArrayList<>(gameObjects
                 .stream()
                 .filter(GameObject::isCollidable)
-                .toList();
+                .toList());
+        collidableObjects.remove(playerCar);
         List<Collision> collisions = new ArrayList<>();
 
 

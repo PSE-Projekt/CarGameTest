@@ -4,14 +4,12 @@ import de.cargame.config.GameConfig;
 import de.cargame.controller.ApplicationController;
 import de.cargame.controller.GameObjectController;
 import de.cargame.controller.GameStateController;
+import de.cargame.controller.entity.GameModelData;
 import de.cargame.controller.entity.GameState;
-import de.cargame.model.entity.gameobject.GameObject;
 import de.cargame.model.entity.player.Player;
 import de.cargame.model.entity.player.PlayerObserver;
 import de.cargame.model.handler.PlayerHandler;
 import lombok.extern.slf4j.Slf4j;
-
-import java.util.List;
 
 @Slf4j
 public class GameInstance implements Runnable {
@@ -53,8 +51,8 @@ public class GameInstance implements Runnable {
         gameObjectController.stopGame();
     }
 
-    public List<GameObject> getAllGameObjects() {
-        return gameObjectController.getAllGameObjects();
+    public GameModelData getGameModelData() {
+        return new GameModelData(getPlayingPlayerId(), gameObjectController.getAllGameObjects());
     }
 
     public double getScore() {

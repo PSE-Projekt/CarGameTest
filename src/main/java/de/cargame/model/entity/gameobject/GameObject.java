@@ -8,6 +8,7 @@ import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 
 import java.awt.*;
+import java.util.UUID;
 
 @Getter
 @Setter
@@ -15,6 +16,7 @@ import java.awt.*;
 public abstract class GameObject implements Collidable, Despawnable {
 
 
+    private final String id = UUID.randomUUID().toString();
     protected GameObjectBound gameObjectBound;
     protected boolean isStatic;
     protected boolean isDespawnable;
