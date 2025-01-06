@@ -90,27 +90,27 @@ public class GameObjectService {
     }
 
     public void spawnBuilding(String playerId) {
-        List<Building> building = gameObjectCreationService.createBuildings(playerId);
+        List<Building> building = gameObjectCreationService.createBuildings();
         gameObjects.addAll(building);
     }
 
     public void spawnRoadMarks(String playerId) {
-        List<RoadMark> roadMark = gameObjectCreationService.createRoadMark(playerId);
+        List<RoadMark> roadMark = gameObjectCreationService.createRoadMark();
         gameObjects.addAll(roadMark);
     }
 
     public void spawnObstacle(String playerId) {
-        List<Obstacle> obstacle = gameObjectCreationService.createObstacle(playerId);
+        List<Obstacle> obstacle = gameObjectCreationService.createObstacle();
         gameObjects.addAll(obstacle);
     }
 
     public void spawnReward(String playerId) {
-        Reward reward = gameObjectCreationService.createReward(playerId);
+        Reward reward = gameObjectCreationService.createReward();
         gameObjects.add(reward);
     }
 
     public void spawnAICar(String playerId) {
-        AICar aiCar = gameObjectCreationService.createAICar(playerId);
+        AICar aiCar = gameObjectCreationService.createAICar();
         gameObjects.add(aiCar);
     }
 
