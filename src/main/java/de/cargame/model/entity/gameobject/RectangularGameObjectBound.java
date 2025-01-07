@@ -2,6 +2,17 @@ package de.cargame.model.entity.gameobject;
 
 import java.awt.*;
 
+
+
+/**
+ * Represents a rectangular boundary for a game object within the game world.
+ * This class extends the {@code GameObjectBound} class and defines the spatial boundaries
+ * in the form of a rectangle. It uses a {@code Dimension} object to specify the width
+ * and height of the boundary.
+ * <p>
+ * This boundary can be manipulated by moving its position and can be retrieved
+ * as a {@code Shape} object.
+ */
 public class RectangularGameObjectBound extends GameObjectBound {
     private final Dimension dimension;
 

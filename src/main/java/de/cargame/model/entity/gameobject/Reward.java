@@ -4,6 +4,15 @@ import de.cargame.config.GameConfig;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * Represents an abstract base class for rewards in the game.
+ * <p>
+ * Rewards are collectible game objects that provide certain benefits or effects
+ * to the player when collected. This class extends the {@code GameObject} class,
+ * inheriting its fundamental properties such as position, dimensions, boundaries,
+ * and movement. The class also introduces specific reward-related behavior.
+
+ */
 @Getter
 @Setter
 public abstract class Reward extends GameObject {

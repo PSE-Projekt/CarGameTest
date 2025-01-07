@@ -10,6 +10,24 @@ import lombok.extern.slf4j.Slf4j;
 import java.awt.*;
 import java.util.UUID;
 
+
+
+/**
+ * Represents an abstract base class for all game objects within the game world.
+ * Each GameObject has a unique identifier, a boundary definition, and configurable
+ * attributes such as whether it is static, collidable, or despawnable.
+ * <p>
+ * Responsibilities of this class include:
+ * - Handling positional movement.
+ * - Managing boundary constraints within the game world.
+ * - Providing a blueprint for collision, despawning, and static behavior via abstract methods.
+ * <p>
+ * This class implements the {@link Collidable} and {@link Despawnable} interfaces to determine
+ * whether the object can collide with other objects and/or be removed from the game world.
+ * <p>
+ * Subclasses must implement abstract methods to define specific behavior for
+ * setting static, despawnable, and collidable properties, as well as movement logic.
+ */
 @Getter
 @Setter
 @Slf4j

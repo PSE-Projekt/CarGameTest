@@ -5,6 +5,14 @@ import de.cargame.model.entity.gameobject.Coordinate;
 import de.cargame.model.entity.gameobject.Dimension;
 import de.cargame.model.entity.gameobject.GameObjectBoundType;
 
+/**
+ * Represents a type of player-controlled car with enhanced speed capabilities.
+ * The FastCar class extends the PlayerCar class, providing specific attributes
+ * and behaviors relevant to a high-speed / high-inertia car.
+ * <p>
+ * The FastCar is designed to offer faster movement speed
+ * with slower inertia than a standard player car.
+ */
 public class FastCar extends PlayerCar {
 
     public FastCar(Coordinate coordinate, Dimension dimension, GameObjectBoundType gameObjectBoundType) {

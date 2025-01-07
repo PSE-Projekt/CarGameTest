@@ -13,6 +13,17 @@ import lombok.Setter;
 import java.util.Optional;
 import java.util.UUID;
 
+/**
+ * The Player class represents a player within the game and their associated state.
+ * It encapsulates various properties such as player ID, score, lives, and input handling.
+ * <p>
+ * The Player class implements the `UserInputObserver` interface, allowing it to
+ * observe and react to updates in user inputs. The main responsibilities of this class include:
+ * <p>
+ * - Managing the player's score, lives, and playing state.
+ * - Handling player-specific game mechanics such as updating inputs and fast-forwarding.
+ * - Resetting or initializing the player to a default state when required.
+ */
 @Getter
 @Setter
 public class Player implements UserInputObserver {
