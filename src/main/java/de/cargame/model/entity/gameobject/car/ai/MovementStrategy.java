@@ -2,7 +2,7 @@ package de.cargame.model.entity.gameobject.car.ai;
 
 import de.cargame.model.entity.gameobject.Coordinate;
 
-public abstract class MovementStrategy {
+public abstract class MovementStrategy implements AICarMovementStrategy{
 
     protected Coordinate targetPos;
     protected final Coordinate gameObjectSpawnCoordinate;
@@ -13,6 +13,7 @@ public abstract class MovementStrategy {
         calcTargetPos();
     }
 
+    @Override
     public abstract void calcTargetPos();
 
 

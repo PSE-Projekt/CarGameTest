@@ -5,8 +5,9 @@ import de.cargame.model.entity.gameobject.Coordinate;
 public class StraightMovementStrategy extends MovementStrategy {
 
     public StraightMovementStrategy(Coordinate gameObjectSpawnCoordinate) {
-        super(gameObjectSpawnCoordinate);
+        super( gameObjectSpawnCoordinate);
     }
+
 
     @Override
     public void calcTargetPos() {

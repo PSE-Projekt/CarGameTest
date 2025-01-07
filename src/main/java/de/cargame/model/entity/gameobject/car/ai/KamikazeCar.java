@@ -7,7 +7,7 @@ import de.cargame.model.entity.gameobject.GameObjectBoundType;
 
 public class KamikazeCar extends AICar {
 
-    public KamikazeCar(Coordinate coordinate, Dimension dimension, GameObjectBoundType gameObjectBoundType, MovementStrategy movementStrategy) {
+    public KamikazeCar(Coordinate coordinate, Dimension dimension, GameObjectBoundType gameObjectBoundType, AICarMovementStrategy movementStrategy) {
         super(coordinate, dimension, gameObjectBoundType, movementStrategy);
         setSpeed();
         System.out.println("Spawn");
@@ -17,7 +17,7 @@ public class KamikazeCar extends AICar {
      * Moves the KamikazeCar instance based on its speed, direction, and movement strategy.
      * The movement is influenced by the provided time delta and whether the game is in
      * fast-forward mode. The movement is calculated towards the target position provided
-     * by the associated {@link MovementStrategy}.
+     * by the associated {@link AICarMovementStrategy}.
      *
      * @param deltaTime The elapsed time since the last movement update, used to calculate
      *                  the distance the car should move.
@@ -32,7 +32,7 @@ public class KamikazeCar extends AICar {
         } else {
             aiCarSpeed = getSpeed() * GameConfig.GAME_SPEED;
         }
-        MovementStrategy movementStrategy = getMovementStrategy();
+        AICarMovementStrategy movementStrategy = getMovementStrategy();
 
         double deltaX = movementStrategy.getTargetPosX() - getX();
         double deltaY = movementStrategy.getTargetPosY() - getY();
