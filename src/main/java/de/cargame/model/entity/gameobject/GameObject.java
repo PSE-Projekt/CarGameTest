@@ -80,6 +80,17 @@ public abstract class GameObject implements Collidable, Despawnable {
     }
 
 
+
+    /**
+     * Moves the game object by specified amounts in the x and y directions while ensuring
+     * the object remains within the boundaries of the game screen. If the object moves
+     * outside the screen, its position is reverted to the previous location.
+     *
+     * @param xAmount The amount to move the object along the x-axis.
+     * @param yAmount The amount to move the object along the y-axis.
+     * @param objectWidth The width of the object being moved.
+     * @param objectHeight The height of the object being moved.
+     */
     protected void moveByRespectingGameBoundaries(double xAmount, double yAmount, double objectWidth, double objectHeight) {
         double xOld = gameObjectBound.getCoordinate().getX();
         double yOld = gameObjectBound.getCoordinate().getY();
