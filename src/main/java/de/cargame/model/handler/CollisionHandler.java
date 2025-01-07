@@ -72,6 +72,7 @@ public class CollisionHandler {
     private void handleCollision(PlayerCar playerCar, GameObject collisionObject) {
         if (collisionObject instanceof Reward reward) {
             handleCollisionReward(reward);
+            return;
         }
         handleCollisionCrash(playerCar);
     }

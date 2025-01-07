@@ -83,8 +83,8 @@ public abstract class GameConfig {
 
     public static final int REWARD_WIDTH = 52;
     public static final int REWARD_HEIGHT = 40;
-    public static final int REWARD_SPAWN_TIME_MIN = 20000;
-    public static final int REWARD_SPAWN_TIME_MAX = 50000;
+    public static final int REWARD_SPAWN_TIME_MIN = 200;
+    public static final int REWARD_SPAWN_TIME_MAX = 1000;
 
     //----------------------REWARD-------------------------
 
