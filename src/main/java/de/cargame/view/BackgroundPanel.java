@@ -4,6 +4,7 @@ import de.cargame.model.entity.gameobject.GameObject;
 
 import java.awt.*;
 import java.util.List;
+import java.util.function.Predicate;
 
 public class BackgroundPanel extends GamePanel {
 
@@ -26,7 +27,7 @@ public class BackgroundPanel extends GamePanel {
         List<GameObject> gameObjects = gameModelData.getGameObjects();
         List<GameObject> backgroundElements = gameObjects
                 .stream()
-                .filter(GameObject::isCollidable)
+                .filter(Predicate.not(GameObject::isCollidable))
                 .toList();
         paintGameObjects(backgroundElements, g2d);
 

@@ -1,8 +1,6 @@
 package de.cargame.controller;
 
 import de.cargame.controller.entity.GameModelData;
-import de.cargame.controller.input.GamePad;
-import de.cargame.controller.input.Keyboard;
 import de.cargame.model.GameInstance;
 import de.cargame.model.entity.gameobject.car.player.CarType;
 import de.cargame.model.entity.player.Player;

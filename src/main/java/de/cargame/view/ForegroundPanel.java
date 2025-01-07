@@ -13,11 +13,16 @@ public class ForegroundPanel extends GamePanel implements PlayerObserver {
 
     private JLabel liveLabel;
     private JLabel scoreLabel;
+    private JComponent labelComponent;
 
 
     public ForegroundPanel() {
-        liveLabel = new JLabel("", SwingConstants.LEFT);
-        scoreLabel = new JLabel("", SwingConstants.RIGHT);
+
+        initLabels();
+        labelComponent.add(liveLabel);
+        labelComponent.add(scoreLabel);
+
+        add(labelComponent, BorderLayout.NORTH);
         setOpaque(false);
     }
 
@@ -35,7 +40,7 @@ public class ForegroundPanel extends GamePanel implements PlayerObserver {
 
         List<GameObject> foregroundElements = gameObjects
                 .stream()
-                .filter(Predicate.not(GameObject::isCollidable))
+                .filter(GameObject::isCollidable)
                 .toList();
         paintGameObjects(foregroundElements, g2d);
     }
@@ -44,8 +49,26 @@ public class ForegroundPanel extends GamePanel implements PlayerObserver {
     @Override
     public void update(PlayerUpdate playerUpdate) {
         repaint();
-        liveLabel.setText("Live : " + playerUpdate.getLives());
+        liveLabel.setText("Live(s) : " + playerUpdate.getLives());
         scoreLabel.setText("Score: " + playerUpdate.getScoreValue());
+    }
+
+
+
+    private void initLabels() {
+
+        labelComponent = new JPanel();
+        labelComponent.setBackground(Color.WHITE);
+        labelComponent.setOpaque(true);
+        labelComponent.setVisible(true);
+
+        liveLabel = new JLabel("", SwingConstants.LEFT);
+        liveLabel.setBackground(Color.WHITE);
+        liveLabel.setOpaque(true);
+
+        scoreLabel = new JLabel("", SwingConstants.RIGHT);
+        scoreLabel.setBackground(Color.WHITE);
+        scoreLabel.setOpaque(true);
     }
 
 }

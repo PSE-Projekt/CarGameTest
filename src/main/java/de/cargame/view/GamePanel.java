@@ -50,7 +50,11 @@ public abstract class GamePanel extends JPanel {
             Shape bounds = gameObject.getBound();
             String gameObjectId = gameObject.getId();
 
-            if (gameObject instanceof AICar) {
+
+            if (gameObject instanceof RoadMark) {
+                g2d.setColor(Color.GRAY);
+                g2d.fill(bounds);
+            } else if (gameObject instanceof AICar) {
                 drawImage(g2d, kamikazeCarImage.getRandomImage(gameObjectId), x, y, width, height);
             } else if (gameObject instanceof Obstacle) {
                 drawImage(g2d, obstacleImage.getRandomImage(gameObjectId), x, y, width, height);
@@ -61,11 +65,7 @@ public abstract class GamePanel extends JPanel {
             } else if (gameObject instanceof Building) {
                 drawImage(g2d, buildingImage.getRandomImage(gameObjectId), x, y, width, height);
 
-            } else if (gameObject instanceof RoadMark) {
-                g2d.setColor(Color.GRAY);
             }
-            g2d.fill(bounds);
-            g2d.setColor(new Color(0f, 0f, 0f, 0f));
             if (gameObject instanceof PlayerCar playerCar) {
                 if (playerCar instanceof AgileCar) {
                     drawImage(g2d, agileCarImages.getRandomImage(gameObjectId), x, y, width, height);
