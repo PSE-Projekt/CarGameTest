@@ -1,7 +1,7 @@
 package de.cargame.controller.input;
 
 
-import de.cargame.model.entity.gameobject.UserInputObserver;
+import de.cargame.model.entity.gameobject.interfaces.UserInputObserver;
 
 public interface UserInputObservable {
 

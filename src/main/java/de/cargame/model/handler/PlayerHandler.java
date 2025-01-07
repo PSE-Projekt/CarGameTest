@@ -1,8 +1,8 @@
 package de.cargame.model.handler;
 
 import de.cargame.controller.input.UserInput;
-import de.cargame.model.entity.gameobject.CarType;
-import de.cargame.model.entity.gameobject.car.PlayerCar;
+import de.cargame.model.entity.gameobject.car.player.CarType;
+import de.cargame.model.entity.gameobject.car.player.PlayerCar;
 import de.cargame.model.entity.player.Player;
 import de.cargame.model.entity.player.PlayerObserver;
 import de.cargame.model.entity.player.PlayerUpdate;

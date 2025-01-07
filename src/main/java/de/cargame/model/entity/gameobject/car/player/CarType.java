@@ -1,4 +1,4 @@
-package de.cargame.model.entity.gameobject;
+package de.cargame.model.entity.gameobject.car.player;
 
 public enum CarType {
 

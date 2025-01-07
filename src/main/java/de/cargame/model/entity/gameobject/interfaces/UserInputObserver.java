@@ -1,4 +1,4 @@
-package de.cargame.model.entity.gameobject;
+package de.cargame.model.entity.gameobject.interfaces;
 
 
 import de.cargame.controller.input.UserInputBundle;

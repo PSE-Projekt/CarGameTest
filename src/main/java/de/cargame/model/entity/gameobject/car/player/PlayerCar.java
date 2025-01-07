@@ -1,4 +1,4 @@
-package de.cargame.model.entity.gameobject.car;
+package de.cargame.model.entity.gameobject.car.player;
 
 import de.cargame.config.GameConfig;
 import de.cargame.controller.input.UserInput;
@@ -6,6 +6,7 @@ import de.cargame.controller.input.UserInputType;
 import de.cargame.model.entity.gameobject.Coordinate;
 import de.cargame.model.entity.gameobject.Dimension;
 import de.cargame.model.entity.gameobject.GameObjectBoundType;
+import de.cargame.model.entity.gameobject.car.Car;
 import de.cargame.model.handler.PlayerHandler;
 import lombok.Getter;
 import lombok.Setter;

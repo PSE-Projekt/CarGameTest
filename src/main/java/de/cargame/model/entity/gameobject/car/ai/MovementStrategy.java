@@ -1,4 +1,4 @@
-package de.cargame.model.entity.gameobject.car;
+package de.cargame.model.entity.gameobject.car.ai;
 
 import de.cargame.model.entity.gameobject.Coordinate;
 

@@ -6,7 +6,7 @@ import de.cargame.model.entity.collision.CollisionType;
 import de.cargame.model.entity.gameobject.GameObject;
 import de.cargame.model.entity.gameobject.Life;
 import de.cargame.model.entity.gameobject.Reward;
-import de.cargame.model.entity.gameobject.car.PlayerCar;
+import de.cargame.model.entity.gameobject.car.player.PlayerCar;
 import de.cargame.model.entity.player.Player;
 import de.cargame.model.service.SoundService;
 

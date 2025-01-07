@@ -3,7 +3,7 @@ package de.cargame.controller.input;
 import com.github.kwhat.jnativehook.GlobalScreen;
 import com.github.kwhat.jnativehook.keyboard.NativeKeyEvent;
 import com.github.kwhat.jnativehook.keyboard.NativeKeyListener;
-import de.cargame.model.entity.gameobject.UserInputObserver;
+import de.cargame.model.entity.gameobject.interfaces.UserInputObserver;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,7 +13,6 @@ public class Keyboard extends InputDevice implements NativeKeyListener {
 
     private final UserInputBundle userInputBundle = new UserInputBundle();
     private final List<UserInputObserver> userInputObservers;
-    private int newestInput;
 
     public Keyboard(String playerId) {
         super(playerId);

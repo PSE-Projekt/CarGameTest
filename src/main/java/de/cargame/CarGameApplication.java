@@ -11,6 +11,16 @@ public class CarGameApplication {
     private static ApplicationController applicationController;
 
     public static void main(String[] args) {
+        // Set java.library.path to include the extracted native libraries
+        System.setProperty("java.library.path", "target/natives");
+
+        // Force JVM to reload the library path
+        try {
+            System.setProperty("jna.library.path", "target/natives");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         try {
             GlobalScreen.registerNativeHook();
         } catch (NativeHookException e) {

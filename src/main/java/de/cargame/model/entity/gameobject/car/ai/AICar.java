@@ -1,8 +1,9 @@
-package de.cargame.model.entity.gameobject.car;
+package de.cargame.model.entity.gameobject.car.ai;
 
 import de.cargame.model.entity.gameobject.Coordinate;
 import de.cargame.model.entity.gameobject.Dimension;
 import de.cargame.model.entity.gameobject.GameObjectBoundType;
+import de.cargame.model.entity.gameobject.car.Car;
 import lombok.Getter;
 
 public abstract class AICar extends Car {

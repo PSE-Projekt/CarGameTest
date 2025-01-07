@@ -4,7 +4,7 @@ import de.cargame.controller.entity.GameModelData;
 import de.cargame.controller.input.GamePad;
 import de.cargame.controller.input.Keyboard;
 import de.cargame.model.GameInstance;
-import de.cargame.model.entity.gameobject.CarType;
+import de.cargame.model.entity.gameobject.car.player.CarType;
 import de.cargame.model.entity.player.Player;
 import de.cargame.view.TestView;
 import lombok.extern.slf4j.Slf4j;
@@ -20,8 +20,10 @@ public class ApplicationController {
     private final GameStateController gameStateController = new GameStateController();
     private List<GameInstance> gameInstances = new CopyOnWriteArrayList<>();
 
+    private InputController inputController = new InputController();
+
     private Player playerKeyboard = initializePlayerKeyboard();
-    private Player playerGamePad = initializePlayerGamePad();
+    //private Player playerGamePad = initializePlayerGamePad();
 
     private TestView testView;
 
@@ -30,10 +32,16 @@ public class ApplicationController {
     }
 
     private void run() {
-        //createUI();
-        testView = new TestView();
+        initUI();
+
+        //TODO REMOVE
+        dummyChangesToMakeThisShitWork();
+        //TODO REMOVE
+
         startGame();
     }
+
+
 
     public void startGame() {
         GameInstance gameInstance = new GameInstance(gameStateController, this, playerKeyboard);
@@ -43,7 +51,7 @@ public class ApplicationController {
     }
 
     public void initUI() {
-
+        testView = new TestView();
     }
 
 
@@ -53,19 +61,16 @@ public class ApplicationController {
 
     private Player initializePlayerKeyboard() {
         Player player = new Player();
-        Keyboard keyboard = new Keyboard(player.getId());
-        keyboard.registerObserver(player);
-        player.setPlaying(true);
-        player.setCarSelection(CarType.FAST_CAR);
+        inputController.initKeyboard(player.getId());
+        inputController.registerKeyboardObserver(player);
 
         return player;
     }
 
     private Player initializePlayerGamePad() {
         Player player = new Player();
-        GamePad gamePad = new GamePad(player.getId());
-        gamePad.registerObserver(player);
-        player.setPlaying(true);
+        inputController.initGamepad(player.getId());
+        inputController.registerGamePadObserver(player);
 
         return player;
     }
@@ -78,5 +83,12 @@ public class ApplicationController {
             gameModels.add(gameModelData);
         }
         return gameModels;
+    }
+
+
+    //TODO REMOVE
+    private void dummyChangesToMakeThisShitWork() {
+        playerKeyboard.setPlaying(true);
+        playerKeyboard.setCarSelection(CarType.FAST_CAR);
     }
 }

@@ -29,9 +29,7 @@ public abstract class GameImages {
         }
     }
 
-
     protected abstract void setPaths();
-
 
     public BufferedImage getRandomImage(String seed) {
         return images.get(Math.abs(seed.hashCode() % images.size()));
