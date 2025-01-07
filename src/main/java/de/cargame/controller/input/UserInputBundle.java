@@ -26,6 +26,13 @@ public class UserInputBundle {
         this.fastForward = false;
     }
 
+    /**
+     * Adds a user input to the input bundle. If the input type is {@code UserInputType.FAST_FORWARD},
+     * the fast-forward mode is enabled. If the input type is not currently in the list of user inputs,
+     * it is added. The placeholder input type {@code USER_INPUT_NONE} is removed before processing.
+     *
+     * @param userInputType the type of user input to be added
+     */
     public void addUserInput(UserInputType userInputType) {
         UserInput userInput = new UserInput(userInputType);
         userInputs.remove(USER_INPUT_NONE);
@@ -34,13 +41,19 @@ public class UserInputBundle {
             fastForward = true;
         } else {
             if (!userInputs.contains(userInput)) {
-                System.out.println("ADD USER INPUT: " + userInputType);
-                System.out.println(userInputs.size());
                 this.userInputs.add(userInput);
             }
         }
     }
 
+
+    /**
+     * Removes a user input from the input bundle. If the provided user input type is
+     * {@code UserInputType.FAST_FORWARD}, it disables the fast-forward mode. For other input types,
+     * it searches the list of user inputs and removes the first occurrence of the specified type.
+     *
+     * @param userInputType the type of user input to be removed
+     */
     public void removeUserInput(UserInputType userInputType) {
 
         if (userInputType.equals(UserInputType.FAST_FORWARD)) {
@@ -48,11 +61,9 @@ public class UserInputBundle {
         } else {
             userInputs.stream()
                     .filter(input -> input.getUserInputType().equals(userInputType))
-                    .findFirst()
+                    .findAny()
                     .ifPresent(this.userInputs::remove);
         }
-        System.out.println("Fast Forward: " + fastForward);
-
     }
 
 
@@ -61,6 +72,15 @@ public class UserInputBundle {
     }
 
 
+
+    /**
+     * Retrieves the most recent user input from the list of user inputs, excluding any inputs of type
+     * {@code UserInputType.FAST_FORWARD}. The method determines the latest input based on the
+     * time associated with each {@code UserInput}, returning the one with the most recent timestamp.
+     *
+     * @return an {@code Optional} containing the latest {@code UserInput} if available, or an empty
+     * {@code Optional} if no applicable user inputs are present.
+     */
     public Optional<UserInput> getLatestInput() {
         return userInputs.stream()
                 .filter(input -> input.getUserInputType() != UserInputType.FAST_FORWARD)

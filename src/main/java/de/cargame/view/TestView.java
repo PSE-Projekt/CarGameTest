@@ -1,7 +1,10 @@
 package de.cargame.view;
 
 import de.cargame.config.GameConfig;
+import de.cargame.controller.GameStateController;
+import de.cargame.controller.api.GameStateAPI;
 import de.cargame.controller.entity.GameModelData;
+import de.cargame.controller.entity.GameState;
 import de.cargame.model.GameInstance;
 import de.cargame.model.entity.player.PlayerObserver;
 
@@ -16,8 +19,13 @@ public class TestView extends JFrame {
 
     private final JLayeredPane layeredPane = new JLayeredPane();
 
-    public TestView() {
+    GameStateController gameStateController;
+
+    public TestView(GameStateAPI gameStateController) {
         // JFrame-Größe festlegen
+
+
+        this.gameStateController = (GameStateController) gameStateController;
         setSize(GameConfig.SCREEN_WIDTH, GameConfig.SCREEN_HEIGHT);
         setPreferredSize(new Dimension(GameConfig.SCREEN_WIDTH, GameConfig.SCREEN_HEIGHT));
         setMinimumSize(new Dimension(GameConfig.SCREEN_WIDTH, GameConfig.SCREEN_HEIGHT));
@@ -54,4 +62,5 @@ public class TestView extends JFrame {
         backgroundPanel.render(gameModelData);
         foregroundPanel.render(gameModelData);
     }
+
 }

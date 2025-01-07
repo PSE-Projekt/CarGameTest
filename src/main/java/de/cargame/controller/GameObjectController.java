@@ -1,7 +1,7 @@
 package de.cargame.controller;
 
-import de.cargame.api.GameObjectAPI;
-import de.cargame.api.GameStateAPI;
+import de.cargame.controller.api.GameObjectAPI;
+import de.cargame.controller.api.GameStateAPI;
 import de.cargame.model.entity.gameobject.GameObject;
 import de.cargame.model.handler.PlayerHandler;
 import de.cargame.model.service.GameObjectService;

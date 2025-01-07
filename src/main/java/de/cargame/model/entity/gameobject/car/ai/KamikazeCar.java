@@ -13,6 +13,17 @@ public class KamikazeCar extends AICar {
         System.out.println("Spawn");
     }
 
+    /**
+     * Moves the KamikazeCar instance based on its speed, direction, and movement strategy.
+     * The movement is influenced by the provided time delta and whether the game is in
+     * fast-forward mode. The movement is calculated towards the target position provided
+     * by the associated {@link MovementStrategy}.
+     *
+     * @param deltaTime The elapsed time since the last movement update, used to calculate
+     *                  the distance the car should move.
+     * @param isFastForwarding A flag indicating whether the game is running in fast-forward
+     *                         mode, affecting the speed of the car accordingly.
+     */
     @Override
     public void move(double deltaTime, boolean isFastForwarding) {
         double aiCarSpeed;
@@ -27,18 +38,14 @@ public class KamikazeCar extends AICar {
         double deltaY = movementStrategy.getTargetPosY() - getY();
         double distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
 
-        if (distance > 0) {
+        double directionX = deltaX / distance;
+        double directionY = deltaY / distance;
 
-            double directionX = deltaX / distance;
-            double directionY = deltaY / distance;
+        double moveX = directionX * getSpeed() * deltaTime * aiCarSpeed;
+        double moveY = directionY * getSpeed() * deltaTime * aiCarSpeed;
 
-            double moveX = directionX * getSpeed() * deltaTime * aiCarSpeed;
-            double moveY = directionY * getSpeed() * deltaTime * aiCarSpeed;
+        moveBy(moveX, moveY);
 
-            moveBy(moveX, moveY);
-        } else {
-            movementStrategy.calcTargetPos();
-        }
     }
 
 

@@ -48,7 +48,7 @@ public class Keyboard extends InputDevice implements NativeKeyListener {
             notifyObservers(userInputBundle);
         }
 
-        //NO VALID INPUT
+        //NO VALID INPUT -> ignored
     }
 
     @Override

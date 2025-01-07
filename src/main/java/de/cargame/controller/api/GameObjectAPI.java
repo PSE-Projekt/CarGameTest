@@ -1,4 +1,4 @@
-package de.cargame.api;
+package de.cargame.controller.api;
 
 import de.cargame.model.entity.gameobject.GameObject;
 

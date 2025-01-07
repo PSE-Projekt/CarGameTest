@@ -1,6 +1,6 @@
 package de.cargame.model;
 
-import de.cargame.api.GameStateAPI;
+import de.cargame.controller.api.GameStateAPI;
 import de.cargame.config.GameConfig;
 import de.cargame.controller.ApplicationController;
 import de.cargame.controller.GameObjectController;

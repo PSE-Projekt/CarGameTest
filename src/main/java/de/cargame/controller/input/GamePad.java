@@ -7,6 +7,11 @@ import net.java.games.input.ControllerEnvironment;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
+/**
+ * Represents a gamepad input device. This class extends the {@code InputDevice} class
+ * and implements functionality specific to handling gamepad inputs. It supports the
+ * observer pattern for notifying registered observers about user input events.
+ */
 public class GamePad extends InputDevice {
 
     private final List<UserInputObserver> userInputObserverList = new CopyOnWriteArrayList<>();

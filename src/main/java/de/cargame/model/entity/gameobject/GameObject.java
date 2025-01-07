@@ -3,7 +3,9 @@ package de.cargame.model.entity.gameobject;
 import de.cargame.config.GameConfig;
 import de.cargame.model.entity.gameobject.interfaces.Collidable;
 import de.cargame.model.entity.gameobject.interfaces.Despawnable;
+import lombok.Data;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 
@@ -32,6 +34,7 @@ import java.util.UUID;
 @Setter
 @Slf4j
 public abstract class GameObject implements Collidable, Despawnable {
+
 
 
     private final String id = UUID.randomUUID().toString();
@@ -75,6 +78,14 @@ public abstract class GameObject implements Collidable, Despawnable {
 
     public abstract void move(double deltaTime, boolean isFastForwarding);
 
+    /**
+     * Moves the current object by the specified amounts along the x and y axes.
+     * This method delegates the movement to the underlying {@code gameObjectBound} object
+     * associated with this instance.
+     *
+     * @param xAmount The amount by which to move the object along the x-axis.
+     * @param yAmount The amount by which to move the object along the y-axis.
+     */
     protected void moveBy(double xAmount, double yAmount) {
         gameObjectBound.moveBy(xAmount, yAmount);
     }

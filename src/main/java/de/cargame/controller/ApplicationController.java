@@ -1,6 +1,6 @@
 package de.cargame.controller;
 
-import de.cargame.api.GameStateAPI;
+import de.cargame.controller.api.GameStateAPI;
 import de.cargame.controller.entity.GameMode;
 import de.cargame.controller.entity.GameModelData;
 import de.cargame.controller.entity.GameState;
@@ -24,7 +24,7 @@ public class ApplicationController {
     private final InputController inputController = new InputController();
 
     private final Player playerKeyboard = initializePlayerKeyboard();
-    //private Player playerGamePad = initializePlayerGamePad();
+    private Player playerGamePad = initializePlayerGamePad();
 
     private TestView testView;
 
@@ -61,7 +61,7 @@ public class ApplicationController {
     }
 
     public void initUI() {
-        testView = new TestView();
+        testView = new TestView(gameStateController);
     }
 
 
