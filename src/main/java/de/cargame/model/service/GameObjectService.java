@@ -1,6 +1,7 @@
 package de.cargame.model.service;
 
-import de.cargame.controller.GameStateController;
+import de.cargame.api.GameStateAPI;
+import de.cargame.controller.entity.GameMode;
 import de.cargame.controller.entity.GameState;
 import de.cargame.model.entity.gameobject.*;
 import de.cargame.model.entity.gameobject.car.ai.AICar;
@@ -10,6 +11,7 @@ import de.cargame.model.entity.player.Player;
 import de.cargame.model.handler.CollisionHandler;
 import de.cargame.model.handler.GameObjectSpawnScheduler;
 import de.cargame.model.handler.PlayerHandler;
+import de.cargame.model.handler.entity.MultiplayerSpawningStrategy;
 import de.cargame.model.handler.entity.SinglePlayerSpawningStrategy;
 import lombok.extern.slf4j.Slf4j;
 
@@ -21,13 +23,13 @@ import java.util.concurrent.CopyOnWriteArrayList;
 public class GameObjectService {
     private final CollisionHandler collisionHandler;
     private final GameObjectCreationService gameObjectCreationService;
-    private final GameStateController gameStateController;
+    private final GameStateAPI gameStateController;
     private final PlayerHandler playerHandler;
     private final GameObjectSpawnScheduler gameObjectSpawnScheduler;
     private final List<GameObject> gameObjects = new CopyOnWriteArrayList<>();
 
 
-    public GameObjectService(GameStateController gameStateController, PlayerHandler playerHandler) {
+    public GameObjectService(GameStateAPI gameStateController, PlayerHandler playerHandler) {
         this.playerHandler = playerHandler;
         this.gameStateController = gameStateController;
         this.collisionHandler = new CollisionHandler(playerHandler);
@@ -39,9 +41,13 @@ public class GameObjectService {
     public void startGame() {
         Player player = playerHandler.getPlayer();
         gameStateController.setGameState(GameState.IN_GAME);
-        gameObjectCreationService.setGameObjectSpawningStrategy(new SinglePlayerSpawningStrategy());
+        GameMode gameMode = gameStateController.getGameMode();
+        if(gameMode.equals(GameMode.SINGLEPLAYER)){
+            gameObjectCreationService.setGameObjectSpawningStrategy(new SinglePlayerSpawningStrategy());
+        }else if(gameMode.equals(GameMode.MULTIPLAYER)){
+            gameObjectCreationService.setGameObjectSpawningStrategy(new MultiplayerSpawningStrategy());
+        }
         spawnPlayerCar(player.getId(), player.getCarSelection());
-
 
         playerHandler.resetScore();
         gameObjectSpawnScheduler.startSpawning();
@@ -50,7 +56,6 @@ public class GameObjectService {
     public void stopGame() {
         gameObjectSpawnScheduler.stopSpawning();
         gameObjects.removeAll(gameObjects);
-        gameStateController.setGameState(GameState.SCORE_BOARD);
     }
 
 

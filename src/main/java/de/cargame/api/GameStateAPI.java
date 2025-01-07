@@ -3,7 +3,7 @@ package de.cargame.api;
 import de.cargame.controller.entity.GameMode;
 import de.cargame.controller.entity.GameState;
 
-public interface GameStateAPi {
+public interface GameStateAPI {
 
     GameMode getGameMode();
 

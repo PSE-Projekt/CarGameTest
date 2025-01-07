@@ -4,7 +4,7 @@ import de.cargame.model.entity.gameobject.GameObject;
 
 import java.util.List;
 
-public interface GameObjectApi {
+public interface GameObjectAPI {
 
 
     List<GameObject> getAllGameObjects();

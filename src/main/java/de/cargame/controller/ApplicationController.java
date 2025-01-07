@@ -1,6 +1,9 @@
 package de.cargame.controller;
 
+import de.cargame.api.GameStateAPI;
+import de.cargame.controller.entity.GameMode;
 import de.cargame.controller.entity.GameModelData;
+import de.cargame.controller.entity.GameState;
 import de.cargame.model.GameInstance;
 import de.cargame.model.entity.gameobject.car.player.CarType;
 import de.cargame.model.entity.player.Player;
@@ -15,7 +18,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 public class ApplicationController {
 
 
-    private final GameStateController gameStateController = new GameStateController();
+    private final GameStateAPI gameStateController = new GameStateController();
     private final List<GameInstance> gameInstances = new CopyOnWriteArrayList<>();
 
     private final InputController inputController = new InputController();
@@ -46,6 +49,15 @@ public class ApplicationController {
         gameInstances.add(gameInstance);
         gameInstance.registerUI(testView.getJPanel());
         gameInstance.run();
+        boolean allGamesFinished = gameInstances.stream().filter(GameInstance::isFinished).count() == gameInstances.size();
+        if(allGamesFinished){
+            gameStateController.setGameState(GameState.SCORE_BOARD);
+            //ui.changeToScoreBoard
+        }
+    }
+
+    public void resetGames() {
+        gameInstances.clear();
     }
 
     public void initUI() {
@@ -88,5 +100,6 @@ public class ApplicationController {
     private void dummyChangesToMakeThisShitWork() {
         playerKeyboard.setPlaying(true);
         playerKeyboard.setCarSelection(CarType.FAST_CAR);
+        gameStateController.setGameMode(GameMode.SINGLEPLAYER);
     }
 }

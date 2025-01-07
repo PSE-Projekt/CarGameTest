@@ -1,26 +1,30 @@
 package de.cargame.model;
 
+import de.cargame.api.GameStateAPI;
 import de.cargame.config.GameConfig;
 import de.cargame.controller.ApplicationController;
 import de.cargame.controller.GameObjectController;
-import de.cargame.controller.GameStateController;
 import de.cargame.controller.entity.GameModelData;
 import de.cargame.controller.entity.GameState;
 import de.cargame.model.entity.player.Player;
 import de.cargame.model.entity.player.PlayerObserver;
 import de.cargame.model.handler.PlayerHandler;
+import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class GameInstance implements Runnable {
 
-    private final GameStateController gameStateController;
+    private final GameStateAPI gameStateController;
     private final PlayerHandler playerHandler = new PlayerHandler();
     private final ApplicationController applicationController;
     private final GameObjectController gameObjectController;
 
+@Getter
+private boolean isFinished = false;
 
-    public GameInstance(GameStateController gameStateController, ApplicationController applicationController, Player player) {
+
+    public GameInstance(GameStateAPI gameStateController, ApplicationController applicationController, Player player) {
         this.gameStateController = gameStateController;
         this.applicationController = applicationController;
         this.gameObjectController = new GameObjectController(gameStateController, playerHandler);
@@ -44,11 +48,12 @@ public class GameInstance implements Runnable {
                 log.error(e.getMessage());
             }
         }
+        isFinished = true;
         System.out.println("leave");
     }
 
-    private void stopGame() {
-        gameObjectController.stopGame();
+    public int getScore() {
+        return (int) playerHandler.getScore();
     }
 
     public GameModelData getGameModelData() {

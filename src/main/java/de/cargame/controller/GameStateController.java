@@ -1,6 +1,6 @@
 package de.cargame.controller;
 
-import de.cargame.api.GameStateAPi;
+import de.cargame.api.GameStateAPI;
 import de.cargame.controller.entity.GameMode;
 import de.cargame.controller.entity.GameState;
 import de.cargame.model.handler.GameStateHandler;
@@ -9,7 +9,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class GameStateController implements GameStateAPi {
+public class GameStateController implements GameStateAPI {
 
     private final GameStateHandler gameStateHandler;
 
