@@ -68,16 +68,31 @@ public abstract class GamePanel extends JPanel {
             }
             if (gameObject instanceof PlayerCar playerCar) {
                 if (playerCar instanceof AgileCar) {
-                    drawImage(g2d, agileCarImages.getRandomImage(gameObjectId), x, y, width, height);
+                    if(playerCar.hasCrashCooldown()){
+                        drawImageOpaque(g2d, agileCarImages.getRandomImage(gameObjectId), x, y, width, height, 0.5f);
+                    }else{
+                        drawImage(g2d, agileCarImages.getRandomImage(gameObjectId), x, y, width, height);
+                    }
                 } else {
-                    drawImage(g2d, fastCarImages.getRandomImage(gameObjectId), x, y, width, height);
-                }
+
+                    if(playerCar.hasCrashCooldown()){
+                        drawImageOpaque(g2d, fastCarImages.getRandomImage(gameObjectId), x, y, width, height, 0.5f);
+                    }else{
+                        drawImage(g2d, fastCarImages.getRandomImage(gameObjectId), x, y, width, height);
+                    }                }
             }
 
         }
     }
 
-    private void drawImage(Graphics2D graphics2D, BufferedImage image, int x, int y, int width, int height) {
-        graphics2D.drawImage(image, x, y, width, height, null);
+    private void drawImage(Graphics2D g2d, BufferedImage image, int x, int y, int width, int height) {
+        g2d.drawImage(image, x, y, width, height, null);
+    }
+
+    private void drawImageOpaque(Graphics2D g2d, BufferedImage image, int x, int y, int width, int height, float alpha) {
+        Composite oldComposite = g2d.getComposite();
+        g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER,alpha));
+        g2d.drawImage(image, x, y, width, height, null);
+        g2d.setComposite(oldComposite);
     }
 }
