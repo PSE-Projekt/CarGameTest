@@ -15,10 +15,10 @@ public enum UserInputType {
     NONE(-1);
 
 
-    private int keyCode;
+    private final int keyCode;
 
 
-    private UserInputType(int keyCode) {
+    UserInputType(int keyCode) {
         this.keyCode = keyCode;
     }
 

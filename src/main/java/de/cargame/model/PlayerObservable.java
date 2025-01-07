@@ -5,9 +5,9 @@ import de.cargame.model.entity.player.PlayerUpdate;
 
 public interface PlayerObservable {
 
-    public void addObserver(PlayerObserver playerObserver);
+    void addObserver(PlayerObserver playerObserver);
 
-    public void removeObserver(PlayerObserver observer);
+    void removeObserver(PlayerObserver observer);
 
-    public void notifyObservers(PlayerUpdate playerUpdate);
+    void notifyObservers(PlayerUpdate playerUpdate);
 }

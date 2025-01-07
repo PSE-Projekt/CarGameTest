@@ -16,11 +16,11 @@ public class ApplicationController {
 
 
     private final GameStateController gameStateController = new GameStateController();
-    private List<GameInstance> gameInstances = new CopyOnWriteArrayList<>();
+    private final List<GameInstance> gameInstances = new CopyOnWriteArrayList<>();
 
-    private InputController inputController = new InputController();
+    private final InputController inputController = new InputController();
 
-    private Player playerKeyboard = initializePlayerKeyboard();
+    private final Player playerKeyboard = initializePlayerKeyboard();
     //private Player playerGamePad = initializePlayerGamePad();
 
     private TestView testView;
@@ -44,7 +44,7 @@ public class ApplicationController {
     public void startGame() {
         GameInstance gameInstance = new GameInstance(gameStateController, this, playerKeyboard);
         gameInstances.add(gameInstance);
-        gameInstance.registerUI(testView.getjPanel());
+        gameInstance.registerUI(testView.getJPanel());
         gameInstance.run();
     }
 

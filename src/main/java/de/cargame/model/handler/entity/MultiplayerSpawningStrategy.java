@@ -9,9 +9,6 @@ public class MultiplayerSpawningStrategy extends GameObjectSpawningStrategy {
     private final int ROADMARK_Y1 = GameConfig.BUILDING_WIDTH + (SCREEN_HALVE_Y - 2 * (GameConfig.BUILDING_HEIGHT)) / 3;
     private final int ROADMARK_Y2 = ROADMARK_Y1 * 2;
 
-    public MultiplayerSpawningStrategy() {
-        super();
-    }
 
     @Override
     protected void setBuildingSpawnArea() {

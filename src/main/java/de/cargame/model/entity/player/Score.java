@@ -9,9 +9,8 @@ public class Score {
     @Getter
     private double value = 0;
 
-    public double increaseScore(double value) {
+    public void increaseScore(double value) {
         this.value += value;
-        return value;
     }
 
     public void reset() {

@@ -13,5 +13,5 @@ public interface GameObjectApi {
 
     void stopGame();
 
-    public void update(double deltaTime);
+    void update(double deltaTime);
 }

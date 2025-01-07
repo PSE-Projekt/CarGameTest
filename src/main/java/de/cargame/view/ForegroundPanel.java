@@ -7,7 +7,6 @@ import de.cargame.model.entity.player.PlayerUpdate;
 import javax.swing.*;
 import java.awt.*;
 import java.util.List;
-import java.util.function.Predicate;
 
 public class ForegroundPanel extends GamePanel implements PlayerObserver {
 

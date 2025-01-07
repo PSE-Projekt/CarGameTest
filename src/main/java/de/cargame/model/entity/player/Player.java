@@ -5,8 +5,8 @@ import de.cargame.config.GameConfig;
 import de.cargame.controller.input.UserInput;
 import de.cargame.controller.input.UserInputBundle;
 import de.cargame.model.entity.gameobject.car.player.CarType;
-import de.cargame.model.entity.gameobject.interfaces.UserInputObserver;
 import de.cargame.model.entity.gameobject.car.player.PlayerCar;
+import de.cargame.model.entity.gameobject.interfaces.UserInputObserver;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -37,9 +37,8 @@ public class Player implements UserInputObserver {
         this.userInputBundle = userInputBundle;
     }
 
-    public double increaseScore(double value) {
+    public void increaseScore(double value) {
         score.increaseScore(value);
-        return score.getValue();
     }
 
     public void setDefaultValues() {
@@ -53,12 +52,12 @@ public class Player implements UserInputObserver {
         score.reset();
     }
 
-    public int increaseLife() {
-        return ++lives;
+    public void increaseLife() {
+        lives++;
     }
 
-    public int decreaseLife() {
-        return --lives;
+    public void decreaseLife() {
+        lives--;
     }
 
     public boolean isAlive() {

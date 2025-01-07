@@ -12,14 +12,13 @@ public class CrossMovementStrategy extends MovementStrategy {
     }
 
     @Override
-    public Coordinate calcTargetPos() {
+    public void calcTargetPos() {
 
         Random random = new Random();
         double randomX = -500;
 
         double randomY = random.nextInt(GameConfig.SCREEN_HEIGHT);
         this.targetPos = new Coordinate(randomX, randomY);
-        return targetPos;
     }
 
 }

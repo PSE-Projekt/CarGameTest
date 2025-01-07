@@ -5,7 +5,6 @@ import de.cargame.model.entity.gameobject.*;
 import de.cargame.model.entity.gameobject.car.ai.AICar;
 import de.cargame.model.entity.gameobject.car.player.AgileCar;
 import de.cargame.model.entity.gameobject.car.player.PlayerCar;
-import de.cargame.view.image.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -16,15 +15,7 @@ public abstract class GamePanel extends JPanel {
 
 
     protected GameModelData gameModelData;
-
-
-    GameImages agileCarImages = new AgileCarImages();
-    GameImages fastCarImages = new FastCarImages();
-    GameImages buildingImage = new BuildingImages();
-    GameImages kamikazeCarImage = new KamikazeCarImages();
-    GameImages liveImage = new LifeImages();
-    GameImages obstacleImage = new ObstacleImages();
-
+    private final ImageService imageService = new ImageService();
 
     public GamePanel() {
         setDoubleBuffered(true);
@@ -55,31 +46,37 @@ public abstract class GamePanel extends JPanel {
                 g2d.setColor(Color.GRAY);
                 g2d.fill(bounds);
             } else if (gameObject instanceof AICar) {
-                drawImage(g2d, kamikazeCarImage.getRandomImage(gameObjectId), x, y, width, height);
+                BufferedImage kamikazeCarImage = imageService.getRandomKamikazeCarImage(gameObjectId);
+                drawImage(g2d, kamikazeCarImage, x, y, width, height);
             } else if (gameObject instanceof Obstacle) {
-                drawImage(g2d, obstacleImage.getRandomImage(gameObjectId), x, y, width, height);
+                BufferedImage obstacleImage = imageService.getRandomObstacleImage(gameObjectId);
+                drawImage(g2d, obstacleImage, x, y, width, height);
             } else if (gameObject instanceof Reward reward) {
                 if (!reward.isCollected()) {
-                    drawImage(g2d, liveImage.getRandomImage(gameObjectId), x, y, width, height);
+                    BufferedImage liveImage = imageService.getRandomLiveImage(gameObjectId);
+                    drawImage(g2d, liveImage, x, y, width, height);
                 }
             } else if (gameObject instanceof Building) {
-                drawImage(g2d, buildingImage.getRandomImage(gameObjectId), x, y, width, height);
+                BufferedImage buildingImage = imageService.getRandomBuildingImage(gameObjectId);
+                drawImage(g2d, buildingImage, x, y, width, height);
 
             }
             if (gameObject instanceof PlayerCar playerCar) {
                 if (playerCar instanceof AgileCar) {
+                    BufferedImage agileCarImage = imageService.getRandomAgileCarImage(gameObjectId);
                     if(playerCar.hasCrashCooldown()){
-                        drawImageOpaque(g2d, agileCarImages.getRandomImage(gameObjectId), x, y, width, height, 0.5f);
+                        drawImage(g2d, agileCarImage, x, y, width, height, 0.5f);
                     }else{
-                        drawImage(g2d, agileCarImages.getRandomImage(gameObjectId), x, y, width, height);
+                        drawImage(g2d, agileCarImage, x, y, width, height);
                     }
                 } else {
-
+                    BufferedImage fastCarImage = imageService.getRandomFastCarImage(gameObjectId);
                     if(playerCar.hasCrashCooldown()){
-                        drawImageOpaque(g2d, fastCarImages.getRandomImage(gameObjectId), x, y, width, height, 0.5f);
+                        drawImage(g2d, fastCarImage, x, y, width, height, 0.5f);
                     }else{
-                        drawImage(g2d, fastCarImages.getRandomImage(gameObjectId), x, y, width, height);
-                    }                }
+                        drawImage(g2d, fastCarImage, x, y, width, height);
+                    }
+                }
             }
 
         }
@@ -89,7 +86,7 @@ public abstract class GamePanel extends JPanel {
         g2d.drawImage(image, x, y, width, height, null);
     }
 
-    private void drawImageOpaque(Graphics2D g2d, BufferedImage image, int x, int y, int width, int height, float alpha) {
+    private void drawImage(Graphics2D g2d, BufferedImage image, int x, int y, int width, int height, float alpha) {
         Composite oldComposite = g2d.getComposite();
         g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER,alpha));
         g2d.drawImage(image, x, y, width, height, null);

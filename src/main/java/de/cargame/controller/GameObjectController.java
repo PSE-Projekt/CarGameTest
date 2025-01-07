@@ -10,7 +10,7 @@ import java.util.List;
 public class GameObjectController implements GameObjectApi {
 
 
-    private GameObjectService gameObjectService;
+    private final GameObjectService gameObjectService;
 
 
     public GameObjectController(GameStateController gameStateController, PlayerHandler playerHandler) {

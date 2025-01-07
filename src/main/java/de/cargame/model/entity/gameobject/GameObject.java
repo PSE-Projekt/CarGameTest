@@ -44,10 +44,6 @@ public abstract class GameObject implements Collidable, Despawnable {
 
     protected abstract void setCollidable();
 
-    public boolean isStatic() {
-        return isStatic;
-    }
-
     @Override
     public boolean isDespawnable() {
         return isDespawnable;

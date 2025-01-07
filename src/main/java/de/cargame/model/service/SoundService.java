@@ -4,11 +4,6 @@ import de.cargame.model.service.entity.sound.*;
 
 public class SoundService {
 
-    private final String CRASH_SOUND_FILE_PATH = "src/main/resources/sounds/crash.wav";
-    private final String SELECT_SOUND_FILE_PATH = "src/main/resources/sounds/select.wav";
-    private final String CHANGE_SELECTION_SOUND_FILE_PATH = "src/main/resources/sounds/change_selection.wav";
-    private final String COLLECT_REWARD_SOUND_FILE_PATH = "src/main/resources/sounds/collect_reward.wav";
-
     private final SoundClip crashSoundClip;
     private final SoundClip selectSoundClip;
     private final SoundClip changeSelectionSoundClip;
@@ -22,7 +17,7 @@ public class SoundService {
     }
 
 
-    //https://sfxr.me/
+    //generated from https://sfxr.me/
     public void playCrashSound() {
         playSound(crashSoundClip);
     }

@@ -5,7 +5,7 @@ import de.cargame.model.entity.gameobject.Coordinate;
 public abstract class MovementStrategy {
 
     protected Coordinate targetPos;
-    protected Coordinate gameObjectSpawnCoordinate;
+    protected final Coordinate gameObjectSpawnCoordinate;
 
 
     public MovementStrategy(Coordinate gameObjectSpawnCoordinate) {
@@ -13,7 +13,7 @@ public abstract class MovementStrategy {
         calcTargetPos();
     }
 
-    public abstract Coordinate calcTargetPos();
+    public abstract void calcTargetPos();
 
 
     public double getTargetPosX() {

@@ -12,47 +12,46 @@ import java.util.function.Supplier;
 
 public class GameObjectSpawnScheduler {
     private final double fastForwardSpeedFactor = (double) GameConfig.GAME_SPEED / GameConfig.GAME_SPEED_FAST_FORWARD;
-    private GameObjectService gameObjectService;
+    private final GameObjectService gameObjectService;
     private ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor();
-    private PlayerHandler playerHandler;
+    private final PlayerHandler playerHandler;
 
-    public GameObjectSpawnScheduler(PlayerHandler playerHandler) {
+    public GameObjectSpawnScheduler(PlayerHandler playerHandler, GameObjectService gameObjectService) {
         this.playerHandler = playerHandler;
+        this.gameObjectService = gameObjectService;
     }
 
 
-    public void startSpawning(GameObjectService gameObjectService) {
-        this.gameObjectService = gameObjectService;
+    public void startSpawning() {
         String playerId = this.playerHandler.getPlayer().getId();
 
-        scheduleAICar(playerId);
-        scheduleObstacle(playerId);
-        scheduleReward(playerId);
-        scheduleBuilding(playerId);
-        scheduleRoadMark(playerId);
+        scheduleAICar();
+        scheduleObstacle();
+        scheduleReward();
+        scheduleBuilding();
+        scheduleRoadMark();
 
     }
 
-    private void scheduleAICar(String playerId) {
-        scheduleSpawn(() -> () -> gameObjectService.spawnAICar(playerId), GameConfig.AI_CAR_SPAWN_TIME_MIN, GameConfig.AI_CAR_SPAWN_TIME_MAX, playerId);
+    private void scheduleAICar() {
+        scheduleSpawn(() -> gameObjectService::spawnAICar, GameConfig.AI_CAR_SPAWN_TIME_MIN, GameConfig.AI_CAR_SPAWN_TIME_MAX);
     }
 
-    private void scheduleObstacle(String playerId) {
-        scheduleSpawn(() -> () -> gameObjectService.spawnObstacle(playerId), GameConfig.OBSTACLE_SPAWN_TIME_MIN, GameConfig.OBSTACLE_SPAWN_TIME_MAX, playerId);
+    private void scheduleObstacle() {
+        scheduleSpawn(() -> gameObjectService::spawnObstacle, GameConfig.OBSTACLE_SPAWN_TIME_MIN, GameConfig.OBSTACLE_SPAWN_TIME_MAX);
     }
 
-    private void scheduleReward(String playerId) {
-        scheduleSpawn(() -> () -> gameObjectService.spawnReward(playerId), GameConfig.REWARD_SPAWN_TIME_MIN, GameConfig.REWARD_SPAWN_TIME_MAX, playerId);
+    private void scheduleReward() {
+        scheduleSpawn(() -> gameObjectService::spawnReward, GameConfig.REWARD_SPAWN_TIME_MIN, GameConfig.REWARD_SPAWN_TIME_MAX);
     }
 
-    private void scheduleBuilding(String playerId) {
-        scheduleSpawn(() -> () -> gameObjectService.spawnBuilding(playerId), GameConfig.BUILDING_SPAWN_TIME_MIN, GameConfig.BUILDING_SPAWN_TIME_MAX, playerId);
+    private void scheduleBuilding() {
+        scheduleSpawn(() -> gameObjectService::spawnBuilding, GameConfig.BUILDING_SPAWN_TIME_MIN, GameConfig.BUILDING_SPAWN_TIME_MAX);
     }
 
 
-    private void scheduleRoadMark(String playerId) {
-        System.out.println("-------------ROAD MARK SPAWN--------------");
-        scheduleSpawn(() -> () -> gameObjectService.spawnRoadMarks(playerId), GameConfig.ROAD_MARK_SPAWN_TIME_MIN, GameConfig.ROAD_MARK_SPAWN_TIME_MAX, playerId);
+    private void scheduleRoadMark() {
+        scheduleSpawn(() -> gameObjectService::spawnRoadMarks, GameConfig.ROAD_MARK_SPAWN_TIME_MIN, GameConfig.ROAD_MARK_SPAWN_TIME_MAX);
     }
 
 
@@ -72,12 +71,12 @@ public class GameObjectSpawnScheduler {
         return ThreadLocalRandom.current().nextInt(minDelay, maxDelay);
     }
 
-    private void scheduleSpawn(Supplier<Runnable> spawnAction, int minDelay, int maxDelay, String playerId) {
+    private void scheduleSpawn(Supplier<Runnable> spawnAction, int minDelay, int maxDelay) {
         boolean isFastForwarding = playerHandler.isFastForwarding();
         int initialDelay = getRandomDelay(minDelay, maxDelay, isFastForwarding);
         scheduler.schedule(() -> {
             spawnAction.get().run();
-            scheduleSpawn(spawnAction, minDelay, maxDelay, playerId);
+            scheduleSpawn(spawnAction, minDelay, maxDelay);
         }, initialDelay, TimeUnit.MILLISECONDS);
     }
 

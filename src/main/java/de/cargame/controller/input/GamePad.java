@@ -3,15 +3,13 @@ package de.cargame.controller.input;
 import de.cargame.model.entity.gameobject.interfaces.UserInputObserver;
 import net.java.games.input.Controller;
 import net.java.games.input.ControllerEnvironment;
-import net.java.games.input.Event;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public class GamePad extends InputDevice {
 
-    private List<UserInputObserver> userInputObserverList = new ArrayList<>();
+    private final List<UserInputObserver> userInputObserverList = new CopyOnWriteArrayList<>();
     private boolean deviceConnected = false;
     private Controller controller;
 
@@ -20,7 +18,7 @@ public class GamePad extends InputDevice {
         initController();
     }
 
-    public boolean initController() {
+    public void initController() {
 
         Controller[] controllers = ControllerEnvironment.getDefaultEnvironment().getControllers();
 
@@ -33,9 +31,7 @@ public class GamePad extends InputDevice {
         }
         if (!deviceConnected) {
             System.out.println("No Gamepad found");
-            return false;
         }
-        return true;
     }
 
     public void inputTriggerUp() {

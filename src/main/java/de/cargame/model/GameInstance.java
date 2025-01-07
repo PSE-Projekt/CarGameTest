@@ -14,10 +14,10 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class GameInstance implements Runnable {
 
-    private GameStateController gameStateController;
-    private PlayerHandler playerHandler = new PlayerHandler();
-    private ApplicationController applicationController;
-    private GameObjectController gameObjectController;
+    private final GameStateController gameStateController;
+    private final PlayerHandler playerHandler = new PlayerHandler();
+    private final ApplicationController applicationController;
+    private final GameObjectController gameObjectController;
 
 
     public GameInstance(GameStateController gameStateController, ApplicationController applicationController, Player player) {
@@ -53,10 +53,6 @@ public class GameInstance implements Runnable {
 
     public GameModelData getGameModelData() {
         return new GameModelData(getPlayingPlayerId(), gameObjectController.getAllGameObjects());
-    }
-
-    public double getScore() {
-        return playerHandler.getScore();
     }
 
     public String getPlayingPlayerId() {

@@ -61,19 +61,17 @@ public class PlayerHandler {
         playerUpdateNotifyService.addObserver(playerObserver);
     }
 
-    public int increaseLife() {
+    public void increaseLife() {
         player.increaseLife();
         PlayerUpdate playerUpdate = generatePlayerUpdate();
         this.playerUpdateNotifyService.notifyObservers(playerUpdate);
-        return getLifeCount();
     }
 
 
-    public int decreaseLife() {
+    public void decreaseLife() {
         player.decreaseLife();
         PlayerUpdate playerUpdate = generatePlayerUpdate();
         this.playerUpdateNotifyService.notifyObservers(playerUpdate);
-        return getLifeCount();
     }
 
     public int getLifeCount() {

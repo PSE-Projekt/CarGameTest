@@ -8,8 +8,6 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class CarGameApplication {
 
-    private static ApplicationController applicationController;
-
     public static void main(String[] args) {
         // Set java.library.path to include the extracted native libraries
         System.setProperty("java.library.path", "target/natives");
@@ -27,7 +25,7 @@ public class CarGameApplication {
             throw new RuntimeException(e);
         }
         System.setProperty("sun.java2d.opengl", "true");
-        applicationController = new ApplicationController();
+        ApplicationController applicationController = new ApplicationController();
     }
 
 }

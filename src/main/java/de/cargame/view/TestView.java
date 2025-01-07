@@ -11,10 +11,10 @@ import java.awt.*;
 public class TestView extends JFrame {
 
 
-    private GamePanel foregroundPanel = new ForegroundPanel();
-    private GamePanel backgroundPanel = new BackgroundPanel();
+    private final GamePanel foregroundPanel = new ForegroundPanel();
+    private final GamePanel backgroundPanel = new BackgroundPanel();
 
-    private JLayeredPane layeredPane = new JLayeredPane();
+    private final JLayeredPane layeredPane = new JLayeredPane();
 
     public TestView() {
         // JFrame-Größe festlegen
@@ -45,7 +45,7 @@ public class TestView extends JFrame {
         setVisible(true);
     }
 
-    public PlayerObserver getjPanel() {
+    public PlayerObserver getJPanel() {
         return (PlayerObserver) foregroundPanel;
     }
 

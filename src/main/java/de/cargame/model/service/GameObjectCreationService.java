@@ -24,7 +24,7 @@ public class GameObjectCreationService {
     @Setter
     private GameObjectSpawningStrategy gameObjectSpawningStrategy;
 
-    public PlayerCar createPlayerCar(CarType carType, String playerId) {
+    public PlayerCar createPlayerCar(CarType carType) {
         Dimension dimension;
         SpawnAreaList playerSpawnAreas = gameObjectSpawningStrategy.getPlayerSpawnAreas();
         SpawnArea spawnArea = playerSpawnAreas.getRandomSpawnArea();

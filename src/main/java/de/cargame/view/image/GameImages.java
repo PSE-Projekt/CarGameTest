@@ -12,8 +12,8 @@ import java.util.List;
 public abstract class GameImages {
 
     @Getter
-    protected List<BufferedImage> images = new ArrayList<>();
-    protected List<String> paths = new ArrayList<>();
+    protected final List<BufferedImage> images = new ArrayList<>();
+    protected final List<String> paths = new ArrayList<>();
 
 
     public GameImages() {

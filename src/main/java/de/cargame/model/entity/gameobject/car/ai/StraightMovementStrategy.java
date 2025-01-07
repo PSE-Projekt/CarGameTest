@@ -9,8 +9,7 @@ public class StraightMovementStrategy extends MovementStrategy {
     }
 
     @Override
-    public Coordinate calcTargetPos() {
+    public void calcTargetPos() {
         this.targetPos = new Coordinate(-1000, gameObjectSpawnCoordinate.getY());
-        return targetPos;
     }
 }

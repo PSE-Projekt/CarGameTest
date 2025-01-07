@@ -32,7 +32,7 @@ public class GameObjectService {
         this.gameStateController = gameStateController;
         this.collisionHandler = new CollisionHandler(playerHandler);
         this.gameObjectCreationService = new GameObjectCreationService();
-        this.gameObjectSpawnScheduler = new GameObjectSpawnScheduler(this.playerHandler);
+        this.gameObjectSpawnScheduler = new GameObjectSpawnScheduler(this.playerHandler, this);
     }
 
 
@@ -44,7 +44,7 @@ public class GameObjectService {
 
 
         playerHandler.resetScore();
-        gameObjectSpawnScheduler.startSpawning(this);
+        gameObjectSpawnScheduler.startSpawning();
     }
 
     public void stopGame() {
@@ -83,34 +83,34 @@ public class GameObjectService {
 
 
     public void spawnPlayerCar(String playerId, CarType carType) {
-        PlayerCar playerCar = gameObjectCreationService.createPlayerCar(carType, playerId);
+        PlayerCar playerCar = gameObjectCreationService.createPlayerCar(carType);
         playerCar.setPlayerId(playerId);
         playerCar.setPlayerHandler(playerHandler);
         playerHandler.setPlayerCar(playerCar);
         gameObjects.add(playerCar);
     }
 
-    public void spawnBuilding(String playerId) {
+    public void spawnBuilding() {
         List<Building> building = gameObjectCreationService.createBuildings();
         gameObjects.addAll(building);
     }
 
-    public void spawnRoadMarks(String playerId) {
+    public void spawnRoadMarks() {
         List<RoadMark> roadMark = gameObjectCreationService.createRoadMark();
         gameObjects.addAll(roadMark);
     }
 
-    public void spawnObstacle(String playerId) {
+    public void spawnObstacle() {
         List<Obstacle> obstacle = gameObjectCreationService.createObstacle();
         gameObjects.addAll(obstacle);
     }
 
-    public void spawnReward(String playerId) {
+    public void spawnReward() {
         Reward reward = gameObjectCreationService.createReward();
         gameObjects.add(reward);
     }
 
-    public void spawnAICar(String playerId) {
+    public void spawnAICar() {
         AICar aiCar = gameObjectCreationService.createAICar();
         gameObjects.add(aiCar);
     }

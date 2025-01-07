@@ -55,10 +55,6 @@ public class UserInputBundle {
 
     }
 
-    public boolean contains(UserInputType userInputType) {
-        return userInputs.stream()
-                .anyMatch(input -> input.getUserInputType().equals(userInputType));
-    }
 
     public boolean isEmpty() {
         return userInputs.isEmpty();
@@ -66,20 +62,9 @@ public class UserInputBundle {
 
 
     public Optional<UserInput> getLatestInput() {
-        Optional<UserInput> userInput = userInputs.stream()
+        return userInputs.stream()
                 .filter(input -> input.getUserInputType() != UserInputType.FAST_FORWARD)
                 .min((o1, o2) -> Long.compare(o2.getTime(), o1.getTime()));
-        return userInput;
-    }
-
-    public UserInputType getLatestInput(int inertia) {
-        Optional<UserInput> userInput = userInputs.stream()
-                .filter(input -> input.getUserInputType() != UserInputType.FAST_FORWARD)
-                .min((o1, o2) -> Long.compare(o2.getTime(), o1.getTime()));
-        if (userInput.isPresent()) {
-            return userInput.get().getUserInputType();
-        }
-        return UserInputType.NONE;
     }
 
     public int size() {
