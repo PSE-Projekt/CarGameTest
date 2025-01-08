@@ -75,6 +75,10 @@ public abstract class GameObject implements Collidable, Despawnable {
         return isCollidable;
     }
 
+    public int add(int x, int y){
+        return x+y;
+    }
+
 
     public abstract void move(double deltaTime, boolean isFastForwarding);
 

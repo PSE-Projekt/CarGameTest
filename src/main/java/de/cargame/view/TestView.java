@@ -11,7 +11,7 @@ import de.cargame.model.entity.player.PlayerObserver;
 import javax.swing.*;
 import java.awt.*;
 
-public class TestView extends JFrame {
+public class TestView extends JFrame implements GamePlayScene {
 
 
     private final GamePanel foregroundPanel = new ForegroundPanel();
@@ -22,45 +22,47 @@ public class TestView extends JFrame {
     GameStateController gameStateController;
 
     public TestView(GameStateAPI gameStateController) {
-        // JFrame-Größe festlegen
-
 
         this.gameStateController = (GameStateController) gameStateController;
         setSize(GameConfig.SCREEN_WIDTH, GameConfig.SCREEN_HEIGHT);
         setPreferredSize(new Dimension(GameConfig.SCREEN_WIDTH, GameConfig.SCREEN_HEIGHT));
         setMinimumSize(new Dimension(GameConfig.SCREEN_WIDTH, GameConfig.SCREEN_HEIGHT));
 
-        // LayeredPane konfigurieren
         layeredPane.setLayout(null);
 
-        // Panels konfigurieren
         backgroundPanel.setBounds(0, 0, GameConfig.SCREEN_WIDTH, GameConfig.SCREEN_HEIGHT);
         foregroundPanel.setBounds(0, 0, GameConfig.SCREEN_WIDTH, GameConfig.SCREEN_HEIGHT);
 
         backgroundPanel.setVisible(true);
         foregroundPanel.setVisible(true);
 
-        // Panels in LayeredPane einfügen
         layeredPane.add(backgroundPanel, 0); // Hintergrundebene
         layeredPane.add(foregroundPanel, 1); // Vordergrundebene
 
-        // LayeredPane hinzufügen
         add(layeredPane, BorderLayout.CENTER);
 
-        // JFrame konfigurieren
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         pack();
         setVisible(true);
     }
 
-    public PlayerObserver getJPanel() {
-        return (PlayerObserver) foregroundPanel;
-    }
 
+
+    /**
+     * Renders the current state of the game by invoking the render method on the background and foreground panels
+     * with the game's model data.
+     *
+     * @param gameInstance the current instance of the game, which contains the game's state and model data
+     */
+    @Override
     public void render(GameInstance gameInstance) {
         GameModelData gameModelData = gameInstance.getGameModelData();
         backgroundPanel.render(gameModelData);
         foregroundPanel.render(gameModelData);
+    }
+
+    public PlayerObserver getJPanel() {
+        return (PlayerObserver) foregroundPanel;
     }
 
 }

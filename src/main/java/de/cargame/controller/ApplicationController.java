@@ -24,7 +24,7 @@ public class ApplicationController {
     private final InputController inputController = new InputController();
 
     private final Player playerKeyboard = initializePlayerKeyboard();
-    private Player playerGamePad = initializePlayerGamePad();
+    //private Player playerGamePad = initializePlayerGamePad();
 
     private TestView testView;
 
@@ -52,7 +52,6 @@ public class ApplicationController {
         boolean allGamesFinished = gameInstances.stream().filter(GameInstance::isFinished).count() == gameInstances.size();
         if(allGamesFinished){
             gameStateController.setGameState(GameState.SCORE_BOARD);
-            //ui.changeToScoreBoard
         }
     }
 

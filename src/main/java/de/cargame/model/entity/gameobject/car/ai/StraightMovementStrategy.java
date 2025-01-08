@@ -2,12 +2,11 @@ package de.cargame.model.entity.gameobject.car.ai;
 
 import de.cargame.model.entity.gameobject.Coordinate;
 
-public class StraightMovementStrategy extends MovementStrategy {
+public class StraightMovementStrategy extends AICarMovementStrategy {
 
     public StraightMovementStrategy(Coordinate gameObjectSpawnCoordinate) {
         super( gameObjectSpawnCoordinate);
     }
-
 
     @Override
     public void calcTargetPos() {

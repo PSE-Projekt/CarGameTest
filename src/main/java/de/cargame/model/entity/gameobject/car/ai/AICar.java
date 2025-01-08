@@ -9,10 +9,10 @@ import lombok.Getter;
 public abstract class AICar extends Car {
 
     @Getter
-    private final AICarMovementStrategy movementStrategy;
+    private final MovementStrategy movementStrategy;
 
 
-    public AICar(Coordinate coordinate, Dimension dimension, GameObjectBoundType gameObjectBoundType, AICarMovementStrategy movementStrategy) {
+    public AICar(Coordinate coordinate, Dimension dimension, GameObjectBoundType gameObjectBoundType, MovementStrategy movementStrategy) {
         super(coordinate, dimension, gameObjectBoundType);
         this.movementStrategy = movementStrategy;
     }

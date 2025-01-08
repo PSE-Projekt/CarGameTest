@@ -5,7 +5,7 @@ import de.cargame.model.entity.gameobject.Coordinate;
 
 import java.util.Random;
 
-public class CrossMovementStrategy extends MovementStrategy {
+public class CrossMovementStrategy extends AICarMovementStrategy {
 
     public CrossMovementStrategy(Coordinate gameObjectSpawnCoordinate) {
         super(gameObjectSpawnCoordinate);
