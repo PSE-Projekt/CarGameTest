@@ -2,7 +2,7 @@ package de.cargame.model;
 
 import de.cargame.controller.api.GameStateAPI;
 import de.cargame.config.GameConfig;
-import de.cargame.controller.ApplicationController;
+import de.cargame.controller.GameApplicationManager;
 import de.cargame.controller.GameObjectController;
 import de.cargame.controller.entity.GameModelData;
 import de.cargame.controller.entity.GameState;
@@ -17,16 +17,16 @@ public class GameInstance implements Runnable {
 
     private final GameStateAPI gameStateController;
     private final PlayerHandler playerHandler = new PlayerHandler();
-    private final ApplicationController applicationController;
+    private final GameApplicationManager gameApplicationManager;
     private final GameObjectController gameObjectController;
 
 @Getter
 private boolean isFinished = false;
 
 
-    public GameInstance(GameStateAPI gameStateController, ApplicationController applicationController, Player player) {
+    public GameInstance(GameStateAPI gameStateController, GameApplicationManager gameApplicationManager, Player player) {
         this.gameStateController = gameStateController;
-        this.applicationController = applicationController;
+        this.gameApplicationManager = gameApplicationManager;
         this.gameObjectController = new GameObjectController(gameStateController, playerHandler);
         this.playerHandler.setPlayer(player);
     }
@@ -41,7 +41,7 @@ private boolean isFinished = false;
             lastTime = currentTime;
 
             gameObjectController.update(deltaTime);
-            applicationController.renderGameInstance(this);
+            gameApplicationManager.renderGameInstance(this);
             try {
                 Thread.sleep(GameConfig.FPS);
             } catch (InterruptedException e) {

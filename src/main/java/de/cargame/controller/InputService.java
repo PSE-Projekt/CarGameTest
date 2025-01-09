@@ -4,12 +4,12 @@ import de.cargame.controller.input.GamePad;
 import de.cargame.controller.input.Keyboard;
 import de.cargame.model.entity.gameobject.interfaces.UserInputObserver;
 
-public class InputController {
+public class InputService {
 
     private Keyboard keyboard;
     private GamePad gamePad;
 
-    public InputController(){
+    public InputService(){
 
     }
 

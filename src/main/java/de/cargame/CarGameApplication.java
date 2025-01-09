@@ -2,7 +2,7 @@ package de.cargame;
 
 import com.github.kwhat.jnativehook.GlobalScreen;
 import com.github.kwhat.jnativehook.NativeHookException;
-import de.cargame.controller.ApplicationController;
+import de.cargame.controller.GameApplicationManager;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -25,7 +25,7 @@ public class CarGameApplication {
             throw new RuntimeException(e);
         }
         System.setProperty("sun.java2d.opengl", "true");
-        ApplicationController applicationController = new ApplicationController();
+        GameApplicationManager gameApplicationManager = new GameApplicationManager();
     }
 
 }
