@@ -1,6 +1,5 @@
 package de.cargame.model.service;
 
-import de.cargame.controller.InputService;
 import de.cargame.model.entity.gameobject.car.player.CarType;
 import de.cargame.model.entity.player.Player;
 import lombok.Getter;
@@ -30,27 +29,26 @@ public class PlayerService {
     }
 
 
-    public void setCarSelection(String playerId, CarType carType){
-       getPlayerById(playerId).ifPresent(player -> player.setCarSelection(carType));
+    public void setCarSelection(String playerId, CarType carType) {
+        getPlayerById(playerId).ifPresent(player -> player.setCarSelection(carType));
     }
 
-    public void setPlaying(String playerId, boolean playing){
+    public void setPlaying(String playerId, boolean playing) {
         getPlayerById(playerId).ifPresent(player -> player.setPlaying(playing));
     }
 
-    public boolean isPlaying(String playerId){
+    public boolean isPlaying(String playerId) {
         return getPlayerById(playerId).map(Player::isAlive).orElse(false);
     }
 
-    private Optional<Player> getPlayerById(String playerId){
-        if(playerId.equals(keyboardPlayer.getId())) {
+    private Optional<Player> getPlayerById(String playerId) {
+        if (playerId.equals(keyboardPlayer.getId())) {
             return Optional.of(keyboardPlayer);
-        } else if(playerId.equals(gamepadPlayer.getId())) {
+        } else if (playerId.equals(gamepadPlayer.getId())) {
             return Optional.of(gamepadPlayer);
         }
         return Optional.empty();
     }
-
 
 
 }

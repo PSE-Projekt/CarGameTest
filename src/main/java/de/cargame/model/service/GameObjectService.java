@@ -42,9 +42,9 @@ public class GameObjectService {
         Player player = playerHandler.getPlayer();
         gameStateController.setGameState(GameState.IN_GAME);
         GameMode gameMode = gameStateController.getGameMode();
-        if(gameMode.equals(GameMode.SINGLEPLAYER)){
+        if (gameMode.equals(GameMode.SINGLEPLAYER)) {
             gameObjectCreationService.setGameObjectSpawningStrategy(new SinglePlayerSpawningStrategy());
-        }else if(gameMode.equals(GameMode.MULTIPLAYER)){
+        } else if (gameMode.equals(GameMode.MULTIPLAYER)) {
             gameObjectCreationService.setGameObjectSpawningStrategy(new MultiplayerSpawningStrategy());
         }
         spawnPlayerCar(player.getId(), player.getCarSelection());

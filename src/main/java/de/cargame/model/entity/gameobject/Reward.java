@@ -11,7 +11,6 @@ import lombok.Setter;
  * to the player when collected. This class extends the {@code GameObject} class,
  * inheriting its fundamental properties such as position, dimensions, boundaries,
  * and movement. The class also introduces specific reward-related behavior.
-
  */
 @Getter
 @Setter

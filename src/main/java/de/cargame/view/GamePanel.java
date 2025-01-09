@@ -14,8 +14,8 @@ import java.util.List;
 public abstract class GamePanel extends JPanel {
 
 
-    protected GameModelData gameModelData;
     private final ImageService imageService = new ImageService();
+    protected GameModelData gameModelData;
 
     public GamePanel() {
         setDoubleBuffered(true);
@@ -64,16 +64,16 @@ public abstract class GamePanel extends JPanel {
             if (gameObject instanceof PlayerCar playerCar) {
                 if (playerCar instanceof AgileCar) {
                     BufferedImage agileCarImage = imageService.getRandomAgileCarImage(gameObjectId);
-                    if(playerCar.hasCrashCooldown()){
+                    if (playerCar.hasCrashCooldown()) {
                         drawImage(g2d, agileCarImage, x, y, width, height, 0.5f);
-                    }else{
+                    } else {
                         drawImage(g2d, agileCarImage, x, y, width, height);
                     }
                 } else {
                     BufferedImage fastCarImage = imageService.getRandomFastCarImage(gameObjectId);
-                    if(playerCar.hasCrashCooldown()){
+                    if (playerCar.hasCrashCooldown()) {
                         drawImage(g2d, fastCarImage, x, y, width, height, 0.5f);
-                    }else{
+                    } else {
                         drawImage(g2d, fastCarImage, x, y, width, height);
                     }
                 }
@@ -88,7 +88,7 @@ public abstract class GamePanel extends JPanel {
 
     private void drawImage(Graphics2D g2d, BufferedImage image, int x, int y, int width, int height, float alpha) {
         Composite oldComposite = g2d.getComposite();
-        g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER,alpha));
+        g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, alpha));
         g2d.drawImage(image, x, y, width, height, null);
         g2d.setComposite(oldComposite);
     }

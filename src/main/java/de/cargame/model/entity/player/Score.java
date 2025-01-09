@@ -22,7 +22,6 @@ public class Score {
     private double value = 0;
 
 
-
     /**
      * Increases the current score value by the specified amount.
      *
@@ -32,7 +31,6 @@ public class Score {
     public void increaseScore(double value) {
         this.value += value;
     }
-
 
 
     /**

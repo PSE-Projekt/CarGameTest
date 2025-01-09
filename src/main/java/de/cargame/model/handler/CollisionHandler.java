@@ -66,8 +66,8 @@ public class CollisionHandler {
      * If the collision is with a reward, invokes the reward-specific handling mechanism.
      * Handles damage or crash events if applicable.
      *
-     * @param playerCar        The player's car involved in the collision.
-     * @param collisionObject  The game object that the player's car collided with.
+     * @param playerCar       The player's car involved in the collision.
+     * @param collisionObject The game object that the player's car collided with.
      */
     private void handleCollision(PlayerCar playerCar, GameObject collisionObject) {
         if (collisionObject instanceof Reward reward) {

@@ -39,14 +39,13 @@ public abstract class PlayerCar extends Car {
     }
 
 
-
     /**
      * Updates the position of the player car within the game world. This method processes input
      * received from the player and calculates the movement based on the time elapsed and the
      * fast-forwarding state. It ensures that the car's position is updated while adhering to the
      * boundaries of the game world.
      *
-     * @param deltaTime The time elapsed since the last movement, used for calculating the distance.
+     * @param deltaTime        The time elapsed since the last movement, used for calculating the distance.
      * @param isFastForwarding Indicates whether the player is in fast-forward mode, affecting speed.
      */
     @Override
@@ -59,7 +58,6 @@ public abstract class PlayerCar extends Car {
 
         moveCar(currentUserInput, distance, gameObjectWidth, gameObjectHeight);
     }
-
 
 
     /**
@@ -101,7 +99,7 @@ public abstract class PlayerCar extends Car {
      * This method determines the base distance using the car's speed and adjusts it depending on the fast-forward state.
      * It also increments the player's score accordingly.
      *
-     * @param deltaTime The time elapsed since the last movement, used to calculate the base distance traveled.
+     * @param deltaTime        The time elapsed since the last movement, used to calculate the base distance traveled.
      * @param isFastForwarding A flag indicating whether the player is in fast-forward mode, which impacts the speed and score increment.
      * @return The calculated distance the car will travel, adjusted for the fast-forward state if applicable.
      */
@@ -129,7 +127,6 @@ public abstract class PlayerCar extends Car {
     protected void setCollidable() {
         this.isCollidable = true;
     }
-
 
 
     /**

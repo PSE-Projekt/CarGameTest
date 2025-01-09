@@ -83,15 +83,14 @@ public class GameApplicationManager {
     }
 
 
-
     //TODO REMOVE
     private void dummyChangesToMakeThisShitWork() {
         gameStateAPI.setGameMode(GameMode.SINGLEPLAYER);
         playerAPI.createPlayerKeyboard();
         Optional<String> playerIdOptional = playerAPI.getKeyboardPlayerId();
-        if(playerIdOptional.isPresent()){
+        if (playerIdOptional.isPresent()) {
             String playerId = playerIdOptional.get();
-            playerAPI.setPlaying(playerId, true );
+            playerAPI.setPlaying(playerId, true);
             playerAPI.setCarSelection(playerId, CarType.FAST_CAR);
         }
     }

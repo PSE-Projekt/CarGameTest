@@ -13,8 +13,8 @@ import java.util.function.Supplier;
 public class GameObjectSpawnScheduler {
     private final double fastForwardSpeedFactor = (double) GameConfig.GAME_SPEED / GameConfig.GAME_SPEED_FAST_FORWARD;
     private final GameObjectService gameObjectService;
-    private ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor();
     private final PlayerHandler playerHandler;
+    private ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor();
 
     public GameObjectSpawnScheduler(PlayerHandler playerHandler, GameObjectService gameObjectService) {
         this.playerHandler = playerHandler;
@@ -94,8 +94,8 @@ public class GameObjectSpawnScheduler {
      * Generates a random delay value within the specified range, adjusted by fast-forwarding
      * speed if applicable.
      *
-     * @param minDelay The minimum delay in milliseconds. Will be capped to at least 1.
-     * @param maxDelay The maximum delay in milliseconds. Will be capped to at least 1.
+     * @param minDelay         The minimum delay in milliseconds. Will be capped to at least 1.
+     * @param maxDelay         The maximum delay in milliseconds. Will be capped to at least 1.
      * @param isFastForwarding A flag indicating whether fast-forwarding mode is enabled.
      *                         If true, the delay range is adjusted by the fast-forwarding
      *                         speed factor.
@@ -118,8 +118,8 @@ public class GameObjectSpawnScheduler {
      * Once the delay elapses, the spawn action is executed, and the method re-schedules itself.
      *
      * @param spawnAction A {@link Supplier} providing the {@link Runnable} task for spawning game objects.
-     * @param minDelay The minimum delay in milliseconds before the next execution. Will be adjusted based on fast-forwarding if applicable.
-     * @param maxDelay The maximum delay in milliseconds before the next execution. Will be adjusted based on fast-forwarding if applicable.
+     * @param minDelay    The minimum delay in milliseconds before the next execution. Will be adjusted based on fast-forwarding if applicable.
+     * @param maxDelay    The maximum delay in milliseconds before the next execution. Will be adjusted based on fast-forwarding if applicable.
      */
     private void scheduleSpawn(Supplier<Runnable> spawnAction, int minDelay, int maxDelay) {
         boolean isFastForwarding = playerHandler.isFastForwarding();

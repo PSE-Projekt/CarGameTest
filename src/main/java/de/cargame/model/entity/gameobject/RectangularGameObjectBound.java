@@ -3,7 +3,6 @@ package de.cargame.model.entity.gameobject;
 import java.awt.*;
 
 
-
 /**
  * Represents a rectangular boundary for a game object within the game world.
  * This class extends the {@code GameObjectBound} class and defines the spatial boundaries

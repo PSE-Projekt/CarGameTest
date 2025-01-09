@@ -1,7 +1,6 @@
 package de.cargame.model.entity.gameobject.interfaces;
 
 
-
 /**
  * Represents an interface that defines the ability of an object to be identified as collidable
  * within the game environment. This allows for determining whether an object can

@@ -1,4 +1,4 @@
-package de.cargame.controller;
+package de.cargame.model.service;
 
 import de.cargame.controller.input.GamePad;
 import de.cargame.controller.input.Keyboard;
@@ -9,15 +9,15 @@ public class InputService {
     private Keyboard keyboard;
     private GamePad gamePad;
 
-    public InputService(){
+    public InputService() {
 
     }
 
-    public void initKeyboard(String playerId){
+    public void initKeyboard(String playerId) {
         this.keyboard = new Keyboard(playerId);
     }
 
-    public void initGamepad(String playerId){
+    public void initGamepad(String playerId) {
         this.gamePad = new GamePad(playerId);
     }
 

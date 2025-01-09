@@ -9,7 +9,7 @@ import lombok.Setter;
  * <p>
  * This class provides a way to capture and manipulate a point
  * defined by its x and y coordinates in a two-dimensional plane.
-**/
+ **/
 @Getter
 @Setter
 @AllArgsConstructor
@@ -36,7 +36,6 @@ public class Coordinate {
     public void addY(double yAmount) {
         y += yAmount;
     }
-
 
 
     /**

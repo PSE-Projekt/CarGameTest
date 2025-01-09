@@ -72,7 +72,6 @@ public class UserInputBundle {
     }
 
 
-
     /**
      * Retrieves the most recent user input from the list of user inputs, excluding any inputs of type
      * {@code UserInputType.FAST_FORWARD}. The method determines the latest input based on the

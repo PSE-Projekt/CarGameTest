@@ -18,8 +18,8 @@ public class KamikazeCar extends AICar {
      * fast-forward mode. The movement is calculated towards the target position provided
      * by the associated {@link de.cargame.model.entity.gameobject.car.ai.movementStrategy}.
      *
-     * @param deltaTime The elapsed time since the last movement update, used to calculate
-     *                  the distance the car should move.
+     * @param deltaTime        The elapsed time since the last movement update, used to calculate
+     *                         the distance the car should move.
      * @param isFastForwarding A flag indicating whether the game is running in fast-forward
      *                         mode, affecting the speed of the car accordingly.
      */

@@ -11,7 +11,6 @@ import java.awt.*;
 import java.util.UUID;
 
 
-
 /**
  * Represents an abstract base class for all game objects within the game world.
  * Each GameObject has a unique identifier, a boundary definition, and configurable
@@ -32,7 +31,6 @@ import java.util.UUID;
 @Setter
 @Slf4j
 public abstract class GameObject implements Collidable, Despawnable {
-
 
 
     private final String id = UUID.randomUUID().toString();
@@ -73,8 +71,8 @@ public abstract class GameObject implements Collidable, Despawnable {
         return isCollidable;
     }
 
-    public int add(int x, int y){
-        return x+y;
+    public int add(int x, int y) {
+        return x + y;
     }
 
 
@@ -93,15 +91,14 @@ public abstract class GameObject implements Collidable, Despawnable {
     }
 
 
-
     /**
      * Moves the game object by specified amounts in the x and y directions while ensuring
      * the object remains within the boundaries of the game screen. If the object moves
      * outside the screen, its position is reverted to the previous location.
      *
-     * @param xAmount The amount to move the object along the x-axis.
-     * @param yAmount The amount to move the object along the y-axis.
-     * @param objectWidth The width of the object being moved.
+     * @param xAmount      The amount to move the object along the x-axis.
+     * @param yAmount      The amount to move the object along the y-axis.
+     * @param objectWidth  The width of the object being moved.
      * @param objectHeight The height of the object being moved.
      */
     protected void moveByRespectingGameBoundaries(double xAmount, double yAmount, double objectWidth, double objectHeight) {

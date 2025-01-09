@@ -46,7 +46,6 @@ public class TestView extends JFrame implements GamePlayScene {
     }
 
 
-
     /**
      * Renders the current state of the game by invoking the render method on the background and foreground panels
      * with the game's model data.

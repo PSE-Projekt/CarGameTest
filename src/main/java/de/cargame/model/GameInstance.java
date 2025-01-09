@@ -20,8 +20,8 @@ public class GameInstance implements Runnable {
     private final GameApplicationManager gameApplicationManager;
     private final GameObjectService gameObjectService;
 
-@Getter
-private boolean isFinished = false;
+    @Getter
+    private boolean isFinished = false;
 
 
     public GameInstance(GameStateAPI gameStateController, GameApplicationManager gameApplicationManager, Player player) {

@@ -25,7 +25,7 @@ public class GameInstanceService {
     }
 
     public void addGameInstance(GameInstance gameInstance) {
-        if(!gameInstances.contains(gameInstance)){
+        if (!gameInstances.contains(gameInstance)) {
             gameInstances.add(gameInstance);
         }
     }
@@ -36,11 +36,10 @@ public class GameInstanceService {
         gameInstance.registerUI(gameApplicationManager.getPlayerObserver());
         gameInstance.run();
         boolean allGamesFinished = getFinishedGameInstances().size() == gameInstances.size();
-        if(allGamesFinished){
+        if (allGamesFinished) {
             gameStateController.setGameState(GameState.SCORE_BOARD);
         }
     }
-
 
 
     public List<GameModelData> getModel() {
@@ -52,11 +51,11 @@ public class GameInstanceService {
         return gameModels;
     }
 
-    public void resetGameInstances(){
+    public void resetGameInstances() {
         gameInstances.clear();
     }
 
-    private List<GameInstance> getFinishedGameInstances(){
+    private List<GameInstance> getFinishedGameInstances() {
         return gameInstances.stream()
                 .filter(GameInstance::isFinished)
                 .toList();

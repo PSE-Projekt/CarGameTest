@@ -3,14 +3,12 @@ package de.cargame.view;
 import de.cargame.model.GameInstance;
 
 
-
 /**
  * Represents an interface for defining the layout and visual rendering logic of
  * a gameplay scene. Implementations of this interface handle the rendering of
  * the game state and model data within the application.
  */
 public interface GamePlayScene {
-
 
 
     /**

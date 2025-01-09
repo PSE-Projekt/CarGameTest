@@ -12,7 +12,6 @@ import java.util.List;
 public class GameInstanceController implements GameInstanceAPI {
 
 
-
     private final GameInstanceService gameInstanceService;
     private final PlayerAPI playerAPI;
 
@@ -21,7 +20,6 @@ public class GameInstanceController implements GameInstanceAPI {
         this.gameInstanceService = new GameInstanceService(gameApplicationManager, gameStateController);
         this.playerAPI = playerAPI;
     }
-
 
 
     @Override
@@ -33,7 +31,8 @@ public class GameInstanceController implements GameInstanceAPI {
     @Override
     public void startGamePlayerGamePad() {
         Player player = playerAPI.getGamepadPlayer();
-        gameInstanceService.startGame(player);    }
+        gameInstanceService.startGame(player);
+    }
 
     @Override
     public void resetGameInstances() {

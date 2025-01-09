@@ -4,8 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 
-
-
 /**
  * The PlayerUpdate class represents an immutable data structure designed to encapsulate the
  * current state of a player that can be transmitted to observers. It is primarily used in

@@ -39,6 +39,9 @@ public class GamePad extends InputDevice {
         }
     }
 
+    public void processInput() {
+    }
+
     public void inputTriggerUp() {
         //todo
     }

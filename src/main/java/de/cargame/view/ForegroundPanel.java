@@ -53,7 +53,6 @@ public class ForegroundPanel extends GamePanel implements PlayerObserver {
     }
 
 
-
     private void initLabels() {
 
         labelComponent = new JPanel();

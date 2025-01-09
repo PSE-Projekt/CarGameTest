@@ -14,13 +14,12 @@ public class Obstacle extends GameObject {
     }
 
 
-
     /**
      * Moves the object based on the elapsed time and speed configuration.
      * The movement is influenced by the game's normal speed or fast forward speed,
      * depending on whether fast-forwarding is active.
      *
-     * @param deltaTime The time elapsed since the last update, used to compute the distance to move.
+     * @param deltaTime        The time elapsed since the last update, used to compute the distance to move.
      * @param isFastForwarding A boolean indicating if the game is in fast forward mode,
      *                         which affects the movement speed.
      */
