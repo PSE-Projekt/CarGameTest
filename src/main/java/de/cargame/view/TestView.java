@@ -4,7 +4,6 @@ import de.cargame.config.GameConfig;
 import de.cargame.controller.GameStateController;
 import de.cargame.controller.api.GameStateAPI;
 import de.cargame.controller.entity.GameModelData;
-import de.cargame.controller.entity.GameState;
 import de.cargame.model.GameInstance;
 import de.cargame.model.entity.player.PlayerObserver;
 

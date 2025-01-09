@@ -4,12 +4,9 @@ import de.cargame.controller.api.GameInstanceAPI;
 import de.cargame.controller.api.GameStateAPI;
 import de.cargame.controller.api.PlayerAPI;
 import de.cargame.controller.entity.GameModelData;
-import de.cargame.controller.entity.GameState;
-import de.cargame.model.GameInstance;
 import de.cargame.model.entity.player.Player;
 import de.cargame.model.service.GameInstanceService;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class GameInstanceController implements GameInstanceAPI {
@@ -37,6 +34,11 @@ public class GameInstanceController implements GameInstanceAPI {
     public void startGamePlayerGamePad() {
         Player player = playerAPI.getGamepadPlayer();
         gameInstanceService.startGame(player);    }
+
+    @Override
+    public void resetGameInstances() {
+        gameInstanceService.resetGameInstances();
+    }
 
     @Override
     public List<GameModelData> getModel() {

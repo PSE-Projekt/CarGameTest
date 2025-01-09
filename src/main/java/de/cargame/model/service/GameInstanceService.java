@@ -1,7 +1,6 @@
 package de.cargame.model.service;
 
 import de.cargame.controller.GameApplicationManager;
-import de.cargame.controller.GameStateController;
 import de.cargame.controller.api.GameStateAPI;
 import de.cargame.controller.entity.GameModelData;
 import de.cargame.controller.entity.GameState;
@@ -42,11 +41,7 @@ public class GameInstanceService {
         }
     }
 
-    private List<GameInstance> getFinishedGameInstances(){
-        return gameInstances.stream()
-                .filter(GameInstance::isFinished)
-                .toList();
-    }
+
 
     public List<GameModelData> getModel() {
         List<GameModelData> gameModels = new ArrayList<>();
@@ -55,5 +50,15 @@ public class GameInstanceService {
             gameModels.add(gameModelData);
         }
         return gameModels;
+    }
+
+    public void resetGameInstances(){
+        gameInstances.clear();
+    }
+
+    private List<GameInstance> getFinishedGameInstances(){
+        return gameInstances.stream()
+                .filter(GameInstance::isFinished)
+                .toList();
     }
 }

@@ -1,8 +1,6 @@
 package de.cargame.model.service;
 
 import de.cargame.controller.InputService;
-import de.cargame.controller.PlayerController;
-import de.cargame.controller.input.InputDevice;
 import de.cargame.model.entity.gameobject.car.player.CarType;
 import de.cargame.model.entity.player.Player;
 import lombok.Getter;

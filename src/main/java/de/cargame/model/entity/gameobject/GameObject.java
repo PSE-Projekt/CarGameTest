@@ -3,9 +3,7 @@ package de.cargame.model.entity.gameobject;
 import de.cargame.config.GameConfig;
 import de.cargame.model.entity.gameobject.interfaces.Collidable;
 import de.cargame.model.entity.gameobject.interfaces.Despawnable;
-import lombok.Data;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 

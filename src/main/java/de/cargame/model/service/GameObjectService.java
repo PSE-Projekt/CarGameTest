@@ -120,7 +120,7 @@ public class GameObjectService {
         gameObjects.add(aiCar);
     }
 
-    public List<GameObject> getGameAllObjects() {
+    public List<GameObject> getAllGameObjects() {
         return gameObjects;
     }
 
