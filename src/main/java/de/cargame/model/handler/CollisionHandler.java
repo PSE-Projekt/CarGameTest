@@ -73,9 +73,9 @@ public class CollisionHandler {
     private void handleCollision(PlayerCar playerCar, GameObject collisionObject) {
         if (collisionObject instanceof Reward reward) {
             handleCollisionReward(reward);
-            return;
+        }else {
+            handleCollisionCrash(playerCar);
         }
-        handleCollisionCrash(playerCar);
     }
 
 
@@ -90,7 +90,7 @@ public class CollisionHandler {
     private void handleCollisionReward(Reward reward) {
         if (reward instanceof Life && !reward.isCollected()) {
             playerHandler.increaseLife();
-            soundService.collectRewardSound();
+            soundService.playRewardCollectedSound();
         }
         reward.setCollected(true);
     }

@@ -26,11 +26,11 @@ public class SoundService {
         playSound(selectSoundClip);
     }
 
-    public void changeSelectionSound() {
+    public void playChangeSelectionSound() {
         playSound(changeSelectionSoundClip);
     }
 
-    public void collectRewardSound() {
+    public void playRewardCollectedSound() {
         playSound(collectRewardSoundClip);
     }
 
