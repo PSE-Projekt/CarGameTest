@@ -1,6 +1,7 @@
 package de.cargame.model.handler;
 
 import de.cargame.exception.IllegalGameObjectBoundException;
+
 import de.cargame.model.entity.gameobject.GameObject;
 import de.cargame.model.entity.gameobject.Life;
 import de.cargame.model.entity.gameobject.Reward;
