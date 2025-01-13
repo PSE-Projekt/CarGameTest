@@ -56,6 +56,7 @@ public class GameApplicationManager {
     }
 
 
+
     public void renderGameInstance(GameInstance gameInstance) {
         testView.render(gameInstance);
     }

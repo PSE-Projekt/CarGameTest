@@ -127,7 +127,9 @@ public class GameObjectService {
 
     public void checkCollision() {
         collisionHandler.checkCollision(gameObjects);
-        if (!playerHandler.playerIsAlive()) {
+        boolean isPlayerAlive = playerHandler.isPlayerAlive();
+
+        if (!isPlayerAlive) {
             stopGame();
         }
     }

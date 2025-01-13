@@ -87,7 +87,7 @@ public class PlayerHandler {
     }
 
 
-    public boolean playerIsAlive() {
+    public boolean isPlayerAlive() {
         return player.isAlive();
     }
 

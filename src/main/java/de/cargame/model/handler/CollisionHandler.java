@@ -39,10 +39,7 @@ public class CollisionHandler {
     public void checkCollision(List<GameObject> gameObjects) {
         Player player = playerHandler.getPlayer();
         PlayerCar playerCar = player.getPlayerCar();
-        List<GameObject> collidableObjects = new ArrayList<>(gameObjects
-                .stream()
-                .filter(GameObject::isCollidable)
-                .toList());
+        List<GameObject> collidableObjects = filterCollidableObjects(gameObjects);
         collidableObjects.remove(playerCar);
 
 
@@ -51,7 +48,8 @@ public class CollisionHandler {
             Shape collidableObjectBound = collidableObject.getBound();
 
             if (collidableObjectBound instanceof Rectangle2D) {
-                if (playerCarBound.intersects((Rectangle2D) collidableObjectBound)) {
+                boolean intersects = playerCarBound.intersects((Rectangle2D) collidableObjectBound);
+                if (intersects) {
                     handleCollision(playerCar, collidableObject);
                 }
             } else {
@@ -88,11 +86,10 @@ public class CollisionHandler {
      * @param reward The reward object that is involved in the collision.
      */
     private void handleCollisionReward(Reward reward) {
-        if (reward instanceof Life && !reward.isCollected()) {
-            playerHandler.increaseLife();
+        boolean collected = reward.collect(playerHandler);
+        if (collected) {
             soundService.playRewardCollectedSound();
         }
-        reward.setCollected(true);
     }
 
 
@@ -110,6 +107,14 @@ public class CollisionHandler {
             playerHandler.decreaseLife();
             playerCar.setLastCrashTime();
         }
+    }
+
+
+    private List<GameObject> filterCollidableObjects(List<GameObject> gameObjects) {
+        return new ArrayList<>(gameObjects
+                .stream()
+                .filter(GameObject::isCollidable)
+                .toList());
     }
 
 }

@@ -1,5 +1,8 @@
 package de.cargame.model.entity.gameobject;
 
+import de.cargame.model.entity.player.Player;
+import de.cargame.model.handler.PlayerHandler;
+
 /**
  * Represents a "Life" reward in the game.
  * A "Life" object provides additional lives to the player when collected.
@@ -13,5 +16,15 @@ public class Life extends Reward {
 
     public Life(Coordinate coordinate, Dimension dimension, GameObjectBoundType gameObjectBoundType) {
         super(coordinate, dimension, gameObjectBoundType);
+    }
+
+    @Override
+    public boolean collect(PlayerHandler playerHandler) {
+        if(!isCollected()){
+            playerHandler.increaseLife();
+            setCollected(true);
+            return true;
+        }
+        return false;
     }
 }

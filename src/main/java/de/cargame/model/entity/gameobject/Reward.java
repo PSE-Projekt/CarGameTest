@@ -1,6 +1,8 @@
 package de.cargame.model.entity.gameobject;
 
 import de.cargame.config.GameConfig;
+import de.cargame.model.entity.player.Player;
+import de.cargame.model.handler.PlayerHandler;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -21,6 +23,9 @@ public abstract class Reward extends GameObject {
     public Reward(Coordinate coordinate, Dimension dimension, GameObjectBoundType gameObjectBoundType) {
         super(coordinate, dimension, gameObjectBoundType);
     }
+
+    public abstract boolean collect(PlayerHandler playerHandler);
+
 
     @Override
     public void move(double deltaTime, boolean isFastForwarding) {

@@ -8,6 +8,14 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class CarGameApplication {
 
+    /**
+     * The main method serves as the entry point for the application.
+     * It initializes system properties, sets up native library paths, registers hooks using `GlobalScreen`,
+     * enables OpenGL rendering, and creates an instance of the `GameApplicationManager`
+     * to manage the game lifecycle.
+     *
+     * @param args the command-line arguments passed to the application, not utilized within the implementation.
+     */
     public static void main(String[] args) {
         // Set java.library.path to include the extracted native libraries
         System.setProperty("java.library.path", "target/natives");
@@ -18,7 +26,6 @@ public class CarGameApplication {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
         try {
             GlobalScreen.registerNativeHook();
         } catch (NativeHookException e) {

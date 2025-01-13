@@ -7,6 +7,7 @@ import de.cargame.model.entity.player.PlayerUpdate;
 import java.util.ArrayList;
 import java.util.Collection;
 
+
 public class PlayerUpdateNotifyService implements PlayerObservable {
 
     private final Collection<PlayerObserver> observers = new ArrayList<>();
