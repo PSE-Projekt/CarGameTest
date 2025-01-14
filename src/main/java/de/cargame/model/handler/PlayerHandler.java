@@ -23,7 +23,8 @@ public class PlayerHandler {
     @Getter
     private Player player;
 
-    public PlayerHandler() {
+    public PlayerHandler(Player player) {
+        this.player = player;
         this.playerUpdateNotifyService = new PlayerUpdateNotifyService();
     }
 
@@ -49,13 +50,6 @@ public class PlayerHandler {
         return player.isFastForwarding();
     }
 
-    public PlayerCar getCarSelection() {
-        return player.getPlayerCar();
-    }
-
-    public void setCarSelection(CarType carSelection) {
-        player.setCarSelection(carSelection);
-    }
 
     public void registerPlayerObserver(PlayerObserver playerObserver) {
         playerUpdateNotifyService.addObserver(playerObserver);

@@ -2,7 +2,9 @@ package de.cargame.controller;
 
 import de.cargame.controller.api.PlayerAPI;
 import de.cargame.model.entity.gameobject.car.player.CarType;
+import de.cargame.model.entity.gameobject.interfaces.UserInputObserver;
 import de.cargame.model.entity.player.Player;
+import de.cargame.model.entity.player.PlayerObserver;
 import de.cargame.model.service.PlayerService;
 
 import java.util.Optional;
@@ -63,5 +65,15 @@ public class PlayerController implements PlayerAPI {
     @Override
     public boolean isPlaying(String playerId) {
         return playerService.isPlaying(playerId);
+    }
+
+    @Override
+    public void registerInputObserver(UserInputObserver observer) {
+        playerService.registerInputObservers(observer);
+    }
+
+    @Override
+    public void registerPlayerObserver(PlayerObserver observer) {
+
     }
 }

@@ -1,7 +1,9 @@
 package de.cargame.controller.api;
 
 import de.cargame.model.entity.gameobject.car.player.CarType;
+import de.cargame.model.entity.gameobject.interfaces.UserInputObserver;
 import de.cargame.model.entity.player.Player;
+import de.cargame.model.entity.player.PlayerObserver;
 
 import java.util.Optional;
 
@@ -30,5 +32,9 @@ public interface PlayerAPI {
     void setPlaying(String playerId, boolean playing);
 
     boolean isPlaying(String playerId);
+
+    void registerInputObserver(UserInputObserver observer);
+
+    void registerPlayerObserver(PlayerObserver observer);
 
 }

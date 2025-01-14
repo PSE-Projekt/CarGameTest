@@ -16,7 +16,7 @@ import lombok.extern.slf4j.Slf4j;
 public class GameInstance implements Runnable {
 
     private final GameStateAPI gameStateController;
-    private final PlayerHandler playerHandler = new PlayerHandler();
+    private final PlayerHandler playerHandler;
     private final GameApplicationManager gameApplicationManager;
     private final GameObjectService gameObjectService;
 
@@ -27,8 +27,8 @@ public class GameInstance implements Runnable {
     public GameInstance(GameStateAPI gameStateController, GameApplicationManager gameApplicationManager, Player player) {
         this.gameStateController = gameStateController;
         this.gameApplicationManager = gameApplicationManager;
+        this.playerHandler = new PlayerHandler(player);
         this.gameObjectService = new GameObjectService(gameStateController, playerHandler);
-        this.playerHandler.setPlayer(player);
     }
 
     /**

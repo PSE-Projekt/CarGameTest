@@ -1,6 +1,7 @@
 package de.cargame.model.service;
 
 import de.cargame.model.entity.gameobject.car.player.CarType;
+import de.cargame.model.entity.gameobject.interfaces.UserInputObserver;
 import de.cargame.model.entity.player.Player;
 import lombok.Getter;
 
@@ -9,7 +10,7 @@ import java.util.Optional;
 public class PlayerService {
 
     private final InputService inputService = new InputService();
-
+    private final PlayerUpdateNotifyService playerUpdateNotifyService = new PlayerUpdateNotifyService();
 
     @Getter
     private Player keyboardPlayer = new Player();
@@ -26,6 +27,11 @@ public class PlayerService {
     public void createPlayerGamepad() {
         inputService.initGamepad(gamepadPlayer.getId());
         inputService.registerGamePadObserver(gamepadPlayer);
+    }
+
+    public void registerInputObservers(UserInputObserver observer) {
+        inputService.registerKeyboardObserver(observer);
+        inputService.registerGamePadObserver(observer);
     }
 
 
