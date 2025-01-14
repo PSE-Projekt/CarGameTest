@@ -38,6 +38,14 @@ public class Keyboard extends InputDevice implements NativeKeyListener {
         }
     }
 
+    /**
+     * Handles a native key press event from the keyboard. This method retrieves the key code
+     * from the event and attempts to map it to a {@code UserInputType}. If a valid input type
+     * is found, it is added to the {@code userInputBundle}, and all registered observers
+     * are notified of the updated bundle state.
+     *
+     * @param e the {@code NativeKeyEvent} representing the key press event
+     */
     @Override
     public void nativeKeyPressed(NativeKeyEvent e) {
         int keyCode = e.getKeyCode();
@@ -51,6 +59,15 @@ public class Keyboard extends InputDevice implements NativeKeyListener {
         //NO VALID INPUT -> ignored
     }
 
+    /**
+     * Handles a native key release event from the keyboard. This method retrieves
+     * the key code from the event and attempts to map it to a {@code UserInputType}.
+     * If a matching input type is found, it is removed from the {@code userInputBundle}.
+     * If the bundle becomes empty after this operation, it adds the {@code UserInputType.NONE}
+     * to the bundle. Finally, all registered observers are notified of the updated bundle state.
+     *
+     * @param e the {@code NativeKeyEvent} representing the key release event
+     */
     @Override
     public void nativeKeyReleased(NativeKeyEvent e) {
         int keyCode = e.getKeyCode();

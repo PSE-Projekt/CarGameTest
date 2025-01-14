@@ -10,8 +10,7 @@ public enum UserInputType {
     LEFT(30),
     DOWN(31),
     RIGHT(32),
-    SELECT(13),
-    FAST_FORWARD(57),
+    CONFIRM(28),
     NONE(-1);
 
 
@@ -23,6 +22,7 @@ public enum UserInputType {
     }
 
     public static Optional<UserInputType> getUserInputForKeyCode(int keyCode) {
+        System.out.println(keyCode);
         UserInputType[] values = values();
         for (UserInputType value : values) {
             if (value.getKeyCode() == keyCode) {

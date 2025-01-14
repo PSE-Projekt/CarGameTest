@@ -57,6 +57,12 @@ public class GameApplicationManager {
 
 
 
+    /**
+     * Renders the provided game instance by delegating to the associated test view's rendering logic.
+     * This method updates the visual representation of the current game state using the game instance's data.
+     *
+     * @param gameInstance the current instance of the game, encapsulating the game's state and model data
+     */
     public void renderGameInstance(GameInstance gameInstance) {
         testView.render(gameInstance);
     }

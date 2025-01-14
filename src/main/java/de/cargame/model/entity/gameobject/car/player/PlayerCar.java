@@ -65,7 +65,7 @@ public abstract class PlayerCar extends Car {
      * <p>
      * This method retrieves the latest user input from the player's input handler and determines if
      * it should update the current user input type for the player. If the retrieved input is different
-     * from the current input type, a time-based inertia check is performed to confirm if the input
+     * from the current input type, a time-based inertia check is performed to CONFIRM if the input
      * change is valid. If valid, the current input type is updated; otherwise, it defaults to "NONE".
      * If no user input is available, the current input type is set to "NONE".
      * <p>

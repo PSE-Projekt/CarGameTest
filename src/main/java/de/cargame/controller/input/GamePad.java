@@ -1,6 +1,7 @@
 package de.cargame.controller.input;
 
 import de.cargame.model.entity.gameobject.interfaces.UserInputObserver;
+import net.java.games.input.Component;
 import net.java.games.input.Controller;
 import net.java.games.input.ControllerEnvironment;
 
@@ -39,20 +40,13 @@ public class GamePad extends InputDevice {
         }
     }
 
+    public void readInput() {
+    }
+
+
     public void processInput() {
     }
 
-    public void inputTriggerUp() {
-        //todo
-    }
-
-    public void inputTriggerDown() {
-        //todo
-    }
-
-    public void inputA() {
-        //todo
-    }
 
     @Override
     public void registerObserver(UserInputObserver o) {
