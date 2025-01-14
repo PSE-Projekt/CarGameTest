@@ -70,7 +70,6 @@ public class PlayerController implements PlayerAPI {
 
     @Override
     public void registerPlayerObserver(PlayerObserver observer) {
-        playerService.getKeyboardPlayer().addObserver(observer);
-        playerService.getGamepadPlayer().addObserver(observer);
+        playerService.registerPlayerObservers(observer);
     }
 }
