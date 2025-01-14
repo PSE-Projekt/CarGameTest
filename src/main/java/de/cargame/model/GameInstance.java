@@ -6,7 +6,6 @@ import de.cargame.controller.api.GameStateAPI;
 import de.cargame.controller.entity.GameModelData;
 import de.cargame.controller.entity.GameState;
 import de.cargame.model.entity.player.Player;
-import de.cargame.model.entity.player.PlayerObserver;
 import de.cargame.model.handler.PlayerHandler;
 import de.cargame.model.service.GameObjectService;
 import lombok.Getter;
@@ -34,14 +33,14 @@ public class GameInstance implements Runnable {
     /**
      * Executes the core game loop for this game instance. This method manages the
      * game's lifecycle and logic while the game state is set to IN_GAME.
-     *
+     * <p>
      * The loop performs the following tasks:
      * 1. Starts the game by initializing necessary services and game objects.
      * 2. Maintains a consistent time step (deltaTime) based on the system's nanoTime.
      * 3. Updates the game state, including moving and spawning objects, and handling collisions.
      * 4. Renders the current game state visually via the associated game application manager.
      * 5. Controls the game's frame rate using a sleep interval defined in `GameConfig.FPS`.
-     *
+     * <p>
      * The loop continues indefinitely as long as the game state remains IN_GAME.
      * If interrupted, the error is logged, and the loop exits, marking the game
      * instance as finished.
@@ -86,7 +85,4 @@ public class GameInstance implements Runnable {
         return playerHandler.getPlayer().getId();
     }
 
-    public void registerUI(PlayerObserver playerObserver) {
-        playerHandler.registerPlayerObserver(playerObserver);
-    }
 }

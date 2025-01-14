@@ -10,8 +10,6 @@ import de.cargame.model.entity.player.PlayerObserver;
 import de.cargame.view.TestView;
 import lombok.extern.slf4j.Slf4j;
 
-import java.util.Optional;
-
 @Slf4j
 public class GameApplicationManager {
 
@@ -56,7 +54,6 @@ public class GameApplicationManager {
     }
 
 
-
     /**
      * Renders the provided game instance by delegating to the associated test view's rendering logic.
      * This method updates the visual representation of the current game state using the game instance's data.
@@ -93,6 +90,7 @@ public class GameApplicationManager {
 
     //TODO REMOVE
     private void dummyChangesToMakeThisShitWork() {
+        playerAPI.registerPlayerObserver(testView.getJPanel());
         gameStateAPI.setGameMode(GameMode.SINGLEPLAYER);
         playerAPI.createPlayerKeyboard();
         String playerId = playerAPI.getKeyboardPlayerId();

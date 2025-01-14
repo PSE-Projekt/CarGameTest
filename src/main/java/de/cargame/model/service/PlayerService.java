@@ -10,7 +10,6 @@ import java.util.Optional;
 public class PlayerService {
 
     private final InputService inputService = new InputService();
-    private final PlayerUpdateNotifyService playerUpdateNotifyService = new PlayerUpdateNotifyService();
 
     @Getter
     private Player keyboardPlayer = new Player();

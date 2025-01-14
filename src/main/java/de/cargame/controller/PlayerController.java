@@ -7,8 +7,6 @@ import de.cargame.model.entity.player.Player;
 import de.cargame.model.entity.player.PlayerObserver;
 import de.cargame.model.service.PlayerService;
 
-import java.util.Optional;
-
 /**
  * The PlayerController class provides implementation for the PlayerAPI interface.
  * It acts as a bridge between higher-level application logic and the underlying PlayerService,
@@ -32,14 +30,12 @@ public class PlayerController implements PlayerAPI {
 
     @Override
     public String getKeyboardPlayerId() {
-        String id = getKeyboardPlayer().getId();
-        return id;
+        return getKeyboardPlayer().getId();
     }
 
     @Override
     public String getGamepadPlayerId() {
-        String id = getGamepadPlayer().getId();
-        return id;
+        return getGamepadPlayer().getId();
     }
 
     @Override
@@ -74,6 +70,7 @@ public class PlayerController implements PlayerAPI {
 
     @Override
     public void registerPlayerObserver(PlayerObserver observer) {
-
+        playerService.getKeyboardPlayer().addObserver(observer);
+        playerService.getGamepadPlayer().addObserver(observer);
     }
 }

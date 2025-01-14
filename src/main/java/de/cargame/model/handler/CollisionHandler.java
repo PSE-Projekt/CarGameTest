@@ -1,9 +1,7 @@
 package de.cargame.model.handler;
 
 import de.cargame.exception.IllegalGameObjectBoundException;
-
 import de.cargame.model.entity.gameobject.GameObject;
-import de.cargame.model.entity.gameobject.Life;
 import de.cargame.model.entity.gameobject.Reward;
 import de.cargame.model.entity.gameobject.car.player.PlayerCar;
 import de.cargame.model.entity.player.Player;
@@ -71,7 +69,7 @@ public class CollisionHandler {
     private void handleCollision(PlayerCar playerCar, GameObject collisionObject) {
         if (collisionObject instanceof Reward reward) {
             handleCollisionReward(reward);
-        }else {
+        } else {
             handleCollisionCrash(playerCar);
         }
     }

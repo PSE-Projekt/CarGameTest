@@ -5,8 +5,6 @@ import de.cargame.model.entity.gameobject.interfaces.UserInputObserver;
 import de.cargame.model.entity.player.Player;
 import de.cargame.model.entity.player.PlayerObserver;
 
-import java.util.Optional;
-
 
 /**
  * The PlayerAPI interface provides methods to manage player creation, retrieve player information,

@@ -16,7 +16,7 @@ public class KamikazeCar extends AICar {
      * Moves the KamikazeCar instance based on its speed, direction, and movement strategy.
      * The movement is influenced by the provided time delta and whether the game is in
      * fast-forward mode. The movement is calculated towards the target position provided
-     * by the associated {@link de.cargame.model.entity.gameobject.car.ai.movementStrategy}.
+     * by the associated {@link de.cargame.model.entity.gameobject.car.ai.MovementStrategy}.
      *
      * @param deltaTime        The elapsed time since the last movement update, used to calculate
      *                         the distance the car should move.

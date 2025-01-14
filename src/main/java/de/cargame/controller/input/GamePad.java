@@ -1,7 +1,6 @@
 package de.cargame.controller.input;
 
 import de.cargame.model.entity.gameobject.interfaces.UserInputObserver;
-import net.java.games.input.Component;
 import net.java.games.input.Controller;
 import net.java.games.input.ControllerEnvironment;
 

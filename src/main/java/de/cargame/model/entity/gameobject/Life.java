@@ -1,6 +1,5 @@
 package de.cargame.model.entity.gameobject;
 
-import de.cargame.model.entity.player.Player;
 import de.cargame.model.handler.PlayerHandler;
 
 /**
@@ -20,7 +19,7 @@ public class Life extends Reward {
 
     @Override
     public boolean collect(PlayerHandler playerHandler) {
-        if(!isCollected()){
+        if (!isCollected()) {
             playerHandler.increaseLife();
             setCollected(true);
             return true;

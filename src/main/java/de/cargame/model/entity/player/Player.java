@@ -4,12 +4,15 @@ package de.cargame.model.entity.player;
 import de.cargame.config.GameConfig;
 import de.cargame.controller.input.UserInput;
 import de.cargame.controller.input.UserInputBundle;
+import de.cargame.model.PlayerObservable;
 import de.cargame.model.entity.gameobject.car.player.CarType;
 import de.cargame.model.entity.gameobject.car.player.PlayerCar;
 import de.cargame.model.entity.gameobject.interfaces.UserInputObserver;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -26,7 +29,7 @@ import java.util.UUID;
  */
 @Getter
 @Setter
-public class Player implements UserInputObserver {
+public class Player implements UserInputObserver, PlayerObservable {
 
     private final String id;
     private UserInputBundle userInputBundle;
@@ -35,6 +38,7 @@ public class Player implements UserInputObserver {
     private int lives;
     private boolean isPlaying;
     private CarType carSelection;
+    private List<PlayerObserver> playerObservers = new ArrayList<>();
 
     public Player() {
         this.id = UUID.randomUUID().toString();
@@ -50,6 +54,7 @@ public class Player implements UserInputObserver {
 
     public void increaseScore(double value) {
         score.increaseScore(value);
+        notifyPlayerObserversWithCurrentValues();
     }
 
     public void setDefaultValues() {
@@ -57,18 +62,22 @@ public class Player implements UserInputObserver {
         this.score = new Score();
         this.lives = GameConfig.MAX_LIVES;
         this.isPlaying = false;
+        notifyPlayerObserversWithCurrentValues();
     }
 
     public void resetScore() {
         score.reset();
+        notifyPlayerObserversWithCurrentValues();
     }
 
     public void increaseLife() {
         lives++;
+        notifyPlayerObserversWithCurrentValues();
     }
 
     public void decreaseLife() {
         lives--;
+        notifyPlayerObserversWithCurrentValues();
     }
 
     public boolean isAlive() {
@@ -84,4 +93,28 @@ public class Player implements UserInputObserver {
         return this.userInputBundle.getLatestInput();
     }
 
+    @Override
+    public void addObserver(PlayerObserver playerObserver) {
+        this.playerObservers.add(playerObserver);
+    }
+
+    @Override
+    public void removeObserver(PlayerObserver observer) {
+        this.playerObservers.remove(observer);
+    }
+
+    @Override
+    public void notifyObservers(PlayerUpdate playerUpdate) {
+        for (PlayerObserver observer : playerObservers) {
+            observer.update(playerUpdate);
+        }
+    }
+
+    private void notifyPlayerObserversWithCurrentValues() {
+        notifyObservers(generatePlayerUpdate());
+    }
+
+    private PlayerUpdate generatePlayerUpdate() {
+        return new PlayerUpdate(getId(), (int) getScore().getValue(), getLives());
+    }
 }

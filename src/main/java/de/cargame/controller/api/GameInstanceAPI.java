@@ -27,7 +27,7 @@ public interface GameInstanceAPI {
      * Initiates a game session for a gamepad-controlled player.
      * This method retrieves the player associated with the gamepad from the PlayerAPI
      * and starts the game for that player by delegating the operation to the GameInstanceService.
-     *
+     * <p>
      * This action assumes that a gamepad-controlled player has been created and configured
      * prior to calling this method.
      */
@@ -37,7 +37,7 @@ public interface GameInstanceAPI {
      * Resets all currently active game instances in the application.
      * This operation restores the state of all game-related activities to their default or initial configuration,
      * effectively preparing the system for a new session or a fresh restart.
-     *
+     * <p>
      * It might involve clearing active players, resetting game objects, and reverting to uninitialized states.
      * This method should be used cautiously to avoid unintended disruptions to ongoing game sessions.
      */
