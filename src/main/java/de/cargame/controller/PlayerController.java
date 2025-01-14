@@ -7,6 +7,13 @@ import de.cargame.model.service.PlayerService;
 
 import java.util.Optional;
 
+/**
+ * The PlayerController class provides implementation for the PlayerAPI interface.
+ * It acts as a bridge between higher-level application logic and the underlying PlayerService,
+ * which manages the creation, data retrieval, and state configuration of players.
+ * Players can be controlled using either a keyboard or a gamepad, and the class
+ * provides methods to manage both types.
+ */
 public class PlayerController implements PlayerAPI {
 
     private final PlayerService playerService = new PlayerService();
@@ -22,15 +29,15 @@ public class PlayerController implements PlayerAPI {
     }
 
     @Override
-    public Optional<String> getKeyboardPlayerId() {
+    public String getKeyboardPlayerId() {
         String id = getKeyboardPlayer().getId();
-        return Optional.ofNullable(id);
+        return id;
     }
 
     @Override
-    public Optional<String> getGamepadPlayerId() {
+    public String getGamepadPlayerId() {
         String id = getGamepadPlayer().getId();
-        return Optional.ofNullable(id);
+        return id;
     }
 
     @Override

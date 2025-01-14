@@ -12,13 +12,14 @@ import java.util.Optional;
  */
 public interface PlayerAPI {
 
+
     void createPlayerKeyboard();
 
     void createPlayerGamepad();
 
-    Optional<String> getKeyboardPlayerId();
+    String getKeyboardPlayerId();
 
-    Optional<String> getGamepadPlayerId();
+    String getGamepadPlayerId();
 
     Player getKeyboardPlayer();
 

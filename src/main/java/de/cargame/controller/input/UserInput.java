@@ -8,21 +8,28 @@ import java.util.Objects;
 public class UserInput {
 
     private final UserInputType userInputType;
-    private long time;
+    private long pressedTimeStamp;
 
     public UserInput(final UserInputType userInputType) {
-        setTime();
+        setPressedTimeStamp();
         this.userInputType = userInputType;
     }
 
 
+    /**
+     * Determines whether the specified amount of time in milliseconds has elapsed
+     * since the `time` field of the class instance was last set.
+     *
+     * @param timeMillis the time duration in milliseconds to compare the elapsed time against
+     * @return true if the elapsed time since the `time` field was last set is greater than or equal to the specified timeMillis, false otherwise
+     */
     public boolean timeElapsed(double timeMillis) {
-        return System.currentTimeMillis() - time >= timeMillis;
+        return System.currentTimeMillis() - pressedTimeStamp >= timeMillis;
     }
 
 
-    private void setTime() {
-        this.time = System.currentTimeMillis();
+    private void setPressedTimeStamp() {
+        this.pressedTimeStamp = System.currentTimeMillis();
     }
 
 
@@ -34,6 +41,6 @@ public class UserInput {
 
     @Override
     public int hashCode() {
-        return Objects.hash(userInputType, time);
+        return Objects.hash(userInputType, pressedTimeStamp);
     }
 }

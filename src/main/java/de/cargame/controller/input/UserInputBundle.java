@@ -83,7 +83,7 @@ public class UserInputBundle {
     public Optional<UserInput> getLatestInput() {
         return userInputs.stream()
                 .filter(input -> input.getUserInputType() != UserInputType.CONFIRM)
-                .min((o1, o2) -> Long.compare(o2.getTime(), o1.getTime()));
+                .min((o1, o2) -> Long.compare(o2.getPressedTimeStamp(), o1.getPressedTimeStamp()));
     }
 
     public int size() {

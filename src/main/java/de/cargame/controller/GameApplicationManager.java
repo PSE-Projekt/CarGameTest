@@ -69,22 +69,23 @@ public class GameApplicationManager {
 
 
     private void startGameSingleplayerMode() {
-        Optional<String> keyboardPlayerIdOptional = playerAPI.getKeyboardPlayerId();
-        Optional<String> gamepadPlayerIdOptional = playerAPI.getGamepadPlayerId();
-        if (keyboardPlayerIdOptional.isPresent() && playerAPI.isPlaying(keyboardPlayerIdOptional.get())) {
+        String keyboardPlayerId = playerAPI.getKeyboardPlayerId();
+        String gamepadPlayerId = playerAPI.getGamepadPlayerId();
+
+        if (playerAPI.isPlaying(keyboardPlayerId)) {
             gameInstanceAPI.startGamePlayerKeyboard();
-        } else if (gamepadPlayerIdOptional.isPresent() && playerAPI.isPlaying(gamepadPlayerIdOptional.get())) {
+        } else if (playerAPI.isPlaying(gamepadPlayerId)) {
             gameInstanceAPI.startGamePlayerGamePad();
         }
     }
 
     private void startGameMultiplayerMode() {
-        Optional<String> keyboardPlayerIdOptional = playerAPI.getKeyboardPlayerId();
-        Optional<String> gamepadPlayerIdOptional = playerAPI.getGamepadPlayerId();
-        if (keyboardPlayerIdOptional.isPresent() && playerAPI.isPlaying(keyboardPlayerIdOptional.get())) {
+        String keyboardPlayerId = playerAPI.getKeyboardPlayerId();
+        String gamepadPlayerId = playerAPI.getGamepadPlayerId();
+        if (playerAPI.isPlaying(keyboardPlayerId)) {
             gameInstanceAPI.startGamePlayerKeyboard();
         }
-        if (gamepadPlayerIdOptional.isPresent() && playerAPI.isPlaying(gamepadPlayerIdOptional.get())) {
+        if (playerAPI.isPlaying(gamepadPlayerId)) {
             gameInstanceAPI.startGamePlayerGamePad();
         }
     }
@@ -94,11 +95,8 @@ public class GameApplicationManager {
     private void dummyChangesToMakeThisShitWork() {
         gameStateAPI.setGameMode(GameMode.SINGLEPLAYER);
         playerAPI.createPlayerKeyboard();
-        Optional<String> playerIdOptional = playerAPI.getKeyboardPlayerId();
-        if (playerIdOptional.isPresent()) {
-            String playerId = playerIdOptional.get();
-            playerAPI.setPlaying(playerId, true);
-            playerAPI.setCarSelection(playerId, CarType.FAST_CAR);
-        }
+        String playerId = playerAPI.getKeyboardPlayerId();
+        playerAPI.setPlaying(playerId, true);
+        playerAPI.setCarSelection(playerId, CarType.FAST_CAR);
     }
 }
