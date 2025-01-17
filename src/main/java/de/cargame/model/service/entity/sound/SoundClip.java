@@ -17,6 +17,7 @@ public abstract class SoundClip {
     public SoundClip() {
         setPath();
         loadSoundFile(path);
+        adjustLoudness(-10f);
     }
 
 
@@ -40,6 +41,15 @@ public abstract class SoundClip {
         } catch (LineUnavailableException | UnsupportedAudioFileException | IOException e) {
             throw new RuntimeException(e);
         }
+    }
+
+
+    /**
+     * Adjusts the global gain by the given {@param delta} value.
+     */
+    private void adjustLoudness(Float delta){
+        FloatControl gainControl = (FloatControl)  clip.getControl(FloatControl.Type.MASTER_GAIN);
+        gainControl.setValue(delta);// Reduce volume by 10 decibels.
     }
 
 }
