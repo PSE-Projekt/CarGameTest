@@ -51,10 +51,6 @@ public class SpawnAreaList {
      */
     public Coordinate getRandomCoordinate() {
         SpawnArea spawnArea = spawnAreas.get(new Random().nextInt(spawnAreas.size()));
-        return getRandomCoordinate(spawnArea);
-    }
-
-    public Coordinate getRandomCoordinate(SpawnArea spawnArea) {
         return spawnArea.getRandomCoordinateInArea();
     }
 

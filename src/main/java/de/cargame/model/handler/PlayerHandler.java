@@ -29,7 +29,6 @@ public class PlayerHandler {
 
     public void resetScore() {
         player.resetScore();
-        System.out.println("reset score");
     }
 
     public Optional<UserInput> getCurrentUserInput() {

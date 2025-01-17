@@ -19,6 +19,23 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
+/**
+ * Service class responsible for managing game objects and their behaviors during
+ * the game's lifecycle. It includes functionality for spawning, updating, and
+ * removing game objects, as well as detecting and responding to collisions.
+ * This class works in conjunction with other game components such as the
+ * {@code CollisionHandler}, {@code GameObjectCreationService},
+ * {@code GameObjectSpawnScheduler}, and {@code PlayerHandler}.
+ *
+ * Responsibilities of this class include:
+ * - Managing active game objects in a thread-safe manner.
+ * - Spawning specific game objects such as player cars, AI cars, buildings,
+ *   road marks, obstacles, and rewards.
+ * - Updating the positions and states of game objects over time.
+ * - Handling object despawning when objects move outside a certain boundary.
+ * - Delegating collision handling to the {@code CollisionHandler}.
+ * - Coordinating player interaction and game state transitions.
+ */
 @Slf4j
 public class GameObjectService {
     private final CollisionHandler collisionHandler;
@@ -65,14 +82,14 @@ public class GameObjectService {
         checkCollision();
     }
 
-    public void moveElements(double deltaTime) {
+    private void moveElements(double deltaTime) {
         for (GameObject gameObject : gameObjects) {
             boolean fastForwarding = playerHandler.isFastForwarding();
             gameObject.move(deltaTime, fastForwarding);
         }
     }
 
-    public void despawnPassedObjects() {
+    private void despawnPassedObjects() {
         List<GameObject> gameObjectsToRemove = new ArrayList<>();
         List<GameObject> despawnableObjects = gameObjects.stream()
                 .filter(GameObject::isDespawnable)
@@ -87,7 +104,7 @@ public class GameObjectService {
     }
 
 
-    public void spawnPlayerCar(String playerId, CarType carType) {
+    private void spawnPlayerCar(String playerId, CarType carType) {
         PlayerCar playerCar = gameObjectCreationService.createPlayerCar(carType);
         playerCar.setPlayerId(playerId);
         playerCar.setPlayerHandler(playerHandler);
@@ -125,7 +142,7 @@ public class GameObjectService {
     }
 
 
-    public void checkCollision() {
+    private void checkCollision() {
         collisionHandler.checkCollision(gameObjects);
         boolean isPlayerAlive = playerHandler.isPlayerAlive();
 
