@@ -117,4 +117,9 @@ public class Player implements UserInputObserver, PlayerObservable {
     private PlayerUpdate generatePlayerUpdate() {
         return new PlayerUpdate(getId(), (int) getScore().getValue(), getLives());
     }
+
+    @Override
+    public int hashCode() {
+        return id.hashCode();
+    }
 }

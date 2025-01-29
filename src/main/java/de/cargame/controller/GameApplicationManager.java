@@ -7,6 +7,7 @@ import de.cargame.controller.entity.GameMode;
 import de.cargame.model.GameInstance;
 import de.cargame.model.entity.gameobject.car.player.CarType;
 import de.cargame.model.entity.player.PlayerObserver;
+import de.cargame.model.service.PlayerService;
 import de.cargame.view.TestView;
 import lombok.extern.slf4j.Slf4j;
 
@@ -15,7 +16,7 @@ public class GameApplicationManager {
 
 
     private final GameStateAPI gameStateAPI = new GameStateController();
-    private final PlayerAPI playerAPI = new PlayerController();
+    private final PlayerAPI playerAPI = new PlayerController(new PlayerService());
     private final GameInstanceAPI gameInstanceAPI = new GameInstanceController(this, gameStateAPI, playerAPI);
 
     private TestView testView;

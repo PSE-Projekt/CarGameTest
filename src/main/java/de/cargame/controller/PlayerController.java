@@ -1,6 +1,7 @@
 package de.cargame.controller;
 
 import de.cargame.controller.api.PlayerAPI;
+import de.cargame.exception.PlayerNotFoundException;
 import de.cargame.model.entity.gameobject.car.player.CarType;
 import de.cargame.model.entity.gameobject.interfaces.UserInputObserver;
 import de.cargame.model.entity.player.Player;
@@ -16,7 +17,12 @@ import de.cargame.model.service.PlayerService;
  */
 public class PlayerController implements PlayerAPI {
 
-    private final PlayerService playerService = new PlayerService();
+    private final PlayerService playerService;
+
+
+    public PlayerController(PlayerService playerService){
+        this.playerService = playerService;
+    }
 
     @Override
     public void createPlayerKeyboard() {
@@ -40,12 +46,20 @@ public class PlayerController implements PlayerAPI {
 
     @Override
     public Player getKeyboardPlayer() {
-        return playerService.getKeyboardPlayer();
+        Player keyboardPlayer = playerService.getKeyboardPlayer();
+        if(keyboardPlayer == null){
+            throw new PlayerNotFoundException("Player not present");
+        }
+        return keyboardPlayer;
     }
 
     @Override
     public Player getGamepadPlayer() {
-        return playerService.getGamepadPlayer();
+        Player gamePadPlayer = playerService.getGamepadPlayer();
+        if(gamePadPlayer == null){
+            throw new PlayerNotFoundException("Player not present");
+        }
+        return gamePadPlayer;
     }
 
     @Override
